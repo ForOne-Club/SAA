@@ -195,6 +195,100 @@ namespace SAA
                 }
             }
             return list;
+        }/// <summary>
+         ///  请在ModTile.SSD()中使用，设置物块基本属性
+         /// </summary>
+         /// <param name="type"></param>
+         /// <param name="solid">是否实体（能否不可穿过）</param>
+         /// <param name="solidTop">是否顶部允许站立</param>
+         /// <param name="noAttach">是否不允许其他物块攀附</param>
+         /// <param name="table">是否视为桌子（顶上可以放瓶子存钱罐）</param>
+         /// <param name="lavaDeath">会被岩浆做掉</param>
+         /// <param name="frameImportant">帧对齐</param>
+         /// <param name="cut">会被弹幕做掉</param>
+         /// <param name="blockLight">是否阻挡光传播</param>
+         /// <param name="mergeDirt">是否与土相连</param>
+         /// <param name="light">是否发光，需要配合ModifyLight使用</param>
+         /// <param name="dust">挖掘时粒子</param>
+        public static void SetTileBase(this ModTile tile, bool solid, bool solidTop, bool noAttach, bool table,
+            bool lavaDeath, bool frameImportant, bool cut, bool blockLight, bool mergeDirt, bool light, int dust = 0)
+        {
+            int type = tile.Type;
+            Main.tileSolid[type] = solid;
+            Main.tileSolidTop[type] = solidTop;
+            Main.tileNoAttach[type] = noAttach;
+            Main.tileTable[type] = table;
+            Main.tileLavaDeath[type] = lavaDeath;
+            Main.tileFrameImportant[type] = frameImportant;
+            Main.tileCut[type] = cut;
+            Main.tileBlockLight[type] = blockLight;
+            Main.tileMergeDirt[type] = mergeDirt;
+            Main.tileLighted[type] = true;
+            tile.DustType = dust;
+        }
+        /// <summary>
+        /// 设置物块价值
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="ore">是否为矿石</param>
+        /// <param name="spelunker">是否被洞穴探险药水高亮</param>
+        /// <param name="oreFinderPriority">金属探测器优先级
+        /// <br/>任意罐子=100 坚固化石=150 沙漠化石=150
+        /// <br/>铜锡铁铅银钨金铂 200~270（+10）
+        /// <br/>魔矿=300 猩红矿=310 陨石=400
+        /// <br/>任意宝箱=500
+        /// <br/>钴蓝 钯金 秘银 山铜 精金 钛金 600~650（+10）
+        /// <br/>叶绿矿=700 奇异植物=750
+        /// <br/>水晶之心=800 生命果=810</param>
+        /// <param name="glowStick">洞穴探险荧光棒高亮</param>
+        /// <param name="shine">闪烁亮点的频率，越大越快</param>
+        /// <param name="mineResist">挖掘抗性</param>
+        /// <param name="minPick">最低挖掘力</param>
+        public static void SetTileValue(this ModTile tile, bool ore, bool spelunker,
+            short oreFinderPriority, bool glowStick, int shine, float mineResist, int minPick)
+        {
+            int type = tile.Type;
+            TileID.Sets.Ore[type] = ore;
+            Main.tileSpelunker[type] = spelunker;
+            Main.tileOreFinderPriority[type] = oreFinderPriority;
+            Main.tileShine2[type] = glowStick;
+            Main.tileShine[type] = shine;
+            tile.MineResist = mineResist;
+            tile.MinPick = minPick;
+        }
+        public static void RegisterTile(this ModTile tile, Color color)
+        {
+            tile.AddMapEntry(color, tile.CreateMapEntryName());
+        }
+        public static void RegisterAsCommonTile(this ModTile tile, Color color)
+        {
+            tile.SetTileBase(true, true, false, false, false, true, false, true, false, false, DustID.Mud);
+            tile.RegisterTile(color);
+        }
+        public static bool TileChain(Predicate<Tile> condition, Predicate<Tile> breakCd, int oriX, int oriY, int nowX, int nowY, int maxDis, HashSet<(int, int)> ignoreTiles = null)
+        {
+            if (WorldGen.InWorld(nowX, nowY))
+            {
+                ignoreTiles = new();
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        int x = nowX + i, y = nowY + j;
+                        if (ignoreTiles.Contains((x, y))) continue;
+                        Tile tile = Main.tile[x, y];
+                        if (breakCd.Invoke(tile)) return true;
+                        bool bk = false;
+                        if (condition.Invoke(tile) && Math.Abs(oriX - x) <= maxDis && Math.Abs(oriY - y) <= maxDis)
+                        {
+                            ignoreTiles.Add((x, y));
+                            bk = TileChain(condition, breakCd, oriX, oriY, x, y, maxDis, ignoreTiles);
+                            if (bk) return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using SAA.Content.Placeable.Tiles;
-
-namespace SAA.Content.Foods
+﻿namespace SAA.Content.Foods
 {
     public class 油罐 : ModItem
     {

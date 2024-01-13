@@ -1,5 +1,4 @@
-﻿using Terraria.ObjectData;
-namespace SAA.Content.Placeable.Tiles
+﻿namespace SAA.Content.Placeable.Tiles
 {
     public class 牛奶发酵桶 : ModTile
     {

@@ -1,6 +1,4 @@
-﻿using Terraria.DataStructures;
-using Terraria.GameContent.ObjectInteractions;
-using Terraria.ObjectData;
+﻿using Terraria.GameContent.ObjectInteractions;
 namespace SAA.Base
 {
     public abstract class 篝火 : ModTile

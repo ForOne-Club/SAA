@@ -1,5 +1,4 @@
 ﻿using SAA.Content.Foods;
-using Terraria.ObjectData;
 namespace SAA.Content.Placeable.Tiles
 {
     public class 白蘑树桩 : ModTile

@@ -1,5 +1,4 @@
 ﻿using SAA.Base;
-using Terraria.DataStructures;
 
 namespace SAA.Content.Placeable.Tiles
 {
