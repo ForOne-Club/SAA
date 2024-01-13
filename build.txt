@@ -1,0 +1,5 @@
+displayName = SatietyAndAgriculture
+author = 逆风而行的信鸽
+version = 0.1
+hideCode = true
+hideResources = false

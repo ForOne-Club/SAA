@@ -1,0 +1,468 @@
+Tooltips: 增加饱食度
+
+Tiles: {
+	烤肉篝火.MapEntry: 烤肉篝火
+	牛奶发酵桶.MapEntry: 牛奶发酵桶
+	白蘑木桩.MapEntry: 白蘑木桩
+	白蘑树桩.MapEntry: 白蘑树桩
+}
+
+Buffs: {
+	一级饱和: {
+		DisplayName: 一级饱和
+		Description: 所有属性小幅度提升
+	}
+
+	三级饱和: {
+		DisplayName: 三级饱和
+		Description: 所有属性大幅度提升
+	}
+
+	二级饱和: {
+		DisplayName: 二级饱和
+		Description: 所有属性中幅度提升
+	}
+
+	强效饱和: {
+		DisplayName: 强效饱和
+		Description: 所有属性很大幅度提升
+	}
+
+	腐球免疫: {
+		DisplayName: 腐球免疫
+		Description: 免疫咒火与诅咒
+	}
+
+	超级饱和: {
+		DisplayName: 超级饱和
+		Description: 所有属性巨大幅度提升
+	}
+
+	酸甜可口: {
+		DisplayName: 酸甜可口
+		Description: 所有属性巨大幅度提升
+	}
+
+	饱腹: {
+		DisplayName: 饱腹
+		Description:
+			'''
+			饱食度下降小幅度减缓
+			"有点撑"
+			'''
+	}
+
+	饱食之火: {
+		DisplayName: 饱食之火
+		Description: 饱食度下降略有减缓
+	}
+
+	饿瘪了: {
+		DisplayName: 饿瘪了
+		Description: 就快饿死了
+	}
+
+	短爬兽Buff: {
+		DisplayName: 短爬兽宝宝
+		Description: 短爬兽宝宝将跟着你
+	}
+}
+
+Items: {
+	求生手册: {
+		DisplayName: 求生手册
+		// Tooltip: ""
+	}
+
+	乌贼: {
+		// DisplayName: 乌贼
+		// Tooltip: ""
+	}
+
+	云锦果: {
+		// DisplayName: 云锦果
+		// Tooltip: ""
+	}
+
+	云锦面包: {
+		// DisplayName: 云锦面包
+		// Tooltip: ""
+	}
+
+	全家桶: {
+		// DisplayName: 全家桶
+		// Tooltip: ""
+	}
+
+	吐司面包: {
+		// DisplayName: 吐司面包
+		// Tooltip: ""
+	}
+
+	奶油: {
+		// DisplayName: 奶油
+		// Tooltip: ""
+	}
+
+	奶油吐司面包: {
+		// DisplayName: 奶油吐司面包
+		// Tooltip: ""
+	}
+
+	奶油面包: {
+		// DisplayName: 奶油面包
+		// Tooltip: ""
+	}
+
+	奶酪: {
+		// DisplayName: 奶酪
+		// Tooltip: ""
+	}
+
+	李子面包: {
+		// DisplayName: 李子面包
+		// Tooltip: ""
+	}
+
+	杏子面包: {
+		// DisplayName: 杏子面包
+		// Tooltip: ""
+	}
+
+	杨桃面包: {
+		// DisplayName: 杨桃面包
+		// Tooltip: ""
+	}
+
+	柠檬面包: {
+		// DisplayName: 柠檬面包
+		// Tooltip: ""
+	}
+
+	桃子面包: {
+		// DisplayName: 桃子面包
+		// Tooltip: ""
+	}
+
+	椰蓉: {
+		// DisplayName: 椰蓉
+		// Tooltip: ""
+	}
+
+	樱桃面包: {
+		// DisplayName: 樱桃面包
+		// Tooltip: ""
+	}
+
+	油果: {
+		// DisplayName: 油果
+		// Tooltip: ""
+	}
+
+	油炸白蘑菇: {
+		// DisplayName: 油炸白蘑菇
+		// Tooltip: ""
+	}
+
+	油炸翅尖: {
+		// DisplayName: 油炸翅尖
+		// Tooltip: ""
+	}
+
+	油炸翅根: {
+		// DisplayName: 油炸翅根
+		// Tooltip: ""
+	}
+
+	油炸鸡腿: {
+		// DisplayName: 油炸鸡腿
+		// Tooltip: ""
+	}
+
+	油罐: {
+		// DisplayName: 油罐
+		// Tooltip: ""
+	}
+
+	海带: {
+		// DisplayName: 海带
+		// Tooltip: ""
+	}
+
+	海水: {
+		// DisplayName: 海水
+		// Tooltip: ""
+	}
+
+	海鲜浓汤: {
+		// DisplayName: 海鲜浓汤
+		// Tooltip: ""
+	}
+
+	海麦: {
+		// DisplayName: 海麦
+		// Tooltip: ""
+	}
+
+	海麦面包: {
+		// DisplayName: 海麦面包
+		// Tooltip: ""
+	}
+
+	烤乌贼: {
+		// DisplayName: 烤乌贼
+		// Tooltip: ""
+	}
+
+	烤短爬兽排: {
+		// DisplayName: 烤短爬兽排
+		// Tooltip: ""
+	}
+
+	烤蚜虫: {
+		// DisplayName: 烤蚜虫
+		// Tooltip: ""
+	}
+
+	烤蛆虫: {
+		// DisplayName: 烤蛆虫
+		// Tooltip: ""
+	}
+
+	烤蝇蛆: {
+		// DisplayName: 烤蝇蛆
+		// Tooltip: ""
+	}
+
+	烤鱼: {
+		// DisplayName: 烤鱼
+		// Tooltip: ""
+	}
+
+	烤鼻涕虫: {
+		// DisplayName: 烤鼻涕虫
+		// Tooltip: ""
+	}
+
+	牛奶: {
+		// DisplayName: 牛奶
+		// Tooltip: ""
+	}
+
+	生翅尖: {
+		// DisplayName: 生翅尖
+		// Tooltip: ""
+	}
+
+	生翅根: {
+		// DisplayName: 生翅根
+		// Tooltip: ""
+	}
+
+	生鸡腿: {
+		// DisplayName: 生鸡腿
+		// Tooltip: ""
+	}
+
+	白蘑菇: {
+		// DisplayName: 白蘑菇
+		// Tooltip: ""
+	}
+
+	短爬兽排: {
+		// DisplayName: 短爬兽排
+		// Tooltip: ""
+	}
+
+	碳烤蟹棒: {
+		// DisplayName: 碳烤蟹棒
+		// Tooltip: ""
+	}
+
+	腐球果: {
+		// DisplayName: 腐球果
+		// Tooltip: ""
+	}
+
+	腐球果饮: {
+		// DisplayName: 腐球果饮
+		// Tooltip: ""
+	}
+
+	芒果面包: {
+		// DisplayName: 芒果面包
+		// Tooltip: ""
+	}
+
+	苹果面包: {
+		// DisplayName: 苹果面包
+		// Tooltip: ""
+	}
+
+	菠萝面包: {
+		// DisplayName: 菠萝面包
+		// Tooltip: ""
+	}
+
+	葡萄柚面包: {
+		// DisplayName: 葡萄柚面包
+		// Tooltip: ""
+	}
+
+	蜂蜜面包: {
+		// DisplayName: 蜂蜜面包
+		// Tooltip: ""
+	}
+
+	蟹棒: {
+		// DisplayName: 蟹棒
+		// Tooltip: ""
+	}
+
+	血橙面包: {
+		// DisplayName: 血橙面包
+		// Tooltip: ""
+	}
+
+	血角: {
+		// DisplayName: 血角
+		// Tooltip: ""
+	}
+
+	贝克斯炖肉: {
+		// DisplayName: 贝克斯炖肉
+		// Tooltip: ""
+	}
+
+	酸奶: {
+		// DisplayName: 酸奶
+		// Tooltip: ""
+	}
+
+	鱼翅: {
+		// DisplayName: 鱼翅
+		// Tooltip: ""
+	}
+
+	鱼藻复合粉: {
+		// DisplayName: 鱼藻复合粉
+		// Tooltip: ""
+	}
+
+	麻辣金鱼汤: {
+		// DisplayName: 麻辣金鱼汤
+		// Tooltip: ""
+	}
+
+	黄油: {
+		// DisplayName: 黄油
+		// Tooltip: ""
+	}
+
+	黑醋栗面包: {
+		// DisplayName: 黑醋栗面包
+		// Tooltip: ""
+	}
+
+	丰收镰刀: {
+		// DisplayName: 丰收镰刀
+		// Tooltip: ""
+	}
+
+	种子机关枪: {
+		// DisplayName: 种子机关枪
+		// Tooltip: ""
+	}
+
+	奶蜗牛: {
+		// DisplayName: 奶蜗牛
+		// Tooltip: ""
+	}
+
+	草球: {
+		// DisplayName: 草球
+		// Tooltip: ""
+	}
+
+	烤肉丛林篝火: {
+		// DisplayName: 烤肉丛林篝火
+		// Tooltip: ""
+	}
+
+	烤肉冰冻篝火: {
+		// DisplayName: 烤肉冰冻篝火
+		// Tooltip: ""
+	}
+
+	烤肉彩虹篝火: {
+		// DisplayName: 烤肉彩虹篝火
+		// Tooltip: ""
+	}
+
+	烤肉恶魔篝火: {
+		// DisplayName: 烤肉恶魔篝火
+		// Tooltip: ""
+	}
+
+	烤肉沙漠篝火: {
+		// DisplayName: 烤肉沙漠篝火
+		// Tooltip: ""
+	}
+
+	烤肉灵液篝火: {
+		// DisplayName: 烤肉灵液篝火
+		// Tooltip: ""
+	}
+
+	烤肉猩红篝火: {
+		// DisplayName: 烤肉猩红篝火
+		// Tooltip: ""
+	}
+
+	烤肉珊瑚篝火: {
+		// DisplayName: 烤肉珊瑚篝火
+		// Tooltip: ""
+	}
+
+	烤肉神圣篝火: {
+		// DisplayName: 烤肉神圣篝火
+		// Tooltip: ""
+	}
+
+	烤肉篝火: {
+		// DisplayName: 烤肉篝火
+		// Tooltip: ""
+	}
+
+	烤肉腐化篝火: {
+		// DisplayName: 烤肉腐化篝火
+		// Tooltip: ""
+	}
+
+	烤肉诅咒篝火: {
+		// DisplayName: 烤肉诅咒篝火
+		// Tooltip: ""
+	}
+
+	烤肉超亮篝火: {
+		// DisplayName: 烤肉超亮篝火
+		// Tooltip: ""
+	}
+
+	烤肉骨头篝火: {
+		// DisplayName: 烤肉骨头篝火
+		// Tooltip: ""
+	}
+
+	牛奶发酵桶: {
+		// DisplayName: 牛奶发酵桶
+		// Tooltip: ""
+	}
+}
+
+NPCs: {
+	// 奶牛.DisplayName: 奶牛
+	// 短爬兽.DisplayName: 短爬兽
+}
+
+// Projectiles.短爬兽宝宝.DisplayName: 短爬兽宝宝
