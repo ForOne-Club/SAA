@@ -68,7 +68,7 @@ public class HungerforPlayer : ModPlayer
             {
                 hungerMax = HungerCount * 20;
             }
-            HungerReduce -= cut;
+            HungerReduce += cut;
             if (hungerMax - HungerReduce < 20) HungerReduce = hungerMax - 20;
         }
         base.Kill(damage, hitDirection, pvp, damageSource);
@@ -126,12 +126,22 @@ public class HungerforPlayer : ModPlayer
                     type = 334;//原版能饿死的buff
                 }
             }
-            else if (Hunger < 20) { }
-            else if (Hunger < 120) type = ModContent.BuffType<一级饱和>();
-            else if (Hunger < 220) type = ModContent.BuffType<二级饱和>();
-            else if (Hunger < 320) type = ModContent.BuffType<三级饱和>();
-            else if (Hunger < 420) type = ModContent.BuffType<强效饱和>();
-            else if (Hunger <= 500.5f) type = ModContent.BuffType<超级饱和>();
+            else if (HungerSetting.ForOne)
+            {
+                if (Hunger < 20) { }
+                else if (Hunger < 120) type = ModContent.BuffType<一级饱和>();
+                else if (Hunger < 220) type = ModContent.BuffType<二级饱和>();
+                else if (Hunger < 320) type = ModContent.BuffType<三级饱和>();
+                else if (Hunger < 420) type = ModContent.BuffType<强效饱和>();
+                else if (Hunger <= 500.5f) type = ModContent.BuffType<超级饱和>();
+            }
+            else
+            {
+                if (Hunger < 10) { }
+                else if (Hunger < 40) type = ModContent.BuffType<一级饱和>();
+                else if (Hunger < 70) type = ModContent.BuffType<二级饱和>();
+                else if (Hunger <= 100.5f) type = ModContent.BuffType<三级饱和>();
+            }
             HungerClear(HungerBuff, type);
             if (type >= 0) HungerBuffAdd(type);
             if (Player.HasBuff(334))
@@ -146,7 +156,18 @@ public class HungerforPlayer : ModPlayer
     }
     public override void UpdateDead()
     {
+        int hungerMax;
+        if (HungerCount > 20)
+        {
+            hungerMax = (HungerCount - 20) * 5;
+        }
+        else
+        {
+            hungerMax = HungerCount * 20;
+        }
+        int max = hungerMax - HungerReduce;
         if (Hunger < 100) Hunger = 100;
+        if (max < 100) Hunger = max;
     }
     public virtual void HungerClear(int[] bufftype, int thisbufftype)
     {

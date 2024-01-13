@@ -186,9 +186,13 @@
                 float hungerheal = item.GetGlobalItem<HungerforItem>().HealHunger;
                 HungerforPlayer hungerforPlayer = player.GetModPlayer<HungerforPlayer>();
                 float hunger = hungerforPlayer.HungerMax - hungerforPlayer.Hunger;
-                if (hunger >= 10 && hungerforPlayer.HungerReduce > 0) hungerforPlayer.HungerReduce--;
                 hungerforPlayer.Hunger += hungerheal > hunger ? hunger : hungerheal;
                 hungerheal = hungerheal > hunger ? hunger - (int)hunger - 0.5f > 0 ? hunger + 1 : hunger : hungerheal;
+                if (hungerheal >= 10 && hungerforPlayer.HungerReduce > 0)
+                {
+                    hungerforPlayer.HungerReduce--;
+                    hungerforPlayer.Hunger++;
+                }
                 HungerHeal((int)hungerheal, player);
                 Gluttony(player, (int)hungerheal, 1);
             }

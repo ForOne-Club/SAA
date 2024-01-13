@@ -6,7 +6,6 @@ namespace SAA.Content.Sys
 {
     public class HungerUI : UIState
     {
-        public static bool Open = true;
         public static new float Width = 0.46f;
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -48,7 +47,7 @@ namespace SAA.Content.Sys
             newwidth = (int)(66 * factor2);
             Bar1.X = Bar1.X + 28 + newwidth;
             Bar1.Width = texture1.Width - 28 - newwidth;
-            Bar2.X = Bar1.X + 28 + newwidth;
+            Bar2.X = 28 + newwidth;
             Bar2.Width = texture1.Width - 28 - newwidth;
             Main.spriteBatch.Draw(texture3, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
         }
@@ -66,7 +65,7 @@ namespace SAA.Content.Sys
         }
         public override void UpdateUI(GameTime gameTime)
         {
-            if (HungerUI.Open)
+            if (!HungerSetting.ForOne)
                 饱食度UserInterface?.Update(gameTime);
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -85,7 +84,7 @@ namespace SAA.Content.Sys
                    //这里是匿名方法
                    delegate
                    {
-                       if (HungerUI.Open)
+                       if (!HungerSetting.ForOne)
                            饱食度UI.Draw(Main.spriteBatch);
                        return true;
                    },

@@ -40,7 +40,7 @@ Buffs: {
 
 	酸甜可口: {
 		DisplayName: 酸甜可口
-		Description: 所有属性巨大幅度提升
+		Description: 多吃酸的帮助消化
 	}
 
 	饱腹: {
@@ -366,12 +366,16 @@ Items: {
 
 	丰收镰刀: {
 		DisplayName: 丰收镰刀
-		Tooltip: ""
+		Tooltip:
+			'''
+			帮助玩家快速收集种子但是无法收集干草
+			用它收集野果野菜将得到更高产量
+			'''
 	}
 
 	种子机关枪: {
 		DisplayName: 种子机关枪
-		Tooltip: ""
+		Tooltip: 上吧！妙蛙种子，使用种子机枪
 	}
 
 	奶蜗牛: {
@@ -458,6 +462,15 @@ Items: {
 		DisplayName: 牛奶发酵桶
 		Tooltip: ""
 	}
+
+	消化药水: {
+		DisplayName: 消化药水
+		Tooltip:
+			'''
+			帮助消化
+			"这玩意真的不是混合果汁?"
+			'''
+	}
 }
 
 NPCs: {
@@ -466,3 +479,14 @@ NPCs: {
 }
 
 Projectiles.短爬兽宝宝.DisplayName: 短爬兽宝宝
+
+Configs: {
+	Configs: {
+		DisplayName: Configs
+
+		HungerCausePlayerDown: {
+			Label: 饱食度扣血机制开关
+			Tooltip: 是, 在饱食度为零时扣血, 否, 以取消. 默认为否
+		}
+	}
+}

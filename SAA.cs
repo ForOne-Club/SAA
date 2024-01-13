@@ -22,7 +22,7 @@ namespace SAA
             ModLoader.TryGetMod("ForOne", out Mod mod);
             if(mod != null) 
             {
-                HungerUI.Open = false;
+                HungerSetting.ForOne = true;
             }
         }
     }
