@@ -1,5 +1,4 @@
 ﻿using SAA.Content.Placeable.Tiles;
-using Terraria.ID;
 
 namespace SAA.Content.Foods
 {
@@ -22,14 +21,14 @@ namespace SAA.Content.Foods
             .AddIngredient<海麦>(4)
             .AddIngredient<短爬兽排>()
             .AddIngredient<奶酪>()
-            .AddTile(ModContent.TileType<烤肉篝火>())
+            .AddTile(TileID.Furnaces)//熔炉
             .Register();
             //苹果派
             Recipe.Create(4011)
             .AddIngredient<海麦>(2)
             .AddIngredient<黄油>()
             .AddIngredient(ItemID.Apple)
-            .AddTile(TileID.CookingPots)
+            .AddTile(TileID.Furnaces)
             .Register();
             //鲜虾三明治
             Recipe.Create(4035)
@@ -66,6 +65,14 @@ namespace SAA.Content.Foods
                 {
                     rec.requiredTile.RemoveAll(new Predicate<int>((tile) => tile == TileID.CookingPots));
                     rec.requiredTile.Add(ModContent.TileType<烤肉篝火>());
+                }
+            }
+            //南瓜派
+            if (RecipeSupport.TryFindRecipes(new Predicate<Recipe>((r) => r.createItem.type == ItemID.PumpkinPie), out IEnumerable<Recipe> recipe4))
+            {
+                foreach (Recipe rec in recipe4)
+                {
+                    rec.AddIngredient(ModContent.ItemType<海麦>());
                 }
             }
             base.PostAddRecipes();

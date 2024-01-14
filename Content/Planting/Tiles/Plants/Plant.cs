@@ -14,7 +14,10 @@ namespace SAA.Content.Planting.Tiles.Plants
     }
     public abstract class Plant : ModTile
     {
-        public const int FrameWidth = 18;
+        /// <summary>
+        /// 生长阶段宽度
+        /// </summary>
+        public virtual short FrameWidth => 18;
         /// <summary>
         /// 物块高度, 1 or 2
         /// </summary>
@@ -25,6 +28,7 @@ namespace SAA.Content.Planting.Tiles.Plants
         protected virtual int GrowthRate => 1;
         protected virtual int HerbItemType => ModContent.ItemType<海麦>();
         protected virtual int SeedItemType => ModContent.ItemType<海燕麦种子>();
+        protected virtual void ModifyTileObjectData() { }
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
@@ -46,6 +50,7 @@ namespace SAA.Content.Planting.Tiles.Plants
             this.RegisterTile(Color.Green);
             if (Height == 2) TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             else TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+            ModifyTileObjectData();
             TileObjectData.newTile.AnchorValidTiles = new int[] {
                 ModContent.TileType<Arable>(),
             };
@@ -97,7 +102,7 @@ namespace SAA.Content.Planting.Tiles.Plants
                 WorldGen.KillTile(i, j, false, false, true);
             }
         }
-        public static PlantStage GetStage(int i, int j)
+        public PlantStage GetStage(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j);
             return (PlantStage)(tile.TileFrameX / FrameWidth);
