@@ -30,12 +30,18 @@
         }
         public override void AddRecipes()
         {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<海带>(), 1);
-            recipe.AddIngredient(ItemID.Goldfish, 1);
-            recipe.AddIngredient(ModContent.ItemType<血角>(), 2);
-            recipe.AddTile(TileID.CookingPots);
-            recipe.Register();
+            CreateRecipe()
+            .AddIngredient(ModContent.ItemType<海带>(), 1)
+            .AddIngredient(ItemID.Goldfish, 1)
+            .AddIngredient(ModContent.ItemType<血角>(), 2)
+            .AddTile(TileID.CookingPots)
+            .Register();
+            CreateRecipe()
+            .AddIngredient(ModContent.ItemType<海带>(), 1)
+            .AddIngredient(ItemID.Goldfish, 1)
+            .AddIngredient(5277)//辣椒
+            .AddTile(TileID.CookingPots)
+            .Register();
         }
     }
 }

@@ -24,10 +24,9 @@
             Item.buffType = 207;
             Item.buffTime = 72000;
         }
-        public override bool? UseItem(Player player)
+        public override void OnConsumeItem(Player player)
         {
             player.AddBuff(ModContent.BuffType<Buffs.饱腹>(), 7200);
-            return true;
         }
         public override void AddRecipes()
         {

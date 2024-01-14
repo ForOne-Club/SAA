@@ -332,7 +332,7 @@ Items: {
 
 	血角: {
 		DisplayName: 血角
-		Tooltip: ""
+		Tooltip: 据说是血腥之地荆棘的果实，辣味十足
 	}
 
 	贝克斯炖肉: {
@@ -342,7 +342,7 @@ Items: {
 
 	酸奶: {
 		DisplayName: 酸奶
-		Tooltip: ""
+		Tooltip: '''"放心喝，它不会帮助消化"'''
 	}
 
 	鱼翅: {
