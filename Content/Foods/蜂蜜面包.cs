@@ -2,10 +2,6 @@
 {
     public class 蜂蜜面包 : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("蜂蜜面包");
-        }
         public override void SetDefaults()
         {
             Item.width = 38;

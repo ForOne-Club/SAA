@@ -22,7 +22,7 @@
             Item.consumable = true;
             Item.useTurn = false;
             Item.buffType = 206;
-            Item.buffTime = 46800;
+            Item.buffTime = 50400;
         }
         public override void OnConsumeItem(Player player)
         {

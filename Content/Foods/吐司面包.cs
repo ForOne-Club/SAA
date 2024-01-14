@@ -29,7 +29,7 @@
             recipe.AddIngredient(ModContent.ItemType<海麦>(), 8);
             recipe.AddIngredient(ModContent.ItemType<牛奶>(), 2);
             recipe.AddIngredient(ModContent.ItemType<黄油>(), 1);
-            recipe.AddTile(TileID.CookingPots);
+            recipe.AddTile(TileID.Furnaces);
             recipe.ReplaceResult(this, 2);
             recipe.Register();
         }

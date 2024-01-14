@@ -11,6 +11,7 @@ Tiles: {
 	Arable.MapEntry: 耕地
 	海麦作物.MapEntry: 海燕麦
 	生命果实.MapEntry: 生命果实
+	蓝莓.MapEntry: 蓝莓
 }
 
 Buffs: {
@@ -495,6 +496,26 @@ Items: {
 
 	生命果实种子: {
 		DisplayName: 生命果实种子
+		Tooltip: ""
+	}
+
+	蓝莓: {
+		DisplayName: 蓝莓
+		Tooltip: ""
+	}
+
+	蓝莓种子: {
+		DisplayName: 蓝莓种子
+		Tooltip: ""
+	}
+
+	接骨木果面包: {
+		DisplayName: 接骨木果面包
+		Tooltip: ""
+	}
+
+	蓝莓面包: {
+		DisplayName: 蓝莓面包
 		Tooltip: ""
 	}
 }

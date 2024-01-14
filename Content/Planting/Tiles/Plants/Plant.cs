@@ -26,6 +26,10 @@ namespace SAA.Content.Planting.Tiles.Plants
         /// 生长速度1到100
         /// </summary>
         protected virtual int GrowthRate => 1;
+        /// <summary>
+        /// 采摘
+        /// </summary>
+        protected virtual bool CanPick => false;
         protected virtual int HerbItemType => ModContent.ItemType<海麦>();
         protected virtual int SeedItemType => ModContent.ItemType<海燕麦种子>();
         protected virtual void ModifyTileObjectData() { }
@@ -127,9 +131,10 @@ namespace SAA.Content.Planting.Tiles.Plants
         }
         public override bool CanDrop(int i, int j)
         {
+            Tile tile = Framing.GetTileSafely(i, j);
             PlantStage stage = GetStage(i, j);
 
-            if (stage == PlantStage.Planted)
+            if (Height == 2 && tile.TileFrameY == 0)//第二格不掉落
             {
                 return false;
             }
@@ -163,6 +168,57 @@ namespace SAA.Content.Planting.Tiles.Plants
             }
 
             return false;
+        }
+        public override void MouseOver(int i, int j)
+        {
+            PlantStage stage = GetStage(i, j);
+            if (CanPick && stage == PlantStage.Grown)
+            {
+                Player player = Main.LocalPlayer;
+                player.noThrow = 2;
+                player.cursorItemIconEnabled = true;
+                player.cursorItemIconID = HerbItemType;
+            }
+        }
+        protected virtual void ModifyPick(ref int herbItemType, ref int herbItemStack) { }
+        public override bool RightClick(int i, int j)
+        {
+            Tile tile = Framing.GetTileSafely(i, j);
+            PlantStage stage = GetStage(i, j);
+
+            if (stage == PlantStage.Grown)
+            {
+                if (Height == 2 && tile.TileFrameY == 0)
+                {
+                    tile.TileFrameX -= FrameWidth;
+                    if (Height == 2) Main.tile[i, j + 1].TileFrameX -= FrameWidth;
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendTileSquare(-1, i, j, 1);
+                        if (Height == 2) NetMessage.SendTileSquare(-1, i, j + 1, 1);
+                    }
+                }
+                else
+                {
+                    tile.TileFrameX -= FrameWidth;
+                    if (Height == 2) Main.tile[i, j - 1].TileFrameX -= FrameWidth;
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendTileSquare(-1, i, j, 1);
+                        if (Height == 2) NetMessage.SendTileSquare(-1, i, j - 1, 1);
+                    }
+                }
+                Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();
+                int herbItemType = HerbItemType;//收获
+                int herbItemStack = 1;
+                ModifyPick(ref herbItemType, ref herbItemStack);
+                Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

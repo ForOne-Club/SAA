@@ -27,7 +27,7 @@
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<海麦>(), 4);
-            recipe.AddTile(TileID.CookingPots);
+            recipe.AddTile(TileID.Furnaces);
             recipe.Register();
         }
     }
