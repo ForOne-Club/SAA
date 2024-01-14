@@ -14,7 +14,7 @@ namespace SAA.Content.Planting.Tiles.Plants
     }
     public abstract class Plant : ModTile
     {
-        private const int FrameWidth = 18;
+        public const int FrameWidth = 18;
         /// <summary>
         /// 物块高度, 1 or 2
         /// </summary>
@@ -75,9 +75,9 @@ namespace SAA.Content.Planting.Tiles.Plants
             bool flag = land.TileType == ModContent.TileType<Arable>();
             if (land.HasTile && flag)
             {
-                if (PlowlandSystem.wet.Contains((i, j + 1)))
+                if (Main.dayTime && PlowlandSystem.wet.Contains((i, j + 1)))//白天与湿地生长
                 {
-                    if (Main.rand.NextBool(101 - GrowthRate))
+                    if (Main.rand.Next(100) < GrowthRate)
                     {
                         if (stage != PlantStage.Grown)
                         {
@@ -97,7 +97,7 @@ namespace SAA.Content.Planting.Tiles.Plants
                 WorldGen.KillTile(i, j, false, false, true);
             }
         }
-        private static PlantStage GetStage(int i, int j)
+        public static PlantStage GetStage(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j);
             return (PlantStage)(tile.TileFrameX / FrameWidth);

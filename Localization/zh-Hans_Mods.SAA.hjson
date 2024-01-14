@@ -9,7 +9,8 @@ Tiles: {
 	白蘑木桩.MapEntry: 白蘑木桩
 	白蘑树桩.MapEntry: 白蘑树桩
 	// Arable.MapEntry: 耕地
-	// 海麦作物.MapEntry: 海麦作物
+	// 海麦作物.MapEntry: 海燕麦
+	// 生命果实.MapEntry: 生命果实
 }
 
 Buffs: {
@@ -485,6 +486,16 @@ Items: {
 	海燕麦种子: {
 		// DisplayName: 海燕麦种子
 		// Tooltip: '''"谁说这玩意只能种在沙滩上"'''
+	}
+
+	迷你生命果: {
+		// DisplayName: 迷你生命果
+		// Tooltip: ""
+	}
+
+	生命果实种子: {
+		// DisplayName: 生命果实种子
+		// Tooltip: ""
 	}
 }
 

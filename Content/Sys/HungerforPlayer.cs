@@ -12,6 +12,7 @@ public class HungerforPlayer : ModPlayer
     public float Hunger = 100.5f;
     public float HungerMax = 100.5f;
     public bool HungerBook = false;
+    public int PoopTime = 300;//拉臭臭间隔时间
     internal static int[] HungerBuff = { 26, 206, 207, 332, 333, 334, ModContent.BuffType<饿瘪了>(), ModContent.BuffType<一级饱和>(), ModContent.BuffType<二级饱和>(), ModContent.BuffType<三级饱和>(), ModContent.BuffType<强效饱和>(), ModContent.BuffType<超级饱和>() };
     public override void SaveData(TagCompound tag)
     {
@@ -152,6 +153,8 @@ public class HungerforPlayer : ModPlayer
             {
                 HungerKillTime = 0;
             }
+            //臭臭
+            if (PoopTime > 0) PoopTime--;
         }
     }
     public override void UpdateDead()

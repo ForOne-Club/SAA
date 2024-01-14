@@ -8,6 +8,7 @@ namespace SAA.Content.Planting.Tiles
     {
         internal static Texture2D tex;
         internal static Texture2D tex_wet;
+        internal virtual int[] LiquidDeflectTile => new int[] { TileID.Dirt, TileID.Grass, Type };
         public override void Load()
         {
             tex = ModContent.Request<Texture2D>(GetType().Namespace.Replace(".", "/") + "/Arable", AssetRequestMode.ImmediateLoad).Value;
@@ -33,14 +34,14 @@ namespace SAA.Content.Planting.Tiles
             List<Point> ignoreTiles = new List<Point>();
             if (wet.Contains((i, j)))
             {
-                if (!CanLinkByLiquid(ref ignoreTiles, i, j, new int[] { TileID.Dirt, TileID.Grass, Type }))
+                if (!CanLinkByLiquid(ref ignoreTiles, i, j, LiquidDeflectTile))
                 {
                     wet.Remove((i, j));
                 }
             }
             else//没湿
             {
-                if (CanLinkByLiquid(ref ignoreTiles, i, j, new int[] { TileID.Dirt, TileID.Grass, Type }))
+                if (CanLinkByLiquid(ref ignoreTiles, i, j, LiquidDeflectTile))
                 {
                     wet.Add((i, j));
                 }

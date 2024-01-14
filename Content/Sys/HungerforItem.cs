@@ -249,7 +249,7 @@ namespace SAA.Content.Sys
                 {
                     for (int j = minY; j < maxY; j++)
                     {
-                        Tile tile = Main.tile[i, j];
+                        Tile tile = Framing.GetTileSafely(i, j);
                         if (tile.HasTile && TileLoader.GetTile(tile.TileType) is Plant)
                         {
                             player.PickTile(i, j, 10000);
