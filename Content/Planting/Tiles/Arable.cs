@@ -1,4 +1,5 @@
 ﻿using ReLogic.Content;
+using SAA.Content.Packages;
 using SAA.Content.Planting.Tiles.Plants;
 using static SAA.Content.Planting.System.PlowlandSystem;
 
@@ -26,9 +27,14 @@ namespace SAA.Content.Planting.Tiles
         public override void RandomUpdate(int i, int j)
         {
             Tile tile = Main.tile[i, j - 1];
+            bool send = false;
             if (tile.HasTile && TileLoader.GetTile(tile.TileType) is not Plant)//实体方块
             {
-                if (wet.Contains((i, j))) wet.Remove((i, j));
+                if (wet.Contains((i, j)))
+                {
+                    wet.Remove((i, j));
+                    send = true;
+                }
                 WorldGen.PlaceTile(i, j, TileID.Dirt, false, true);
             }
             List<Point> ignoreTiles = new List<Point>();
@@ -37,6 +43,7 @@ namespace SAA.Content.Planting.Tiles
                 if (!CanLinkByLiquid(ref ignoreTiles, i, j, LiquidDeflectTile))
                 {
                     wet.Remove((i, j));
+                    send = true;
                 }
             }
             else//没湿
@@ -44,8 +51,10 @@ namespace SAA.Content.Planting.Tiles
                 if (CanLinkByLiquid(ref ignoreTiles, i, j, LiquidDeflectTile))
                 {
                     wet.Add((i, j));
+                    send = true;
                 }
             }
+            if (send) WetArable.Send(i, j);
         }
         public static bool CanLinkByLiquid(ref List<Point> ignoreTiles, int i, int j, int[] linkTileType, int maxDistance = 4, int liquidType = LiquidID.Water)
         {
@@ -93,6 +102,7 @@ namespace SAA.Content.Planting.Tiles
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             wet.Remove((i, j));
+            WetArable.Send(i, j);
         }
     }
 }

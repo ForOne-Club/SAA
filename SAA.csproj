@@ -14,4 +14,9 @@
     <Folder Include="Content\Planting\Items\Crops\" />
     <Folder Include="Content\Planting\Items\Seeds\" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NetSimplified">
+      <HintPath>lib\NetSimplified.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
