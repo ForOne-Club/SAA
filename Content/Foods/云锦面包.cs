@@ -24,10 +24,9 @@
             Item.buffType = 206;
             Item.buffTime = 46800;
         }
-        public override bool? UseItem(Player player)
+        public override void OnConsumeItem(Player player)
         {
             player.AddBuff(BuffID.Featherfall, 10800);
-            return base.UseItem(player);
         }
         public override void AddRecipes()
         {

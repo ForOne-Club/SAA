@@ -87,7 +87,7 @@ Items: {
 
 	云锦果: {
 		// DisplayName: 云锦果
-		// Tooltip: ""
+		// Tooltip: 生长于空岛的水果，绵软无比
 	}
 
 	云锦面包: {
@@ -97,7 +97,7 @@ Items: {
 
 	全家桶: {
 		// DisplayName: 全家桶
-		// Tooltip: ""
+		// Tooltip: '''"疯狂星期四v我50"'''
 	}
 
 	吐司面包: {
@@ -122,7 +122,7 @@ Items: {
 
 	奶酪: {
 		// DisplayName: 奶酪
-		// Tooltip: ""
+		// Tooltip: '''"某些人可能不太喜欢它的味道"'''
 	}
 
 	李子面包: {
@@ -162,7 +162,7 @@ Items: {
 
 	油果: {
 		// DisplayName: 油果
-		// Tooltip: ""
+		// Tooltip: 小小的身体里蕴含大大的能量
 	}
 
 	油炸白蘑菇: {
@@ -187,22 +187,22 @@ Items: {
 
 	油罐: {
 		// DisplayName: 油罐
-		// Tooltip: ""
+		// Tooltip: 油炸的必备材料
 	}
 
 	海带: {
 		// DisplayName: 海带
-		// Tooltip: ""
+		// Tooltip: 与长在深海中的海草共生，它可以很好的吸取海水中的盐分
 	}
 
 	海水: {
 		// DisplayName: 海水
-		// Tooltip: ""
+		// Tooltip: 用海生子将水中的盐份吸收后饮用，然后将海生子一同食用回复少量饱食度
 	}
 
 	海鲜浓汤: {
 		// DisplayName: 海鲜浓汤
-		// Tooltip: ""
+		// Tooltip: 会让你饱腹感十足
 	}
 
 	海麦: {
@@ -252,7 +252,7 @@ Items: {
 
 	牛奶: {
 		// DisplayName: 牛奶
-		// Tooltip: ""
+		// Tooltip: '''"泰拉世界居然有牛，嗯，一定不是什么正常的牛"'''
 	}
 
 	生翅尖: {
@@ -332,7 +332,7 @@ Items: {
 
 	血角: {
 		// DisplayName: 血角
-		// Tooltip: ""
+		// Tooltip: 据说是血腥之地荆棘的果实，辣味十足
 	}
 
 	贝克斯炖肉: {
@@ -342,7 +342,7 @@ Items: {
 
 	酸奶: {
 		// DisplayName: 酸奶
-		// Tooltip: ""
+		// Tooltip: '''"放心喝，它不会帮助消化"'''
 	}
 
 	鱼翅: {
@@ -357,7 +357,7 @@ Items: {
 
 	麻辣金鱼汤: {
 		// DisplayName: 麻辣金鱼汤
-		// Tooltip: ""
+		// Tooltip: 赋予饮用者怒气效果
 	}
 
 	黄油: {
