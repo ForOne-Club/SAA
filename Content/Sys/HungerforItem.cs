@@ -1,4 +1,7 @@
-﻿namespace SAA.Content.Sys
+﻿using SAA.Content.Items;
+using SAA.Content.Planting.Tiles.Plants;
+
+namespace SAA.Content.Sys
 {
     public class HungerforItem : GlobalItem
     {
@@ -227,10 +230,33 @@
             int heal = item.GetGlobalItem<HungerforItem>().HealHunger;
             if (heal > 0)
             {
-                TooltipLine text = new(Mod, "饱食度", Language.GetTextValue("Mods.SAA.Tooltips") + $":{heal}");
+                TooltipLine text = new(Mod, "饱食度", Language.GetTextValue("Mods.SAA.Tooltips.1") + $":{heal}");
                 tooltips.Insert(2, text);//第几行插入，1在名称下面
             }
             base.ModifyTooltips(item, tooltips);
+        }
+        //镰刀收割
+        public override void MeleeEffects(Item item, Player player, Rectangle hitbox)
+        {
+            if(item.type== ItemID.Sickle|| item.type == ModContent.ItemType<丰收镰刀>())
+            {
+                int minX = hitbox.X / 16;
+                int maxX = (hitbox.X + hitbox.Width) / 16 + 1;
+                int minY = hitbox.Y / 16;
+                int maxY = (hitbox.Y + hitbox.Height) / 16 + 1;
+                Utils.ClampWithinWorld(ref minX, ref minY, ref maxX, ref maxY);
+                for (int i = minX; i < maxX; i++)
+                {
+                    for (int j = minY; j < maxY; j++)
+                    {
+                        Tile tile = Main.tile[i, j];
+                        if (tile.HasTile && TileLoader.GetTile(tile.TileType) is Plant)
+                        {
+                            player.PickTile(i, j, 10000);
+                        }
+                    }
+                }
+            }
         }
         public override bool InstancePerEntity => true;
     }

@@ -313,7 +313,7 @@ namespace SAA.Content.Placeable.Tiles
                     }
                 default: break;
             }
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, type);
+            //Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, type);
         }
     }
 }

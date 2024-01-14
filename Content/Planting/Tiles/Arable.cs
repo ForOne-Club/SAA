@@ -1,6 +1,6 @@
 ﻿using ReLogic.Content;
-using SAA.Content.Planting.System;
-using static SAA.Content.Planting.System.PlantSystem;
+using SAA.Content.Planting.Tiles.Plants;
+using static SAA.Content.Planting.System.PlowlandSystem;
 
 namespace SAA.Content.Planting.Tiles
 {
@@ -15,29 +15,70 @@ namespace SAA.Content.Planting.Tiles
         }
         public override void SetStaticDefaults()
         {
-            this.RegisterAsCommonTile(Color.Brown);
+            Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
+            Main.tileBlockLight[Type] = true;
+            DustType = DustID.Dirt;
+            this.RegisterTile(Color.Brown);
             RegisterItemDrop(ItemID.DirtBlock);
         }
         public override void RandomUpdate(int i, int j)
         {
-            Predicate<Tile> cd = new(x => x.HasTile && (x.TileType is TileID.Dirt or 2 || x.TileType == ModContent.TileType<Arable>()));
-            Predicate<Tile> water = new(x => x.LiquidType == LiquidID.Water && x.LiquidAmount > 0);
-            if (Helper.TileChain(cd, water, i, j, i, j, 4))
+            Tile tile = Main.tile[i, j - 1];
+            if (tile.HasTile && TileLoader.GetTile(tile.TileType) is not Plant)//实体方块
             {
-                if (!wet.Contains((i, j)))
+                if (wet.Contains((i, j))) wet.Remove((i, j));
+                WorldGen.PlaceTile(i, j, TileID.Dirt, false, true);
+            }
+            List<Point> ignoreTiles = new List<Point>();
+            if (wet.Contains((i, j)))
+            {
+                if (!CanLinkByLiquid(ref ignoreTiles, i, j, new int[] { TileID.Dirt, TileID.Grass, Type }))
+                {
+                    wet.Remove((i, j));
+                }
+            }
+            else//没湿
+            {
+                if (CanLinkByLiquid(ref ignoreTiles, i, j, new int[] { TileID.Dirt, TileID.Grass, Type }))
                 {
                     wet.Add((i, j));
                 }
             }
-            else wet.Remove((i, j));
-            if (wet.Contains((i, j)))
+        }
+        public static bool CanLinkByLiquid(ref List<Point> ignoreTiles, int i, int j, int[] linkTileType, int maxDistance = 4, int liquidType = LiquidID.Water)
+        {
+            ignoreTiles.Add(new Point(i, j));
+            Point origin = ignoreTiles[0];
+            for (int m = -1; m <= 1; m++)
             {
-                Tile plant = Main.tile[i, j - 1];
-                if (PlantData.HasPlant(plant, out int grow) && plant.TileFrameX < grow * 18 && PlantData.Growing(plant))
+                Point point = new Point(i + m, j);
+                if (!ignoreTiles.Contains(point) && Math.Abs(point.X - origin.X) <= maxDistance && Math.Abs(point.Y - origin.Y) <= maxDistance)
                 {
-                    plant.TileFrameX += 18;
+                    Tile tile = Main.tile[i + m, j];
+                    if (tile.LiquidAmount > 0 && tile.LiquidType == liquidType) return true;
+                    else if (tile.HasTile && linkTileType.Contains(tile.TileType))
+                    {
+                        if (CanLinkByLiquid(ref ignoreTiles, i + m, j, linkTileType, maxDistance, liquidType))
+                            return true;
+                    }
                 }
             }
+            for (int n = -1; n <= 1; n++)
+            {
+                Point point = new Point(i, j + n);
+                if (!ignoreTiles.Contains(point) && Math.Abs(point.X - origin.X) <= maxDistance && Math.Abs(point.Y - origin.Y) <= maxDistance)
+                {
+                    Tile tile = Main.tile[i, j + n];
+                    if (tile.LiquidAmount > 0 && tile.LiquidType == liquidType) return true;
+                    else if (tile.HasTile && linkTileType.Contains(tile.TileType))
+                    {
+                        if (CanLinkByLiquid(ref ignoreTiles, i, j + n, linkTileType, maxDistance, liquidType))
+                            return true;
+                    }
+                }
+            }
+            return false;
         }
         public override bool CanDrop(int i, int j) => true;
         public override IEnumerable<Item> GetItemDrops(int i, int j)
@@ -47,6 +88,10 @@ namespace SAA.Content.Planting.Tiles
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
         {
             drawData.drawTexture = wet.Contains((i, j)) ? tex_wet : tex;
+        }
+        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            wet.Remove((i, j));
         }
     }
 }

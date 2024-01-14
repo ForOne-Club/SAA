@@ -1,4 +1,7 @@
-﻿namespace SAA.Content.Items
+﻿using SAA.Content.Planting.System;
+using SAA.Content.Planting.Tiles.Plants;
+
+namespace SAA.Content.Items
 {
     public class 丰收镰刀 : ModItem
     {

@@ -1,12 +1,15 @@
-Tooltips: 增加饱食度
+Tooltips: {
+	1: 增加饱食度
+	2: 可以在耕地上种植
+}
 
 Tiles: {
 	烤肉篝火.MapEntry: 烤肉篝火
 	牛奶发酵桶.MapEntry: 牛奶发酵桶
 	白蘑木桩.MapEntry: 白蘑木桩
 	白蘑树桩.MapEntry: 白蘑树桩
-	Arable.MapEntry: Arable
-	海麦作物.MapEntry: 海麦作物
+	Arable.MapEntry: 耕地
+	海麦作物.MapEntry: 海燕麦
 }
 
 Buffs: {
@@ -474,14 +477,14 @@ Items: {
 			'''
 	}
 
-	HarvestScythe: {
-		DisplayName: Harvest Scythe
-		Tooltip: ""
+	锄头: {
+		DisplayName: 锄头
+		Tooltip: 将普通泥土转化为耕地
 	}
 
-	Hoe: {
-		DisplayName: Hoe
-		Tooltip: ""
+	海燕麦种子: {
+		DisplayName: 海燕麦种子
+		Tooltip: '''"谁说这玩意只能种在沙滩上"'''
 	}
 }
 

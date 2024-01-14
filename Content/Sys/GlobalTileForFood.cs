@@ -1,6 +1,7 @@
 ﻿using SAA.Content.Foods;
 using SAA.Content.Items;
 using SAA.Content.Placeable.Tiles;
+using SAA.Content.Planting.Seeds;
 
 namespace SAA.Content.Sys
 {
@@ -93,51 +94,79 @@ namespace SAA.Content.Sys
             Player player = Main.LocalPlayer;
             Item item = player.HeldItem;
             Tile tile = Main.tile[i, j];
+            bool herbdrop = false;
+            int herbtype = 0;
+            bool seeddrop = false;
+            int seedtype = 0;
             if (item.type == ModContent.ItemType<丰收镰刀>())
             {
-                if (type == TileID.Seaweed && Main.rand.NextBool(4))
+                switch (type)
                 {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<海带>(), 1, false, 0, false, false);
-                }
-                if (type == TileID.CorruptThorns && Main.rand.NextBool(4))
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<腐球果>(), 1, false, 0, false, false);
-                }
-                if (type == TileID.SeaOats && Main.rand.NextBool(2))
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<海麦>(), 1, false, 0, false, false);
-                }
-                if (type == TileID.CrimsonThorns && Main.rand.NextBool(4))
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<血角>(), 1, false, 0, false, false);
-                }
-                if (type == TileID.Plants && tile.TileFrameX < 106 && Main.rand.NextBool(5) && j < Main.worldSurface * 0.45f)
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<云锦果>(), 1, false, 0, false, false);
+                    case TileID.Seaweed:
+                        herbdrop = Main.rand.NextBool(4);
+                        herbtype = ModContent.ItemType<海带>();
+                        break;
+                    case TileID.CorruptThorns:
+                        herbdrop = Main.rand.NextBool(4);
+                        herbtype = ModContent.ItemType<腐球果>();
+                        break;
+                    case TileID.SeaOats:
+                        herbdrop = Main.rand.NextBool(2);
+                        herbtype = ModContent.ItemType<海麦>();
+                        seeddrop = Main.rand.NextBool(4);
+                        seedtype = ModContent.ItemType<海燕麦种子>();
+                        break;
+                    case TileID.CrimsonThorns:
+                        herbdrop = Main.rand.NextBool(4);
+                        herbtype = ModContent.ItemType<血角>();
+                        break;
+                    case TileID.Plants:
+                        if (tile.TileFrameX < 106 && j < Main.worldSurface * 0.45f)
+                        {
+                            herbdrop = Main.rand.NextBool(5);
+                            herbtype = ModContent.ItemType<云锦果>();
+                        }
+                        break;
                 }
             }
             else
             {
-                if (type == TileID.Seaweed && Main.rand.NextBool(5))
+                switch (type)
                 {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<海带>(), 1, false, 0, false, false);
+                    case TileID.Seaweed:
+                        herbdrop = Main.rand.NextBool(6);
+                        herbtype = ModContent.ItemType<海带>();
+                        break;
+                    case TileID.CorruptThorns:
+                        herbdrop = Main.rand.NextBool(6);
+                        herbtype = ModContent.ItemType<腐球果>();
+                        break;
+                    case TileID.SeaOats:
+                        herbdrop = Main.rand.NextBool(4);
+                        herbtype = ModContent.ItemType<海麦>();
+                        seeddrop = Main.rand.NextBool(20);
+                        seedtype = ModContent.ItemType<海燕麦种子>();
+                        break;
+                    case TileID.CrimsonThorns:
+                        herbdrop = Main.rand.NextBool(6);
+                        herbtype = ModContent.ItemType<血角>();
+                        break;
+                    case TileID.Plants:
+                        if (tile.TileFrameX < 106 && j < Main.worldSurface * 0.45f)
+                        {
+                            herbdrop = Main.rand.NextBool(8);
+                            herbtype = ModContent.ItemType<云锦果>();
+                        }
+                        break;
                 }
-                if (type == TileID.CorruptThorns && Main.rand.NextBool(5))
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<腐球果>(), 1, false, 0, false, false);
-                }
-                if (type == TileID.SeaOats && Main.rand.NextBool(3))
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<海麦>(), 1, false, 0, false, false);
-                }
-                if (type == TileID.CrimsonThorns && Main.rand.NextBool(5))
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<血角>(), 1, false, 0, false, false);
-                }
-                if (type == TileID.Plants && tile.TileFrameX < 106 && Main.rand.NextBool(6) && j < Main.worldSurface / 2)
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<云锦果>(), 1, false, 0, false, false);
-                }
+            }
+            if (herbdrop && herbtype > 0)
+            {
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, herbtype, 1);
+            }
+            if (seeddrop && seedtype > 0)
+            {
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, seedtype, 1);
             }
         }
     }
