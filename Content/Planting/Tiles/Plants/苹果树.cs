@@ -21,8 +21,11 @@ namespace SAA.Content.Planting.Tiles.Plants
         }
         protected override void ModifyDropSeedCount(ref int seedItemType, ref int seedItemStack, Player player, PlantStage stage)
         {
-            seedItemType = ItemID.Wood;
-            seedItemStack = Main.rand.Next(5, 9);
+            if (stage != PlantStage.Planted)
+            {
+                seedItemType = ItemID.Wood;
+                seedItemStack = Main.rand.Next(5, 9);
+            }
         }
     }
 }
