@@ -1,29 +1,21 @@
 ﻿using SAA.Content.Placeable.Tiles;
+using Terraria.Enums;
 
 namespace SAA.Content.Foods
 {
-    public class 烤乌贼 : ModItem
+    public class 烤乌贼 : CanHoldAndPlaceFood
     {
-        public override void SetStaticDefaults()
+        protected override void SetFoodDust()
         {
-            // DisplayName.SetDefault("烤乌贼");
+            ItemID.Sets.FoodParticleColors[Item.type] = new Color[2] {
+                Color.Purple,
+                Color.Blue,
+            };
         }
         public override void SetDefaults()
         {
-            Item.width = 44;
-            Item.height = 44;
-            Item.maxStack = 99;
-            Item.value = Item.sellPrice(0, 0, 4, 0);
-            Item.rare = ItemRarityID.Blue;
-            Item.useAnimation = 17;
-            Item.useTime = 17;
-            Item.scale = 0.8f;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.UseSound = SoundID.Item2;
-            Item.consumable = true;
-            Item.useTurn = false;
-            Item.buffType = 206;
-            Item.buffTime = 18000;
+            Item.DefaultToFood(36, 36, 206, 18000);
+            Item.SetShopValues(ItemRarityColor.Blue1, Item.sellPrice(0, 0, 5, 0));
         }
         public override void AddRecipes()
         {

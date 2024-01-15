@@ -1,6 +1,5 @@
 ﻿using SAA.Content.Items;
 using SAA.Content.Planting.Tiles.Plants;
-using Terraria.ID;
 
 namespace SAA.Content.Sys
 {
@@ -239,7 +238,7 @@ namespace SAA.Content.Sys
         //镰刀收割
         public override void MeleeEffects(Item item, Player player, Rectangle hitbox)
         {
-            if(item.type== ItemID.Sickle|| item.type == ModContent.ItemType<丰收镰刀>())
+            if (item.type == ItemID.Sickle || item.type == ModContent.ItemType<丰收镰刀>())
             {
                 int minX = hitbox.X / 16;
                 int maxX = (hitbox.X + hitbox.Width) / 16 + 1;
@@ -251,9 +250,9 @@ namespace SAA.Content.Sys
                     for (int j = minY; j < maxY; j++)
                     {
                         Tile tile = Framing.GetTileSafely(i, j);
-                        if (tile.HasTile && TileLoader.GetTile(tile.TileType) is Plant)
+                        if (tile.HasTile && TileLoader.GetTile(tile.TileType) is Plant plant)
                         {
-                            player.PickTile(i, j, 10000);
+                            if (plant.CanBeReapedBySickle) player.PickTile(i, j, 10000);
                         }
                     }
                 }

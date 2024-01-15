@@ -2,7 +2,7 @@
 
 namespace SAA.Content.Foods
 {
-    public class 原版食物移除与修改 : ModSystem
+    public class OriginFoodAmend : ModSystem
     {
         public override void AddRecipes()
         {
@@ -40,6 +40,12 @@ namespace SAA.Content.Foods
             Recipe.Create(5041)
             .AddIngredient<牛奶>(4)
             .Register();
+        }
+        public override void AddRecipeGroups()
+        {
+            //直接修改原版合成组
+            RecipeGroup rec = new RecipeGroup(() => Lang.misc[37].Value + " " + Language.GetTextValue("Misc.Fruit"), 4009, 4282, 4283, 4284, 4285, 4286, 4287, 4288, 4289, 4290, 4291, 4292, 4293, 4294, 4295, 4296, 4297, 5277, 5278, ModContent.ItemType<蓝莓>());
+            RecipeGroupID.Fruit = RecipeGroup.RegisterGroup("Fruit", rec);
         }
         public override void PostAddRecipes()
         {

@@ -18,7 +18,7 @@
             Item.useStyle = ItemUseStyleID.Swing;
             Item.rare = ItemRarityID.Blue;
             Item.noUseGraphic = true;
-            Item.value = Item.sellPrice(0, 0, 4, 0);
+            Item.value = Item.sellPrice(0, 0, 5, 0);
         }
         public override bool? UseItem(Player player)
         {

@@ -12,6 +12,7 @@ namespace SAA.Content.Placeable.Tiles
             Main.tileTable[Type] = true;
             Main.tileLavaDeath[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
+            TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(107, 77, 39), CreateMapEntryName());
         }

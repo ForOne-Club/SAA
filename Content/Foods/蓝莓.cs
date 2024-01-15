@@ -1,23 +1,20 @@
-﻿namespace SAA.Content.Foods
+﻿using Terraria.Enums;
+
+namespace SAA.Content.Foods
 {
-    public class 蓝莓 : ModItem
+    public class 蓝莓 : CanHoldAndPlaceFood
     {
+        protected override void SetFoodDust()
+        {
+            ItemID.Sets.FoodParticleColors[Item.type] = new Color[2] {
+                Color.Purple,
+                Color.Blue,
+            };
+        }
         public override void SetDefaults()
         {
-            Item.width = 26;
-            Item.height = 28;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 20, 0);
-            Item.rare = ItemRarityID.Blue;
-            Item.useAnimation = 17;
-            Item.useTime = 17;
-            Item.scale = 0.8f;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.UseSound = SoundID.Item2;
-            Item.consumable = true;
-            Item.useTurn = false;
-            Item.buffType = 26;
-            Item.buffTime = 18000;
+            Item.DefaultToFood(26, 28, BuffID.WellFed, 18000);
+            Item.SetShopValues(ItemRarityColor.Blue1, Item.sellPrice(0, 0, 20, 0));
         }
     }
 }

@@ -1,29 +1,14 @@
 ﻿using SAA.Content.Placeable.Tiles;
+using Terraria.Enums;
 
 namespace SAA.Content.Foods
 {
     public class 烤鱼 : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("烤鱼");
-        }
         public override void SetDefaults()
         {
-            Item.width = 34;
-            Item.height = 34;
-            Item.maxStack = 99;
-            Item.value = Item.sellPrice(0, 0, 5, 0);
-            Item.rare = ItemRarityID.Blue;
-            Item.useAnimation = 17;
-            Item.useTime = 17;
-            Item.scale = 0.75f;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.UseSound = SoundID.Item2;
-            Item.consumable = true;
-            Item.useTurn = false;
-            Item.buffType = BuffID.WellFed;
-            Item.buffTime = 28800;
+            Item.DefaultToFood(34, 34, BuffID.WellFed, 28800);
+            Item.SetShopValues(ItemRarityColor.Blue1, Item.sellPrice(0, 0, 5, 0));
         }
         public override void AddRecipes()
         {

@@ -1,4 +1,5 @@
 ﻿using SAA.Content.Foods;
+using SAA.Content.Planting.Tiles.Plants;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 
@@ -199,6 +200,31 @@ namespace SAA
         public static void RegisterTile(this ModTile tile, Color color)
         {
             tile.AddMapEntry(color, tile.CreateMapEntryName());
+        }
+        /// <summary>
+        /// 施肥
+        /// </summary>
+        public static void Fertilize(int width, Vector2 origin, Vector2 unit, int growMagnification = 1, bool needDayTime = true, bool needWet = true)
+        {
+            int k = width / 2;
+            Vector2 center = origin + k * unit.SafeNormalize(Vector2.One);
+            Rectangle hitbox = new Rectangle((int)center.X - k, (int)center.Y - k, width, width);
+            int minX = hitbox.X / 16;
+            int maxX = (hitbox.X + hitbox.Width) / 16 + 1;
+            int minY = hitbox.Y / 16;
+            int maxY = (hitbox.Y + hitbox.Height) / 16 + 1;
+            Utils.ClampWithinWorld(ref minX, ref minY, ref maxX, ref maxY);
+            for (int i = minX; i < maxX; i++)
+            {
+                for (int j = minY; j < maxY; j++)
+                {
+                    Tile tile = Framing.GetTileSafely(i, j);
+                    if (tile.HasTile && TileLoader.GetTile(tile.TileType) is Plant plant)
+                    {
+                        plant.TryGrow(i, j, growMagnification, needDayTime, needWet);
+                    }
+                }
+            }
         }
     }
 }

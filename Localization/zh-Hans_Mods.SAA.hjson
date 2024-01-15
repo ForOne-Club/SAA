@@ -12,6 +12,7 @@ Tiles: {
 	// 海麦作物.MapEntry: 海燕麦
 	// 生命果实.MapEntry: 生命果实
 	// 蓝莓.MapEntry: 蓝莓
+	// 苹果树.MapEntry: 苹果树
 }
 
 Buffs: {
@@ -83,7 +84,7 @@ Items: {
 
 	乌贼: {
 		// DisplayName: 乌贼
-		// Tooltip: ""
+		// Tooltip: '''"眼疾手快!"'''
 	}
 
 	云锦果: {
@@ -489,11 +490,6 @@ Items: {
 		// Tooltip: '''"谁说这玩意只能种在沙滩上"'''
 	}
 
-	迷你生命果: {
-		// DisplayName: 迷你生命果
-		// Tooltip: ""
-	}
-
 	生命果实种子: {
 		// DisplayName: 生命果实种子
 		// Tooltip: ""
@@ -516,6 +512,16 @@ Items: {
 
 	蓝莓面包: {
 		// DisplayName: 蓝莓面包
+		// Tooltip: ""
+	}
+
+	苹果种子: {
+		// DisplayName: 苹果种子
+		// Tooltip: ""
+	}
+
+	金坷垃: {
+		// DisplayName: 金坷垃
 		// Tooltip: ""
 	}
 }

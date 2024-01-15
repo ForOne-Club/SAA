@@ -13,7 +13,7 @@ namespace SAA.Content.Planting.Seeds
         }
         public override void AddRecipes()
         {
-            Recipe recipe = CreateRecipe();
+            Recipe recipe = CreateRecipe(2);
             recipe.AddIngredient(ItemID.LifeFruit);
             recipe.Register();
         }

@@ -15,11 +15,15 @@ namespace SAA.Content.Planting.Tiles.Plants
     public abstract class Plant : ModTile
     {
         /// <summary>
+        /// 可以被镰刀收割
+        /// </summary>
+        public virtual bool CanBeReapedBySickle => true;
+        /// <summary>
         /// 生长阶段宽度
         /// </summary>
         protected virtual short FrameWidth => 18;
         /// <summary>
-        /// 物块高度, 1 or 2
+        /// 物块高度, 1/2/3
         /// </summary>
         protected virtual int Height => 2;
         /// <summary>
@@ -30,6 +34,14 @@ namespace SAA.Content.Planting.Tiles.Plants
         /// 采摘
         /// </summary>
         protected virtual bool CanPick => false;
+        /// <summary>
+        /// 风中摇摆（每格物块都会摆）
+        /// </summary>
+        protected virtual bool CanSwayInWind => true;
+        /// <summary>
+        /// 绘制反向
+        /// </summary>
+        protected virtual bool FlipHorizontally => true;
         protected virtual int HerbItemType => ModContent.ItemType<海麦>();
         protected virtual int SeedItemType => ModContent.ItemType<海燕麦种子>();
         protected virtual void ModifyTileObjectData() { }
@@ -52,20 +64,31 @@ namespace SAA.Content.Planting.Tiles.Plants
             //Main.tileAlch[Type] = true;
 
             this.RegisterTile(Color.Green);
-            if (Height == 2) TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
-            else TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+            switch (Height)
+            {
+                case 3:
+                    TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
+                    TileObjectData.newTile.Height = 3;
+                    break;
+                case 2:
+                    TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
+                    break;
+                default:
+                    TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+                    break;
+            }
             ModifyTileObjectData();
             TileObjectData.newTile.AnchorValidTiles = new int[] {
                 ModContent.TileType<Arable>(),
             };
             TileObjectData.addTile(Type);
-
+            if (CanSwayInWind) TileID.Sets.SwaysInWindBasic[Type] = true;//随风摇摆
             HitSound = SoundID.Grass;
             DustType = DustID.Grass;
         }
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
         {
-            if (i % 2 == 0)
+            if (FlipHorizontally && i % 2 == 0)
             {
                 spriteEffects = SpriteEffects.FlipHorizontally;
             }
@@ -85,12 +108,11 @@ namespace SAA.Content.Planting.Tiles.Plants
         /// <param name="needWet">需要耕地潮湿</param>
         public void TryGrow(int i, int j, int growMagnification = 1, bool needDayTime = true, bool needWet = true)
         {
-            Tile tile = Framing.GetTileSafely(i, j);
-            if (Height == 2 && tile.TileFrameY == 0) return;//顶端物块无效
-            PlantStage stage = GetStage(i, j);
             Tile land = Framing.GetTileSafely(i, j + 1);
             bool flag = land.TileType == ModContent.TileType<Arable>();
-            if (land.HasTile && flag)
+            if (!flag) return;//底端物块有效
+            PlantStage stage = GetStage(i, j);
+            if (land.HasTile)
             {
                 if ((Main.dayTime || !needDayTime) && (PlowlandSystem.wet.Contains((i, j + 1)) || !needWet))//白天与湿地生长
                 {
@@ -98,12 +120,13 @@ namespace SAA.Content.Planting.Tiles.Plants
                     {
                         if (stage != PlantStage.Grown)
                         {
-                            tile.TileFrameX += FrameWidth;
-                            if (Height == 2) Main.tile[i, j - 1].TileFrameX += FrameWidth;
-                            if (Main.netMode != NetmodeID.SinglePlayer)
+                            for (int h = 0; h < Height; h++)
                             {
-                                NetMessage.SendTileSquare(-1, i, j, 1);
-                                if (Height == 2) NetMessage.SendTileSquare(-1, i, j - 1, 1);
+                                Main.tile[i, j - h].TileFrameX += FrameWidth;
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                {
+                                    NetMessage.SendTileSquare(-1, i, j - h, 1);
+                                }
                             }
                         }
                     }
@@ -123,7 +146,7 @@ namespace SAA.Content.Planting.Tiles.Plants
             Tile tile = Framing.GetTileSafely(i, j);
             return (PlantStage)(tile.TileFrameX / FrameWidth);
         }
-        protected virtual void ModifyDropHerbCount(ref int herbItemStack, Player player, PlantStage stage)
+        protected virtual void ModifyDropHerbCount(ref int herbItemType, ref int herbItemStack, Player player, PlantStage stage)
         {
             if (stage == PlantStage.Grown)//可采摘的作物不会因为丰收镰刀增加收获
             {
@@ -131,7 +154,7 @@ namespace SAA.Content.Planting.Tiles.Plants
                 else herbItemStack = 1;
             }
         }
-        protected virtual void ModifyDropSeedCount(ref int seedItemStack, Player player, PlantStage stage)
+        protected virtual void ModifyDropSeedCount(ref int seedItemType, ref int seedItemStack, Player player, PlantStage stage)
         {
             if (!CanPick)//可采摘的作物不会掉落种子
             {
@@ -149,11 +172,6 @@ namespace SAA.Content.Planting.Tiles.Plants
             Tile tile = Framing.GetTileSafely(i, j);
             PlantStage stage = GetStage(i, j);
 
-            if (Height == 2 && tile.TileFrameY == 0)//第二格不掉落
-            {
-                return false;
-            }
-
             Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();
             Player nearestPlayer = Main.player[Player.FindClosest(worldPosition, 16, 16)];
 
@@ -166,8 +184,8 @@ namespace SAA.Content.Planting.Tiles.Plants
 
             if (nearestPlayer.active)
             {
-                ModifyDropHerbCount(ref herbItemStack, nearestPlayer, stage);
-                ModifyDropSeedCount(ref seedItemStack, nearestPlayer, stage);
+                ModifyDropHerbCount(ref herbItemType, ref herbItemStack, nearestPlayer, stage);
+                ModifyDropSeedCount(ref seedItemType, ref seedItemStack, nearestPlayer, stage);
             }
 
             var source = new EntitySource_TileBreak(i, j);
@@ -186,8 +204,10 @@ namespace SAA.Content.Planting.Tiles.Plants
         }
         public override void MouseOver(int i, int j)
         {
+            //顶格才可以采摘
+            Tile tile = Framing.GetTileSafely(i, j);
             PlantStage stage = GetStage(i, j);
-            if (CanPick && stage == PlantStage.Grown)
+            if (CanPick && stage == PlantStage.Grown && tile.TileFrameY == 0)
             {
                 Player player = Main.LocalPlayer;
                 player.noThrow = 2;
@@ -195,39 +215,31 @@ namespace SAA.Content.Planting.Tiles.Plants
                 player.cursorItemIconID = HerbItemType;
             }
         }
+        public void TryPick(int i, int j)
+        {
+            for (int h = 0; h < Height; h++)
+            {
+                Main.tile[i, j + h].TileFrameX -= FrameWidth;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendTileSquare(-1, i, j + h, 1);
+                }
+            }
+
+            Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();
+            int herbItemType = HerbItemType;//收获
+            int herbItemStack = 1;
+            ModifyPick(ref herbItemType, ref herbItemStack);
+            Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+        }
         protected virtual void ModifyPick(ref int herbItemType, ref int herbItemStack) { }
         public override bool RightClick(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j);
             PlantStage stage = GetStage(i, j);
-
-            if (stage == PlantStage.Grown)
+            if (CanPick && stage == PlantStage.Grown && tile.TileFrameY == 0)
             {
-                if (Height == 2 && tile.TileFrameY == 0)
-                {
-                    tile.TileFrameX -= FrameWidth;
-                    if (Height == 2) Main.tile[i, j + 1].TileFrameX -= FrameWidth;
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                    {
-                        NetMessage.SendTileSquare(-1, i, j, 1);
-                        if (Height == 2) NetMessage.SendTileSquare(-1, i, j + 1, 1);
-                    }
-                }
-                else
-                {
-                    tile.TileFrameX -= FrameWidth;
-                    if (Height == 2) Main.tile[i, j - 1].TileFrameX -= FrameWidth;
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                    {
-                        NetMessage.SendTileSquare(-1, i, j, 1);
-                        if (Height == 2) NetMessage.SendTileSquare(-1, i, j - 1, 1);
-                    }
-                }
-                Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();
-                int herbItemType = HerbItemType;//收获
-                int herbItemStack = 1;
-                ModifyPick(ref herbItemType, ref herbItemStack);
-                Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+                TryPick(i, j);
                 return true;
             }
             else
