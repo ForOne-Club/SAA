@@ -17,7 +17,7 @@ namespace SAA.Content.Planting.Tiles.Plants
         /// <summary>
         /// 生长阶段宽度
         /// </summary>
-        public virtual short FrameWidth => 18;
+        protected virtual short FrameWidth => 18;
         /// <summary>
         /// 物块高度, 1 or 2
         /// </summary>
@@ -75,18 +75,26 @@ namespace SAA.Content.Planting.Tiles.Plants
             PlantStage stage = GetStage(i, j);
             return stage == PlantStage.Grown;
         }
-        public override void RandomUpdate(int i, int j)
+        /// <summary>
+        /// 尝试让作物生长
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <param name="growMagnification">生长倍率，与生长速度相乘提高生长概率</param>
+        /// <param name="needDayTime">需要白天</param>
+        /// <param name="needWet">需要耕地潮湿</param>
+        public void TryGrow(int i, int j, int growMagnification = 1, bool needDayTime = true, bool needWet = true)
         {
             Tile tile = Framing.GetTileSafely(i, j);
-            if (Height == 2 && tile.TileFrameY == 0) return;
+            if (Height == 2 && tile.TileFrameY == 0) return;//顶端物块无效
             PlantStage stage = GetStage(i, j);
             Tile land = Framing.GetTileSafely(i, j + 1);
             bool flag = land.TileType == ModContent.TileType<Arable>();
             if (land.HasTile && flag)
             {
-                if (Main.dayTime && PlowlandSystem.wet.Contains((i, j + 1)))//白天与湿地生长
+                if ((Main.dayTime || !needDayTime) && (PlowlandSystem.wet.Contains((i, j + 1)) || !needWet))//白天与湿地生长
                 {
-                    if (Main.rand.Next(100) < GrowthRate)
+                    if (Main.rand.Next(100) < (GrowthRate * growMagnification))
                     {
                         if (stage != PlantStage.Grown)
                         {
@@ -106,6 +114,10 @@ namespace SAA.Content.Planting.Tiles.Plants
                 WorldGen.KillTile(i, j, false, false, true);
             }
         }
+        public override void RandomUpdate(int i, int j)
+        {
+            TryGrow(i, j);
+        }
         public PlantStage GetStage(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j);
@@ -113,20 +125,23 @@ namespace SAA.Content.Planting.Tiles.Plants
         }
         protected virtual void ModifyDropHerbCount(ref int herbItemStack, Player player, PlantStage stage)
         {
-            if (stage == PlantStage.Grown)
+            if (stage == PlantStage.Grown)//可采摘的作物不会因为丰收镰刀增加收获
             {
-                if (player.HeldItem.type == ModContent.ItemType<丰收镰刀>()) herbItemStack = Main.rand.Next(1, 3);
+                if (player.HeldItem.type == ModContent.ItemType<丰收镰刀>() && !CanPick) herbItemStack = Main.rand.Next(1, 3);
                 else herbItemStack = 1;
             }
         }
         protected virtual void ModifyDropSeedCount(ref int seedItemStack, Player player, PlantStage stage)
         {
-            if (player.HeldItem.type == ItemID.Sickle)
-                seedItemStack = 1;
-            else if (player.HeldItem.type == ModContent.ItemType<丰收镰刀>())
+            if (!CanPick)//可采摘的作物不会掉落种子
             {
-                if (stage == PlantStage.Grown) seedItemStack = Main.rand.Next(1, 3);
-                else seedItemStack = 1;
+                if (player.HeldItem.type == ItemID.Sickle)
+                    seedItemStack = 1;
+                else if (player.HeldItem.type == ModContent.ItemType<丰收镰刀>())
+                {
+                    if (stage == PlantStage.Grown) seedItemStack = Main.rand.Next(1, 3);
+                    else seedItemStack = 1;
+                }
             }
         }
         public override bool CanDrop(int i, int j)

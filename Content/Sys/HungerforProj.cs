@@ -23,25 +23,7 @@ namespace SAA.Content.Sys
                         Tile tile = Framing.GetTileSafely(i, j);
                         if (tile.HasTile && TileLoader.GetTile(tile.TileType) is Plant plant)
                         {
-                            PlantStage stage = plant.GetStage(i, j);
-                            Tile land = Framing.GetTileSafely(i, j + 1);
-                            bool flag = land.TileType == ModContent.TileType<Arable>();
-                            if (land.HasTile && flag)
-                            {
-                                if (PlowlandSystem.wet.Contains((i, j + 1)))
-                                {
-                                    if (stage != PlantStage.Grown && Main.rand.NextBool(3))
-                                    {
-                                        tile.TileFrameX += plant.FrameWidth;
-                                        if (tile.TileFrameY > 0) Main.tile[i, j - 1].TileFrameX += plant.FrameWidth;
-                                        if (Main.netMode != NetmodeID.SinglePlayer)
-                                        {
-                                            NetMessage.SendTileSquare(-1, i, j, 1);
-                                            if (tile.TileFrameY > 0) NetMessage.SendTileSquare(-1, i, j - 1, 1);
-                                        }
-                                    }
-                                }
-                            }
+                            plant.TryGrow(i, j, 2);
                         }
                     }
                 }

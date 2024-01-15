@@ -4,7 +4,7 @@ namespace SAA.Content.Planting.Tiles.Plants
 {
     public class 蓝莓 : Plant
     {
-        public override short FrameWidth => 34;
+        protected override short FrameWidth => 34;
         protected override int GrowthRate => 10;
         protected override bool CanPick => true;
         protected override int HerbItemType => ModContent.ItemType<Foods.蓝莓>();
