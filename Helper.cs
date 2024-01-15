@@ -124,7 +124,7 @@ namespace SAA
                 _ => 0
             };
             item.buffTime = hunger * 900 * (int)Math.Pow(2, 2 - level);
-            item.value = hunger * 10;
+            item.value = hunger * 300 * (level + 1);
         }
         /// <summary>
         /// 油炸食材，包含合成表注册

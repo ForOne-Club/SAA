@@ -11,7 +11,7 @@
         {
             Item.width = 24;
             Item.height = 30;
-            Item.value = Item.sellPrice(0, 0, 2);
+            Item.value = Item.sellPrice(0, 0, 5);
             Item.rare = new Rarity(Phase.BeforeFleshWall, ItemType.Another, GetDiff.Normal, false).ToItemRarity();
         }
         public override void AddRecipes()

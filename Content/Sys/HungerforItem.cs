@@ -109,7 +109,7 @@ namespace SAA.Content.Sys
         }
         private int QuickBuff_FindFoodPriority(int buffType)
         {
-            return buffType == 26 ? 1 : buffType == 206 ? 2 : buffType == 207 ? 3 : 0;
+            return buffType == 26 ? 1 : buffType == 206 ? 2 : buffType == 207 ? 4 : 0;
         }
         public override void SetDefaults(Item entity)
         {
@@ -233,6 +233,8 @@ namespace SAA.Content.Sys
                 TooltipLine text = new(Mod, "饱食度", Language.GetTextValue("Mods.SAA.Tooltips.1") + $":{heal}");
                 tooltips.Insert(2, text);//第几行插入，1在名称下面
             }
+            //参考物品价值，测试使用
+            tooltips.Insert(2, new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
             base.ModifyTooltips(item, tooltips);
         }
         //镰刀收割

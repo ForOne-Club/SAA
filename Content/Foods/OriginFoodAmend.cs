@@ -1,4 +1,5 @@
 ﻿using SAA.Content.Placeable.Tiles;
+using Terraria.ID;
 
 namespace SAA.Content.Foods
 {
@@ -17,7 +18,7 @@ namespace SAA.Content.Foods
             .AddTile(ModContent.TileType<烤肉篝火>())
             .Register();
             //披萨
-            Recipe.Create(4029, 4)
+            Recipe.Create(4029, 3)
             .AddIngredient<海麦>(4)
             .AddIngredient<短爬兽排>()
             .AddIngredient<奶酪>()
@@ -25,7 +26,7 @@ namespace SAA.Content.Foods
             .Register();
             //苹果派
             Recipe.Create(4011)
-            .AddIngredient<海麦>(2)
+            .AddIngredient<海麦>(8)
             .AddIngredient<黄油>()
             .AddIngredient(ItemID.Apple)
             .AddTile(TileID.Furnaces)
@@ -33,12 +34,31 @@ namespace SAA.Content.Foods
             //鲜虾三明治
             Recipe.Create(4035)
             .AddIngredient<海麦>(2)
+            .AddIngredient<油果>()
             .AddIngredient(ItemID.Shrimp)
             .AddTile(TileID.CookingPots)
             .Register();
             //盒装牛奶
             Recipe.Create(5041)
             .AddIngredient<牛奶>(4)
+            .Register();
+            //香蕉船
+            Recipe.Create(4012)
+            .AddIngredient<酸奶>()
+            .AddIngredient(ItemID.Banana)
+            .Register();
+            //煎蛋
+            Recipe.Create(4020)
+            .AddIngredient<油果>()
+            .AddIngredient<蛋>(2)
+            .AddTile(TileID.CookingPots)
+            .Register();
+            //冰淇淋
+            Recipe.Create(4026)
+            .AddRecipeGroup(RecipeGroupID.Fruit)
+            .AddIngredient<牛奶>()
+            .AddIngredient<蛋>()
+            .AddTile(ModContent.TileType<冰箱>())
             .Register();
         }
         public override void AddRecipeGroups()

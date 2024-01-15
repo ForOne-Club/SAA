@@ -13,8 +13,8 @@ namespace SAA.Content.Foods
         {
             Item.width = 20;
             Item.height = 26;
-            Item.maxStack = 99;
-            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.maxStack = 9999;
+            Item.value = Item.sellPrice(0, 0, 5);
             Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 17;
             Item.useTime = 17;

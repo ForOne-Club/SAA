@@ -10,7 +10,7 @@
         {
             Item.width = 36;
             Item.height = 46;
-            Item.SetFood(2, 18 + 5 + 9);
+            Item.SetFood(2, 34);
             Item.rare = new Rarity(Phase.BeforeFleshWall, ItemType.Another, GetDiff.Normal, true).ToItemRarity();
         }
         public override void AddRecipes()

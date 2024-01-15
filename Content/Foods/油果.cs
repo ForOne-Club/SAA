@@ -12,7 +12,7 @@
             Item.width = 24;
             Item.height = 34;
             Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 0, 40);
+            Item.value = Item.sellPrice(0, 0, 1, 0);
             Item.rare = new Rarity(Phase.BeforeFleshWall, ItemType.Another, GetDiff.Base, false).ToItemRarity();
         }
     }

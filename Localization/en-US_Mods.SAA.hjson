@@ -13,6 +13,7 @@ Tiles: {
 	生命果实.MapEntry: 生命果实
 	蓝莓.MapEntry: 蓝莓
 	苹果树.MapEntry: 苹果树
+	冰箱.MapEntry: 冰箱
 }
 
 Buffs: {
@@ -522,6 +523,16 @@ Items: {
 
 	金坷垃: {
 		DisplayName: 金坷垃
+		Tooltip: ""
+	}
+
+	冰箱: {
+		DisplayName: 冰箱
+		Tooltip: ""
+	}
+
+	蛋: {
+		DisplayName: 蛋
 		Tooltip: ""
 	}
 }

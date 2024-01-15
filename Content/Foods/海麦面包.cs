@@ -10,8 +10,8 @@
         {
             Item.width = 38;
             Item.height = 30;
-            Item.maxStack = 99;
-            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.maxStack = 9999;
+            Item.value = Item.sellPrice(0, 0, 4, 50);
             Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 17;
             Item.useTime = 17;
