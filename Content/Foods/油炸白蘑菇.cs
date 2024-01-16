@@ -1,15 +1,10 @@
-using Terraria.ID;
-
 namespace SAA.Content.Foods
 {
     public class 油炸白蘑菇 : ModItem
     {
         public override void SetDefaults()
         {
-            Item.width = 24;
-            Item.height = 22;
-            Item.SetFood(1, 6);
-            Item.rare = ItemRarityID.Blue;
+            Item.SetFood(24, 22, 1, 6);
         }
         public override void AddRecipes()
         {

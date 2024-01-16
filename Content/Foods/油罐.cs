@@ -9,10 +9,7 @@
         }
         public override void SetDefaults()
         {
-            Item.width = 24;
-            Item.height = 30;
-            Item.value = Item.sellPrice(0, 0, 5);
-            Item.rare = new Rarity(Phase.BeforeFleshWall, ItemType.Another, GetDiff.Normal, false).ToItemRarity();
+            Item.SetFoodMaterials(24, 30, 1, 40);
         }
         public override void AddRecipes()
         {

@@ -14,6 +14,7 @@ Tiles: {
 	蓝莓.MapEntry: 蓝莓
 	苹果树.MapEntry: 苹果树
 	冰箱.MapEntry: 冰箱
+	火龙果.MapEntry: 火龙果
 }
 
 Buffs: {
@@ -95,7 +96,11 @@ Items: {
 
 	云锦面包: {
 		DisplayName: 云锦面包
-		Tooltip: ""
+		Tooltip:
+			'''
+			酥脆的面包与处理完美的酸味相结合，适合所有人的美味
+			会赋予你羽落效果
+			'''
 	}
 
 	全家桶: {
@@ -110,7 +115,7 @@ Items: {
 
 	奶油: {
 		DisplayName: 奶油
-		Tooltip: ""
+		Tooltip: '''"简直是甜品爱好者的福音！"'''
 	}
 
 	奶油吐司面包: {
@@ -194,7 +199,7 @@ Items: {
 	}
 
 	海带: {
-		DisplayName: 海带
+		DisplayName: 海生子
 		Tooltip: 与长在深海中的海草共生，它可以很好的吸取海水中的盐分
 	}
 
@@ -210,7 +215,7 @@ Items: {
 
 	海麦: {
 		DisplayName: 海麦
-		Tooltip: ""
+		Tooltip: 长在海边的麦子，泰拉瑞亚里真是什么都有呢
 	}
 
 	海麦面包: {
@@ -275,12 +280,12 @@ Items: {
 
 	白蘑菇: {
 		DisplayName: 白蘑菇
-		Tooltip: ""
+		Tooltip: 你能在树桩和木桩附近找到它们
 	}
 
 	短爬兽排: {
 		DisplayName: 短爬兽排
-		Tooltip: ""
+		Tooltip: 短爬兽的背肋肉，因为经常的拉伸锻炼而导致口感紧致
 	}
 
 	碳烤蟹棒: {
@@ -290,12 +295,16 @@ Items: {
 
 	腐球果: {
 		DisplayName: 腐球果
-		Tooltip: ""
+		Tooltip: 据说是腐化之地荆棘的果实，可食用，味甜且腻
 	}
 
 	腐球果饮: {
 		DisplayName: 腐球果饮
-		Tooltip: ""
+		Tooltip:
+			'''
+			处理好的腐球果加上少许盐水，口味适中
+			会赋予你特殊的免疫效果
+			'''
 	}
 
 	芒果面包: {
@@ -325,7 +334,7 @@ Items: {
 
 	蟹棒: {
 		DisplayName: 蟹棒
-		Tooltip: ""
+		Tooltip: '''"你确定要生吃这玩意？"'''
 	}
 
 	血橙面包: {
@@ -340,7 +349,11 @@ Items: {
 
 	贝克斯炖肉: {
 		DisplayName: 贝克斯炖肉
-		Tooltip: ""
+		Tooltip:
+			'''
+			第一只被发现的短爬兽被命名为贝克斯，此菜因此得名
+			会赋予你短暂的怒气效果
+			'''
 	}
 
 	酸奶: {
@@ -350,7 +363,7 @@ Items: {
 
 	鱼翅: {
 		DisplayName: 鱼翅
-		Tooltip: ""
+		Tooltip: '''"没有买卖就没有杀害"'''
 	}
 
 	鱼藻复合粉: {
@@ -533,6 +546,11 @@ Items: {
 
 	蛋: {
 		DisplayName: 蛋
+		Tooltip: ""
+	}
+
+	火龙果种子: {
+		DisplayName: 火龙果种子
 		Tooltip: ""
 	}
 }

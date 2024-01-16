@@ -9,16 +9,7 @@
         }
         public override void SetDefaults()
         {
-            Item.width = 26;
-            Item.height = 42;
-            Item.consumable = true;
-            Item.maxStack = 30;
-            Item.useTime = 20;
-            Item.useAnimation = 20;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.rare = ItemRarityID.Blue;
-            Item.noUseGraphic = true;
-            Item.value = Item.sellPrice(0, 0, 5, 0);
+            Item.SetFoodMaterials(26, 42, 0, 9);
         }
         public override bool? UseItem(Player player)
         {

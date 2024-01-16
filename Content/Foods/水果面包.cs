@@ -6,20 +6,7 @@
         protected virtual int BuffTime => 46800;
         public override void SetDefaults()
         {
-            Item.width = 38;
-            Item.height = 32;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 20, 0);
-            Item.rare = ItemRarityID.Green;
-            Item.useAnimation = 17;
-            Item.useTime = 17;
-            Item.scale = 0.75f;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.UseSound = SoundID.Item2;
-            Item.consumable = true;
-            Item.useTurn = false;
-            Item.buffType = 206;
-            Item.buffTime = BuffTime;
+            Item.SetOriginFood(38, 32, 206, BuffTime);
         }
         public override void AddRecipes()
         {
@@ -80,6 +67,10 @@
     public class 樱桃面包 : 水果面包
     {
         protected override int FruitType => ItemID.Cherry;
+    }
+    public class 石榴面包 : 水果面包
+    {
+        protected override int FruitType => ItemID.Pomegranate;
     }
     public class 蓝莓面包 : 水果面包
     {

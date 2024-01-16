@@ -1,5 +1,4 @@
 ﻿using SAA.Content.Placeable.Tiles;
-using Terraria.ID;
 
 namespace SAA.Content.Foods
 {
@@ -58,6 +57,14 @@ namespace SAA.Content.Foods
             .AddRecipeGroup(RecipeGroupID.Fruit)
             .AddIngredient<牛奶>()
             .AddIngredient<蛋>()
+            .AddTile(ModContent.TileType<冰箱>())
+            .Register();
+            //奶昔
+            Recipe.Create(4027)
+            .AddIngredient<奶油>()
+            .AddIngredient<酸奶>()
+            .AddIngredient<牛奶>(2)
+            .AddRecipeGroup(RecipeGroupID.Fruit, 2)
             .AddTile(ModContent.TileType<冰箱>())
             .Register();
         }

@@ -9,11 +9,7 @@
         }
         public override void SetDefaults()
         {
-            Item.width = 24;
-            Item.height = 34;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 1, 0);
-            Item.rare = new Rarity(Phase.BeforeFleshWall, ItemType.Another, GetDiff.Base, false).ToItemRarity();
+            Item.SetFoodMaterials(24, 34, 1, 8);
         }
     }
 }

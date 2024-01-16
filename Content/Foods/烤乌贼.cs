@@ -14,8 +14,7 @@ namespace SAA.Content.Foods
         }
         public override void SetDefaults()
         {
-            Item.DefaultToFood(36, 36, 206, 18000);
-            Item.SetShopValues(ItemRarityColor.Blue1, Item.sellPrice(0, 0, 5, 0));
+            Item.SetOriginFood(36, 36, 206, 18000);
         }
         public override void AddRecipes()
         {

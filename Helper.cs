@@ -1,5 +1,7 @@
 ﻿using SAA.Content.Foods;
 using SAA.Content.Planting.Tiles.Plants;
+using SAA.Content.Sys;
+using Terraria.Enums;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 
@@ -102,29 +104,53 @@ namespace SAA
             return false;
         }
         /// <summary>
-        /// 设置食材的属性，包括使用，堆叠，buff，time，value
+        /// 设置食材的属性
         /// </summary>
         /// <param name="item"></param>
-        /// <param name="level">饱食buff 0-2</param>
-        /// <param name="hunger">饱食度</param>
-        public static void SetFood(this Item item, int level, int hunger)
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="level">0/1/2</param>
+        /// <param name="hunger"></param>
+        public static void SetFoodMaterials(this Item item, int width, int height, int level, int hunger)
         {
+            item.width = width;
+            item.height = height;
             item.maxStack = 9999;
-            item.useAnimation = 17;
-            item.useTime = 17;
-            item.useStyle = ItemUseStyleID.EatFood;
-            item.UseSound = SoundID.Item2;
-            item.consumable = true;
-            item.useTurn = false;
-            item.buffType = level switch
+            item.SetShopValues((ItemRarityColor)level, hunger * 300 * (level + 1));
+        }
+        /// <summary>
+        /// 设置食品的属性，包括使用，堆叠，buff，time，value等
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="width">长</param>
+        /// <param name="height">宽</param>
+        /// <param name="level">饱食度buff等级:0/1/2</param>
+        /// <param name="hunger">饱食度</param>
+        /// <param name="useGolpSound">是否使用饮用音效</param>
+        public static void SetFood(this Item item, int width, int height, int level, int hunger, bool useGolpSound = false)
+        {
+            int buffType = level switch
             {
                 0 => 26,
                 1 => 206,
                 2 => 207,
                 _ => 0
             };
-            item.buffTime = hunger * 900 * (int)Math.Pow(2, 2 - level);
-            item.value = hunger * 300 * (level + 1);
+            item.DefaultToFood(width, height, buffType, hunger * 900 * (int)Math.Pow(2, 2 - level), useGolpSound);
+            item.SetShopValues((ItemRarityColor)level, hunger * 300 * (level + 1));
+        }
+        public static void SetOriginFood(this Item item, int width, int height, int buffType, int buffTime, bool useGolpSound = false)
+        {
+            int level = buffType switch
+            {
+                26 => 0,
+                206 => 1,
+                207 => 2,
+                _ => 0
+            };
+            int hunger = HungerforItem.QuickBuff_FindFoodPriority(buffType) * buffTime / 3600;
+            item.DefaultToFood(width, height, buffType, hunger * 900 * (int)Math.Pow(2, 2 - level), useGolpSound);
+            item.SetShopValues((ItemRarityColor)level, hunger * 300 * (level + 1));
         }
         /// <summary>
         /// 油炸食材，包含合成表注册

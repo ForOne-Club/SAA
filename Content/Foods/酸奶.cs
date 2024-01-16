@@ -11,21 +11,7 @@ namespace SAA.Content.Foods
         }
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 22;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 5, 50);
-            Item.rare = ItemRarityID.Blue;
-            Item.useAnimation = 17;
-            Item.useTime = 17;
-            Item.scale = 0.75f;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            // 喝药的声音
-            Item.UseSound = SoundID.Item3;
-            Item.consumable = true;
-            Item.useTurn = false;
-            Item.buffType = 206;
-            Item.buffTime = 9000;
+            Item.SetOriginFood(20, 22, 206, 9000, true);
         }
         public override void AddRecipes()
         {

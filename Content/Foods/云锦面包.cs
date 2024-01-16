@@ -9,20 +9,7 @@
         }
         public override void SetDefaults()
         {
-            Item.width = 38;
-            Item.height = 32;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 3, 0);
-            Item.rare = ItemRarityID.Green;
-            Item.useAnimation = 17;
-            Item.useTime = 17;
-            Item.scale = 0.75f;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.UseSound = SoundID.Item2;
-            Item.consumable = true;
-            Item.useTurn = false;
-            Item.buffType = 206;
-            Item.buffTime = 50400;
+            Item.SetOriginFood(38, 32, 206, 50400);
         }
         public override void OnConsumeItem(Player player)
         {

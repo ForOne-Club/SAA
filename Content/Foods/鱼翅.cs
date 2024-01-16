@@ -9,20 +9,7 @@
         }
         public override void SetDefaults()
         {
-            Item.width = 22;
-            Item.height = 16;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 0, 40);
-            Item.rare = ItemRarityID.Blue;
-            Item.useAnimation = 17;
-            Item.useTime = 17;
-            Item.scale = 0.9f;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.UseSound = SoundID.Item2;
-            Item.consumable = true;
-            Item.useTurn = false;
-            Item.buffType = BuffID.WellFed;
-            Item.buffTime = 36000;
+            Item.SetOriginFood(22, 16, 26, 36000);
         }
         public override void AddRecipes()
         {

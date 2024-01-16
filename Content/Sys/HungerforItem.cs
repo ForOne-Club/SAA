@@ -107,7 +107,7 @@ namespace SAA.Content.Sys
             }
             return;
         }
-        private int QuickBuff_FindFoodPriority(int buffType)
+        public static int QuickBuff_FindFoodPriority(int buffType)
         {
             return buffType == 26 ? 1 : buffType == 206 ? 2 : buffType == 207 ? 4 : 0;
         }
@@ -116,6 +116,18 @@ namespace SAA.Content.Sys
             if (Helper.IsFoods(entity, out int buff, out int time))
             {
                 entity.GetGlobalItem<HungerforItem>().HealHunger = QuickBuff_FindFoodPriority(buff) * time / 3600;
+                if (entity.type <= ItemLoader.ItemCount)
+                {
+                    int level = buff switch
+                    {
+                        26 => 0,
+                        206 => 1,
+                        207 => 2,
+                        _ => 0
+                    };
+                    int hunger = QuickBuff_FindFoodPriority(buff) * time / 3600;
+                    entity.value = hunger * 300 * (level + 1);
+                }
             }
             base.SetDefaults(entity);
         }
@@ -234,7 +246,7 @@ namespace SAA.Content.Sys
                 tooltips.Insert(2, text);//第几行插入，1在名称下面
             }
             //参考物品价值，测试使用
-            tooltips.Insert(2, new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
+            tooltips.Add(new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
             base.ModifyTooltips(item, tooltips);
         }
         //镰刀收割

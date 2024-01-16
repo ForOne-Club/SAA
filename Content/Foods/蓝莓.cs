@@ -13,8 +13,7 @@ namespace SAA.Content.Foods
         }
         public override void SetDefaults()
         {
-            Item.DefaultToFood(26, 28, BuffID.WellFed, 18000);
-            Item.SetShopValues(ItemRarityColor.Blue1, Item.sellPrice(0, 0, 20, 0));
+            Item.SetOriginFood(26, 28, 26, 18000);
         }
     }
 }

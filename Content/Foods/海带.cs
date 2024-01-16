@@ -9,11 +9,7 @@
         }
         public override void SetDefaults()
         {
-            Item.width = 32;
-            Item.height = 32;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 0, 50);
-            Item.rare = ItemRarityID.White;
+            Item.SetFoodMaterials(24, 32, 0, 3);
         }
     }
 }

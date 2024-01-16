@@ -10,7 +10,7 @@ namespace SAA.Content.Foods
         }
         public override void SetDefaults()
         {
-            Item.width = 40;
+            Item.SetOriginFood(40, 22, 26, 28800);
             Item.height = 22;
             Item.maxStack = 9999;
             Item.value = Item.sellPrice(0, 0, 4, 0);

@@ -10,23 +10,7 @@ namespace SAA.Content.Foods
         }
         public override void SetDefaults()
         {
-            Item.width = 40;
-            Item.height = 28;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 0, 50);
-            Item.rare = ItemRarityID.Blue;
-            Item.scale = 0.75f;
-        }
-    }
-    public class XBForNPC : GlobalNPC
-    {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
-            if (npc.type == NPCID.Crab)
-            {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<蟹棒>(), 5, 1, 1));
-            }
-            base.ModifyNPCLoot(npc, npcLoot);
+            Item.SetFoodMaterials(40, 28, 0, 9);
         }
     }
 }
