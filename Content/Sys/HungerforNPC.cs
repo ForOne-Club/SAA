@@ -1,4 +1,5 @@
 ﻿using SAA.Content.Foods;
+using SAA.Content.Items;
 using Terraria.GameContent.ItemDropRules;
 
 namespace SAA.Content.Sys
@@ -17,6 +18,32 @@ namespace SAA.Content.Sys
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<蟹棒>(), 5, 1, 1));
             }
+        }
+        public override void ModifyShop(NPCShop shop)
+        {
+            //if (shop.Name == "Shop")
+            //{
+            //    if (shop.NpcType == NPCID.Merchant)
+            //    {
+            //        shop.Add(ModContent.ItemType<锄头>());
+            //        if (shop.TryGetEntry(ModContent.ItemType<锄头>(), out NPCShop.Entry entry))
+            //        {
+            //            _ = entry.Disable();//禁止售卖
+            //        }
+            //    }
+            //}
+        }
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
+        {
+            if (npc.type == NPCID.Merchant)
+            {
+                for (int i = items.Length - 1; i > 16; i--)
+                {
+                    if (items[i - 1] != null) items[i] = items[i - 1];
+                }
+                items[16] = new Item(ModContent.ItemType<锄头>());
+            }
+            base.ModifyActiveShop(npc, shopName, items);
         }
     }
 }

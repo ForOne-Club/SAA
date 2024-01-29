@@ -1,4 +1,4 @@
-displayName = SatietyAndAgriculture
+displayName = 饱食度与农业/SatietyAndAgriculture
 author = 逆风而行的信鸽
 version = 0.1
 hideCode = true
