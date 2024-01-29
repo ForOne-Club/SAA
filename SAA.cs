@@ -11,7 +11,10 @@ global using Terraria.Localization;
 global using Terraria.ModLoader;
 global using Terraria.ObjectData;
 global using static SAA.CalculateRarity;
+using NetSimplified;
 using SAA.Content.Sys;
+using Steamworks;
+using System.IO;
 
 namespace SAA
 {
@@ -27,9 +30,11 @@ namespace SAA
         }
         public override void Load()
         {
+            AddContent<NetModuleLoader>();
             //消耗饱食度生成臭臭
             On_Player.TryToPoop += On_Player_TryToPoop;
         }
+        public override void HandlePacket(BinaryReader reader, int whoAmI)=>NetModule.ReceiveModule(reader,whoAmI);
 
         private void On_Player_TryToPoop(On_Player.orig_TryToPoop orig, Player self)
         {

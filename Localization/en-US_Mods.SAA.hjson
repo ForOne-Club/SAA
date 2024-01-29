@@ -553,6 +553,11 @@ Items: {
 		DisplayName: 火龙果种子
 		Tooltip: ""
 	}
+
+	石榴面包: {
+		DisplayName: 石榴面包
+		Tooltip: ""
+	}
 }
 
 NPCs: {
