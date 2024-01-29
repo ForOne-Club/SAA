@@ -10,6 +10,7 @@ namespace SAA.Content.Packages
         {
             if (Main.dedServ)
             {
+                if (wet == null) return;
                 p.Write(wet.Count);
                 foreach (var (x, y) in wet)
                 {
