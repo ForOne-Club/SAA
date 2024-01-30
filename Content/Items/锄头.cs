@@ -23,14 +23,18 @@ namespace SAA.Content.Items
         }
         public override bool? UseItem(Player player)
         {
-            int i = Player.tileTargetX, j = Player.tileTargetY;
-            Tile tile = Main.tile[i, j];
-            if (tile.HasTile && tile.TileType is TileID.Dirt or 2)
+            if (player.whoAmI == Main.myPlayer)
             {
-                //WorldGen.KillTile(i, j, noItem: true);
-                WorldGen.PlaceTile(i, j, ModContent.TileType<Arable>(), false, true);
-                //WorldGen.SquareTileFrame(i, j);
-                //NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, i, j);
+                int i = Player.tileTargetX, j = Player.tileTargetY;
+                Tile tile = Main.tile[i, j];
+                if (tile.HasTile && tile.TileType is TileID.Dirt or 2)
+                {
+                    WorldGen.KillTile(i, j, noItem: true);
+                    WorldGen.PlaceTile(i, j, ModContent.TileType<Arable>(), true, false, player.whoAmI);
+                    //WorldGen.SquareTileFrame(i, j);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, i, j, ModContent.TileType<Arable>());
+                }
             }
             return true;
         }

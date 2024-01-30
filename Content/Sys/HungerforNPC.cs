@@ -13,6 +13,7 @@ namespace SAA.Content.Sys
                 npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生翅尖>(), 0.17f));
                 npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生翅根>(), 0.12f));
                 npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生鸡腿>(), 0.08f));
+                npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<蛋>(), 0.02f));
             }
             if (npc.type == NPCID.Crab)
             {

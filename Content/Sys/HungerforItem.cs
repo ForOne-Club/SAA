@@ -246,7 +246,7 @@ namespace SAA.Content.Sys
                 tooltips.Insert(2, text);//第几行插入，1在名称下面
             }
             //参考物品价值，测试使用
-            tooltips.Add(new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
+            //tooltips.Add(new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
             base.ModifyTooltips(item, tooltips);
         }
         //镰刀收割

@@ -564,6 +564,11 @@ Items: {
 		// DisplayName: 石榴面包
 		// Tooltip: ""
 	}
+
+	烤兔兔: {
+		// DisplayName: 烤兔兔
+		// Tooltip: ""
+	}
 }
 
 NPCs: {

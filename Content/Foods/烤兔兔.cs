@@ -1,9 +1,10 @@
 ﻿using SAA.Content.Placeable.Tiles;
 using Terraria.Enums;
+using Terraria.ID;
 
 namespace SAA.Content.Foods
 {
-    public class 烤乌贼 : CanHoldAndPlaceFood
+    public class 烤兔兔 : CanHoldAndPlaceFood
     {
         protected override void SetFoodDust()
         {
@@ -14,12 +15,12 @@ namespace SAA.Content.Foods
         }
         public override void SetDefaults()
         {
-            Item.SetOriginFood(36, 36, 206, 18000);
+            Item.SetFood(28, 26, 0, 10);
         }
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<乌贼>(), 1);
+            recipe.AddIngredient(ItemID.Bunny);
             recipe.AddTile(ModContent.TileType<烤肉篝火>());
             recipe.Register();
         }
