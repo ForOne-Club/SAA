@@ -1,4 +1,5 @@
-﻿using SAA.Content.Foods;
+﻿using SAA.Content.Breeding.Tiles;
+using SAA.Content.Foods;
 using SAA.Content.Items;
 using SAA.Content.Placeable.Tiles;
 using SAA.Content.Planting.Seeds;
@@ -30,6 +31,7 @@ namespace SAA.Content.Sys
         }
         private static bool ShouldDropSeeds(int x, int y)
         {
+            //让背包里有这三种武器的玩家可以在割草时得到种子
             if (!GetPlayerForTile(x, y).HasItem(281))
             {
                 if (!GetPlayerForTile(x, y).HasItem(986))
@@ -53,6 +55,16 @@ namespace SAA.Content.Sys
                             {
                                 //Main.LocalPlayer.Center = new Vector2(i * 16, j * 16);//传送实验
                                 WorldGen.Place1x2Top(i, j, (ushort)ModContent.TileType<油果植株>(), 0);
+                            }
+                        }
+                    }
+                    if (type == 384)//红木树叶
+                    {
+                        if (Helper.HasNotAnySameOne(i, j, 50, 50, ModContent.TileType<丛林鸟巢>()))
+                        {
+                            if (Helper.CanPlaceOnIt(i, j - 1, 2, 2, false))
+                            {
+                                WorldGen.Place2x2Style(i + 1, j - 1, (ushort)ModContent.TileType<丛林鸟巢>());
                             }
                         }
                     }
@@ -90,7 +102,6 @@ namespace SAA.Content.Sys
         }
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            //让背包里有这两种武器的玩家可以在割草时得到种子
             Player player = Main.LocalPlayer;
             Item item = player.HeldItem;
             Tile tile = Main.tile[i, j];

@@ -17,6 +17,7 @@ Tiles: {
 	// 火龙果.MapEntry: 火龙果
 	// 鸭笼.MapEntry: 鸭笼
 	// 野鸭笼.MapEntry: 野鸭笼
+	// 丛林鸟巢.MapEntry: 丛林鸟巢
 }
 
 Buffs: {
@@ -586,6 +587,7 @@ Items: {
 NPCs: {
 	// 奶牛.DisplayName: 奶牛
 	// 短爬兽.DisplayName: 短爬兽
+	// 丛莺.DisplayName: 丛莺
 }
 
 // Projectiles.短爬兽宝宝.DisplayName: 短爬兽宝宝

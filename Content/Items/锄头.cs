@@ -1,3 +1,4 @@
+using SAA.Content.Breeding.Tiles;
 using SAA.Content.Planting.Tiles;
 
 namespace SAA.Content.Items
@@ -27,13 +28,16 @@ namespace SAA.Content.Items
             {
                 int i = Player.tileTargetX, j = Player.tileTargetY;
                 Tile tile = Main.tile[i, j];
-                if (tile.HasTile && tile.TileType is TileID.Dirt or 2)
+                if(Vector2.Distance(player.MountedCenter, new Vector2(i, j).ToWorldCoordinates()) < 100)
                 {
-                    WorldGen.KillTile(i, j, noItem: true);
-                    WorldGen.PlaceTile(i, j, ModContent.TileType<Arable>(), true, false, player.whoAmI);
-                    //WorldGen.SquareTileFrame(i, j);
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, i, j, ModContent.TileType<Arable>());
+                    if (tile.HasTile && tile.TileType is TileID.Dirt or 2)
+                    {
+                        WorldGen.KillTile(i, j, noItem: true);
+                        WorldGen.PlaceTile(i, j, ModContent.TileType<Arable>(), true, false, player.whoAmI);
+                        //WorldGen.SquareTileFrame(i, j);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                            NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, i, j, ModContent.TileType<Arable>());
+                    }
                 }
             }
             return true;
