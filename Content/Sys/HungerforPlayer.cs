@@ -30,6 +30,11 @@ public class HungerforPlayer : ModPlayer
     {
         HungerCut = 0.001f;
         HungerBook = false;
+        if (Hunger < 20)
+        {
+            int lifecut = (int)((20 - Hunger) / 20f * Player.statLifeMax2 / 5);
+            Player.statLifeMax2 -= lifecut;
+        }
     }
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)//死亡惩罚
     {
@@ -129,18 +134,20 @@ public class HungerforPlayer : ModPlayer
             }
             else if (HungerSetting.ForOne)
             {
-                if (Hunger < 20) { }
-                else if (Hunger < 120) type = ModContent.BuffType<一级饱和>();
-                else if (Hunger < 220) type = ModContent.BuffType<二级饱和>();
-                else if (Hunger < 320) type = ModContent.BuffType<三级饱和>();
+                if (Hunger < 20) type = ModContent.BuffType<饥饿>();//原版饥饿333会持续发言
+                else if (Hunger < 100) { }
+                else if (Hunger < 180) type = ModContent.BuffType<一级饱和>();
+                else if (Hunger < 260) type = ModContent.BuffType<二级饱和>();
+                else if (Hunger < 340) type = ModContent.BuffType<三级饱和>();
                 else if (Hunger < 420) type = ModContent.BuffType<强效饱和>();
                 else if (Hunger <= 500.5f) type = ModContent.BuffType<超级饱和>();
             }
             else
             {
-                if (Hunger < 10) { }
-                else if (Hunger < 40) type = ModContent.BuffType<一级饱和>();
-                else if (Hunger < 70) type = ModContent.BuffType<二级饱和>();
+                if (Hunger < 20) type = ModContent.BuffType<饥饿>();
+                else if (Hunger < 40) { }
+                else if (Hunger < 60) type = ModContent.BuffType<一级饱和>();
+                else if (Hunger < 80) type = ModContent.BuffType<二级饱和>();
                 else if (Hunger <= 100.5f) type = ModContent.BuffType<三级饱和>();
             }
             HungerClear(HungerBuff, type);
@@ -156,6 +163,10 @@ public class HungerforPlayer : ModPlayer
             //臭臭
             if (PoopTime > 0) PoopTime--;
         }
+    }
+    public override void UpdateBadLifeRegen()
+    {
+        if (Player.HasBuff(ModContent.BuffType<饿瘪了>())) Player.lifeRegen = 0;
     }
     public override void UpdateDead()
     {

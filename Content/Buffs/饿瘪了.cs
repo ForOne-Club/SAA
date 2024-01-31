@@ -9,5 +9,15 @@
             Main.buffNoSave[Type] = true;
             Main.debuff[Type] = true;
         }
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.hungry = true;
+            player.statDefense -= 4;
+            player.GetCritChance(DamageClass.Generic) -= 4;
+            player.GetDamage(DamageClass.Generic) -= 0.1f;
+            player.GetAttackSpeed(DamageClass.Melee) -= 0.1f;
+            player.GetKnockback(DamageClass.Summon) -= 1f;
+            player.pickSpeed += 0.15f;
+        }
     }
 }

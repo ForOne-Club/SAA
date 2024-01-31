@@ -79,6 +79,11 @@ Buffs: {
 		DisplayName: 短爬兽宝宝
 		Description: 短爬兽宝宝将跟着你
 	}
+
+	饥饿: {
+		// DisplayName: 饥饿
+		// Description: 你很饿，而且感觉很虚弱。
+	}
 }
 
 Items: {

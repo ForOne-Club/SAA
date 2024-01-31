@@ -8,7 +8,6 @@ namespace SAA.Content.NPCs
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("报丧女妖");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[152];
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
