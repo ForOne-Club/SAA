@@ -5,7 +5,7 @@ namespace SAA.Content.Planting.Tiles.Plants
     public class 生命果实 : Plant
     {
         protected override short FrameWidth => 30;
-        protected override int GrowthRate => 5;
+        protected override int GrowthRate => 6;
         protected override int HerbItemType => 1291;
         protected override int SeedItemType => ModContent.ItemType<生命果实种子>();
         protected override void ModifyTileObjectData()

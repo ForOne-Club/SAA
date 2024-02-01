@@ -1,5 +1,4 @@
-﻿using SAA.Content.Breeding.Tiles;
-using SAA.Content.Foods;
+﻿using SAA.Content.Foods;
 using SAA.Content.Items;
 using SAA.Content.Placeable.Tiles;
 using SAA.Content.Planting.Seeds;
@@ -124,7 +123,7 @@ namespace SAA.Content.Sys
                     case TileID.SeaOats:
                         herbdrop = Main.rand.NextBool(2);
                         herbtype = ModContent.ItemType<海麦>();
-                        seeddrop = Main.rand.NextBool(4);
+                        seeddrop = Main.rand.NextBool(3);
                         seedtype = ModContent.ItemType<海燕麦种子>();
                         break;
                     case TileID.CrimsonThorns:
@@ -155,7 +154,7 @@ namespace SAA.Content.Sys
                     case TileID.SeaOats:
                         herbdrop = Main.rand.NextBool(4);
                         herbtype = ModContent.ItemType<海麦>();
-                        seeddrop = Main.rand.NextBool(20);
+                        seeddrop = Main.rand.NextBool(5);
                         seedtype = ModContent.ItemType<海燕麦种子>();
                         break;
                     case TileID.CrimsonThorns:

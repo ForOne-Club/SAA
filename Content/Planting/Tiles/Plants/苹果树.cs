@@ -7,7 +7,7 @@ namespace SAA.Content.Planting.Tiles.Plants
         public override bool CanBeReapedBySickle => false;
         protected override short FrameWidth => 32;
         protected override int Height => 3;
-        protected override int GrowthRate => 10;
+        protected override int GrowthRate => 12;
         protected override bool CanPick => true;
         protected override bool CanSwayInWind => false;
         protected override bool FlipHorizontally => false;

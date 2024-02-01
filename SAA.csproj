@@ -8,11 +8,13 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+    <AdditionalFiles Remove="Content\Planting\Items\**" />
+    <Compile Remove="Content\Planting\Items\**" />
+    <EmbeddedResource Remove="Content\Planting\Items\**" />
+    <None Remove="Content\Planting\Items\**" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Planting\Items\Crops\" />
-    <Folder Include="Content\Planting\Items\Seeds\" />
+    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="NetSimplified">

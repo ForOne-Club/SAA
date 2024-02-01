@@ -10,5 +10,9 @@
         /// 是否可以被饿死
         /// </summary>
         public static bool HungerDown = false;
+        /// <summary>
+        /// 生长倍率调整
+        /// </summary>
+        public static int GrowMagnification = 1;
     }
 }

@@ -2,6 +2,7 @@ using SAA.Content.Foods;
 using SAA.Content.Items;
 using SAA.Content.Planting.Seeds;
 using SAA.Content.Planting.System;
+using SAA.Content.Sys;
 using Terraria.GameContent.Metadata;
 
 namespace SAA.Content.Planting.Tiles.Plants
@@ -139,7 +140,7 @@ namespace SAA.Content.Planting.Tiles.Plants
         }
         public override void RandomUpdate(int i, int j)
         {
-            TryGrow(i, j);
+            TryGrow(i, j, HungerSetting.GrowMagnification);
         }
         public PlantStage GetStage(int i, int j)
         {

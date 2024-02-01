@@ -1,4 +1,5 @@
 using SAA.Content.Foods;
+using SAA.Content.Sys;
 
 namespace SAA.Content.Breeding.Tiles
 {
@@ -82,7 +83,7 @@ namespace SAA.Content.Breeding.Tiles
         }
         public override void RandomUpdate(int i, int j)
         {
-            TryGrow(i, j);
+            TryGrow(i, j, HungerSetting.GrowMagnification);
         }
         public BreedStage GetStage(int i, int j)
         {

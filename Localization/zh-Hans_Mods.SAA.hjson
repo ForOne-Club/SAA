@@ -18,6 +18,10 @@ Tiles: {
 	// 鸭笼.MapEntry: 鸭笼
 	// 野鸭笼.MapEntry: 野鸭笼
 	// 丛林鸟巢.MapEntry: 丛林鸟巢
+	// 李子树.MapEntry: 李子树
+	// 血橙树.MapEntry: 血橙树
+	// 辣椒.MapEntry: 辣椒
+	// 黑醋栗.MapEntry: 黑醋栗
 }
 
 Buffs: {
@@ -587,6 +591,26 @@ Items: {
 		// DisplayName: 野鸭笼
 		// Tooltip: ""
 	}
+
+	李子种子: {
+		// DisplayName: 李子种子
+		// Tooltip: ""
+	}
+
+	血橙种子: {
+		// DisplayName: 血橙种子
+		// Tooltip: ""
+	}
+
+	辣椒种子: {
+		// DisplayName: 辣椒种子
+		// Tooltip: ""
+	}
+
+	黑醋栗种子: {
+		// DisplayName: 黑醋栗种子
+		// Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -604,6 +628,11 @@ Configs: {
 		HungerCausePlayerDown: {
 			// Label: 饱食度扣血机制开关
 			// Tooltip: 是, 在饱食度为零时扣血, 否, 以取消. 默认为否
+		}
+
+		Magnification: {
+			// Label: 农作物与牧场生长生产倍率
+			// Tooltip: 生长生产速度存在上限, 调整至足够大的值会使所有的农作物与牧场生长生产速度一致
 		}
 	}
 }
