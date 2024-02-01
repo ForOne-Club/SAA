@@ -5,6 +5,7 @@
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ShimmerTransformToItem[Type] = 5342;
+            base.SetStaticDefaults();
         }
         protected override void SetFoodDust()
         {
