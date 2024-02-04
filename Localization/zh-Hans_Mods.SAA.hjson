@@ -1,6 +1,6 @@
 Tooltips: {
-	// 1: 增加饱食度
-	// 2: 可以在耕地上种植
+	1: 增加饱食度
+	2: 可以在耕地上种植
 }
 
 Tiles: {
@@ -8,20 +8,20 @@ Tiles: {
 	牛奶发酵桶.MapEntry: 牛奶发酵桶
 	白蘑木桩.MapEntry: 白蘑木桩
 	白蘑树桩.MapEntry: 白蘑树桩
-	// Arable.MapEntry: 耕地
-	// 海麦作物.MapEntry: 海燕麦
-	// 生命果实.MapEntry: 生命果实
-	// 蓝莓.MapEntry: 蓝莓
-	// 苹果树.MapEntry: 苹果树
-	// 冰箱.MapEntry: 冰箱
-	// 火龙果.MapEntry: 火龙果
-	// 鸭笼.MapEntry: 鸭笼
-	// 野鸭笼.MapEntry: 野鸭笼
-	// 丛林鸟巢.MapEntry: 丛林鸟巢
-	// 李子树.MapEntry: 李子树
-	// 血橙树.MapEntry: 血橙树
-	// 辣椒.MapEntry: 辣椒
-	// 黑醋栗.MapEntry: 黑醋栗
+	Arable.MapEntry: 耕地
+	海麦作物.MapEntry: 海燕麦
+	生命果实.MapEntry: 生命果实
+	蓝莓.MapEntry: 蓝莓
+	苹果树.MapEntry: 苹果树
+	冰箱.MapEntry: 冰箱
+	火龙果.MapEntry: 火龙果
+	鸭笼.MapEntry: 鸭笼
+	野鸭笼.MapEntry: 野鸭笼
+	丛林鸟巢.MapEntry: 丛林鸟巢
+	李子树.MapEntry: 李子树
+	血橙树.MapEntry: 血橙树
+	辣椒.MapEntry: 辣椒
+	黑醋栗.MapEntry: 黑醋栗
 }
 
 Buffs: {
@@ -85,554 +85,559 @@ Buffs: {
 	}
 
 	饥饿: {
-		// DisplayName: 饥饿
-		// Description: 你很饿，而且感觉很虚弱。
+		DisplayName: 饥饿
+		Description: 你很饿，而且感觉很虚弱。
 	}
 }
 
 Items: {
 	求生手册: {
 		DisplayName: 求生手册
-		/* Tooltip:
+		Tooltip:
 			'''
 			免疫虚弱和中毒
 			饿的更慢且不会被饿死
 			可以切割藤蔓以获取藤蔓绳
 			"鬼知道你吃了些什么"
-			''' */
+			'''
 	}
 
 	乌贼: {
-		// DisplayName: 乌贼
-		// Tooltip: '''"眼疾手快!"'''
+		DisplayName: 乌贼
+		Tooltip: '''"眼疾手快!"'''
 	}
 
 	云锦果: {
-		// DisplayName: 云锦果
-		// Tooltip: 生长于空岛的水果，绵软无比
+		DisplayName: 云锦果
+		Tooltip: 生长于空岛的水果，绵软无比
 	}
 
 	云锦面包: {
-		// DisplayName: 云锦面包
-		/* Tooltip:
+		DisplayName: 云锦面包
+		Tooltip:
 			'''
 			酥脆的面包与处理完美的酸味相结合，适合所有人的美味
 			会赋予你羽落效果
-			''' */
+			'''
 	}
 
 	全家桶: {
-		// DisplayName: 全家桶
-		// Tooltip: '''"疯狂星期四v我50"'''
+		DisplayName: 全家桶
+		Tooltip: '''"疯狂星期四v我50"'''
 	}
 
 	吐司面包: {
-		// DisplayName: 吐司面包
-		// Tooltip: ""
+		DisplayName: 吐司面包
+		Tooltip: ""
 	}
 
 	奶油: {
-		// DisplayName: 奶油
-		// Tooltip: '''"简直是甜品爱好者的福音！"'''
+		DisplayName: 奶油
+		Tooltip: '''"简直是甜品爱好者的福音！"'''
 	}
 
 	奶油吐司面包: {
-		// DisplayName: 奶油吐司面包
-		// Tooltip: ""
+		DisplayName: 奶油吐司面包
+		Tooltip: ""
 	}
 
 	奶油面包: {
-		// DisplayName: 奶油面包
-		// Tooltip: ""
+		DisplayName: 奶油面包
+		Tooltip: ""
 	}
 
 	奶酪: {
-		// DisplayName: 奶酪
-		// Tooltip: '''"某些人可能不太喜欢它的味道"'''
+		DisplayName: 奶酪
+		Tooltip: '''"某些人可能不太喜欢它的味道"'''
 	}
 
 	李子面包: {
-		// DisplayName: 李子面包
-		// Tooltip: ""
+		DisplayName: 李子面包
+		Tooltip: ""
 	}
 
 	杏子面包: {
-		// DisplayName: 杏子面包
-		// Tooltip: ""
+		DisplayName: 杏子面包
+		Tooltip: ""
 	}
 
 	杨桃面包: {
-		// DisplayName: 杨桃面包
-		// Tooltip: ""
+		DisplayName: 杨桃面包
+		Tooltip: ""
 	}
 
 	柠檬面包: {
-		// DisplayName: 柠檬面包
-		// Tooltip: ""
+		DisplayName: 柠檬面包
+		Tooltip: ""
 	}
 
 	桃子面包: {
-		// DisplayName: 桃子面包
-		// Tooltip: ""
+		DisplayName: 桃子面包
+		Tooltip: ""
 	}
 
 	椰蓉: {
-		// DisplayName: 椰蓉
-		// Tooltip: ""
+		DisplayName: 椰蓉
+		Tooltip: ""
 	}
 
 	樱桃面包: {
-		// DisplayName: 樱桃面包
-		// Tooltip: ""
+		DisplayName: 樱桃面包
+		Tooltip: ""
 	}
 
 	油果: {
-		// DisplayName: 油果
-		// Tooltip: 小小的身体里蕴含大大的能量
+		DisplayName: 油果
+		Tooltip: 小小的身体里蕴含大大的能量
 	}
 
 	油炸白蘑菇: {
-		// DisplayName: 油炸白蘑菇
-		// Tooltip: ""
+		DisplayName: 油炸白蘑菇
+		Tooltip: ""
 	}
 
 	油炸翅尖: {
-		// DisplayName: 油炸翅尖
-		// Tooltip: ""
+		DisplayName: 油炸翅尖
+		Tooltip: ""
 	}
 
 	油炸翅根: {
-		// DisplayName: 油炸翅根
-		// Tooltip: ""
+		DisplayName: 油炸翅根
+		Tooltip: ""
 	}
 
 	油炸鸡腿: {
-		// DisplayName: 油炸鸡腿
-		// Tooltip: ""
+		DisplayName: 油炸鸡腿
+		Tooltip: ""
 	}
 
 	油罐: {
-		// DisplayName: 油罐
-		// Tooltip: 油炸的必备材料
+		DisplayName: 油罐
+		Tooltip: 油炸的必备材料
 	}
 
 	海带: {
-		// DisplayName: 海生子
-		// Tooltip: 与长在深海中的海草共生，它可以很好的吸取海水中的盐分
+		DisplayName: 海生子
+		Tooltip: 与长在深海中的海草共生，它可以很好的吸取海水中的盐分
 	}
 
 	海水: {
-		// DisplayName: 海水
-		// Tooltip: 用海生子将水中的盐份吸收后饮用，然后将海生子一同食用回复少量饱食度
+		DisplayName: 海水
+		Tooltip: 用海生子将水中的盐份吸收后饮用，然后将海生子一同食用回复少量饱食度
 	}
 
 	海鲜浓汤: {
-		// DisplayName: 海鲜浓汤
-		// Tooltip: 会让你饱腹感十足
+		DisplayName: 海鲜浓汤
+		Tooltip: 会让你饱腹感十足
 	}
 
 	海麦: {
-		// DisplayName: 海麦
-		// Tooltip: 长在海边的麦子，泰拉瑞亚里真是什么都有呢
+		DisplayName: 海麦
+		Tooltip: 长在海边的麦子，泰拉瑞亚里真是什么都有呢
 	}
 
 	海麦面包: {
-		// DisplayName: 海麦面包
-		// Tooltip: ""
+		DisplayName: 海麦面包
+		Tooltip: ""
 	}
 
 	烤乌贼: {
-		// DisplayName: 烤乌贼
-		// Tooltip: ""
+		DisplayName: 烤乌贼
+		Tooltip: ""
 	}
 
 	烤短爬兽排: {
-		// DisplayName: 烤短爬兽排
-		// Tooltip: ""
+		DisplayName: 烤短爬兽排
+		Tooltip: ""
 	}
 
 	烤蚜虫: {
-		// DisplayName: 烤蚜虫
-		// Tooltip: ""
+		DisplayName: 烤蚜虫
+		Tooltip: ""
 	}
 
 	烤蛆虫: {
-		// DisplayName: 烤蛆虫
-		// Tooltip: ""
+		DisplayName: 烤蛆虫
+		Tooltip: ""
 	}
 
 	烤蝇蛆: {
-		// DisplayName: 烤蝇蛆
-		// Tooltip: ""
+		DisplayName: 烤蝇蛆
+		Tooltip: ""
 	}
 
 	烤鱼: {
-		// DisplayName: 烤鱼
-		// Tooltip: ""
+		DisplayName: 烤鱼
+		Tooltip: ""
 	}
 
 	烤鼻涕虫: {
-		// DisplayName: 烤鼻涕虫
-		// Tooltip: ""
+		DisplayName: 烤鼻涕虫
+		Tooltip: ""
 	}
 
 	牛奶: {
-		// DisplayName: 牛奶
-		// Tooltip: '''"泰拉世界居然有牛，嗯，一定不是什么正常的牛"'''
+		DisplayName: 牛奶
+		Tooltip: '''"泰拉世界居然有牛，嗯，一定不是什么正常的牛"'''
 	}
 
 	生翅尖: {
-		// DisplayName: 生翅尖
-		// Tooltip: ""
+		DisplayName: 生翅尖
+		Tooltip: ""
 	}
 
 	生翅根: {
-		// DisplayName: 生翅根
-		// Tooltip: ""
+		DisplayName: 生翅根
+		Tooltip: ""
 	}
 
 	生鸡腿: {
-		// DisplayName: 生鸡腿
-		// Tooltip: ""
+		DisplayName: 生鸡腿
+		Tooltip: ""
 	}
 
 	白蘑菇: {
-		// DisplayName: 白蘑菇
-		// Tooltip: 你能在树桩和木桩附近找到它们
+		DisplayName: 白蘑菇
+		Tooltip: 你能在树桩和木桩附近找到它们
 	}
 
 	短爬兽排: {
-		// DisplayName: 短爬兽排
-		// Tooltip: 短爬兽的背肋肉，因为经常的拉伸锻炼而导致口感紧致
+		DisplayName: 短爬兽排
+		Tooltip: 短爬兽的背肋肉，因为经常的拉伸锻炼而导致口感紧致
 	}
 
 	碳烤蟹棒: {
-		// DisplayName: 碳烤蟹棒
-		// Tooltip: ""
+		DisplayName: 碳烤蟹棒
+		Tooltip: ""
 	}
 
 	腐球果: {
-		// DisplayName: 腐球果
-		// Tooltip: 据说是腐化之地荆棘的果实，可食用，味甜且腻
+		DisplayName: 腐球果
+		Tooltip: 据说是腐化之地荆棘的果实，可食用，味甜且腻
 	}
 
 	腐球果饮: {
-		// DisplayName: 腐球果饮
-		/* Tooltip:
+		DisplayName: 腐球果饮
+		Tooltip:
 			'''
 			处理好的腐球果加上少许盐水，口味适中
 			会赋予你特殊的免疫效果
-			''' */
+			'''
 	}
 
 	芒果面包: {
-		// DisplayName: 芒果面包
-		// Tooltip: ""
+		DisplayName: 芒果面包
+		Tooltip: ""
 	}
 
 	苹果面包: {
-		// DisplayName: 苹果面包
-		// Tooltip: ""
+		DisplayName: 苹果面包
+		Tooltip: ""
 	}
 
 	菠萝面包: {
-		// DisplayName: 菠萝面包
-		// Tooltip: ""
+		DisplayName: 菠萝面包
+		Tooltip: ""
 	}
 
 	葡萄柚面包: {
-		// DisplayName: 葡萄柚面包
-		// Tooltip: ""
+		DisplayName: 葡萄柚面包
+		Tooltip: ""
 	}
 
 	蜂蜜面包: {
-		// DisplayName: 蜂蜜面包
-		// Tooltip: ""
+		DisplayName: 蜂蜜面包
+		Tooltip: ""
 	}
 
 	蟹棒: {
-		// DisplayName: 蟹棒
-		// Tooltip: '''"你确定要生吃这玩意？"'''
+		DisplayName: 蟹棒
+		Tooltip: '''"你确定要生吃这玩意？"'''
 	}
 
 	血橙面包: {
-		// DisplayName: 血橙面包
-		// Tooltip: ""
+		DisplayName: 血橙面包
+		Tooltip: ""
 	}
 
 	血角: {
-		// DisplayName: 血角
-		// Tooltip: 据说是血腥之地荆棘的果实，辣味十足
+		DisplayName: 血角
+		Tooltip: 据说是血腥之地荆棘的果实，辣味十足
 	}
 
 	贝克斯炖肉: {
-		// DisplayName: 贝克斯炖肉
-		/* Tooltip:
+		DisplayName: 贝克斯炖肉
+		Tooltip:
 			'''
 			第一只被发现的短爬兽被命名为贝克斯，此菜因此得名
 			会赋予你短暂的怒气效果
-			''' */
+			'''
 	}
 
 	酸奶: {
-		// DisplayName: 酸奶
-		// Tooltip: '''"放心喝，它不会帮助消化"'''
+		DisplayName: 酸奶
+		Tooltip: '''"放心喝，它不会帮助消化"'''
 	}
 
 	鱼翅: {
-		// DisplayName: 鱼翅
-		// Tooltip: '''"没有买卖就没有杀害"'''
+		DisplayName: 鱼翅
+		Tooltip: '''"没有买卖就没有杀害"'''
 	}
 
 	鱼藻复合粉: {
-		// DisplayName: 鱼藻复合粉
-		// Tooltip: ""
+		DisplayName: 鱼藻复合粉
+		Tooltip: ""
 	}
 
 	麻辣金鱼汤: {
-		// DisplayName: 麻辣金鱼汤
-		// Tooltip: 赋予饮用者怒气效果
+		DisplayName: 麻辣金鱼汤
+		Tooltip: 赋予饮用者怒气效果
 	}
 
 	黄油: {
-		// DisplayName: 黄油
-		// Tooltip: ""
+		DisplayName: 黄油
+		Tooltip: ""
 	}
 
 	黑醋栗面包: {
-		// DisplayName: 黑醋栗面包
-		// Tooltip: ""
+		DisplayName: 黑醋栗面包
+		Tooltip: ""
 	}
 
 	丰收镰刀: {
-		// DisplayName: 丰收镰刀
-		/* Tooltip:
+		DisplayName: 丰收镰刀
+		Tooltip:
 			'''
 			帮助玩家快速收集种子但是无法收集干草
 			用它收集野果野菜将得到更高产量
-			''' */
+			'''
 	}
 
 	种子机关枪: {
-		// DisplayName: 种子机关枪
-		// Tooltip: 上吧！妙蛙种子，使用种子机枪
+		DisplayName: 种子机关枪
+		Tooltip: 上吧！妙蛙种子，使用种子机枪
 	}
 
 	奶蜗牛: {
-		// DisplayName: 奶蜗牛
-		// Tooltip: ""
+		DisplayName: 奶蜗牛
+		Tooltip: ""
 	}
 
 	草球: {
-		// DisplayName: 草球
-		// Tooltip: ""
+		DisplayName: 草球
+		Tooltip: ""
 	}
 
 	烤肉丛林篝火: {
-		// DisplayName: 烤肉丛林篝火
-		// Tooltip: ""
+		DisplayName: 烤肉丛林篝火
+		Tooltip: ""
 	}
 
 	烤肉冰冻篝火: {
-		// DisplayName: 烤肉冰冻篝火
-		// Tooltip: ""
+		DisplayName: 烤肉冰冻篝火
+		Tooltip: ""
 	}
 
 	烤肉彩虹篝火: {
-		// DisplayName: 烤肉彩虹篝火
-		// Tooltip: ""
+		DisplayName: 烤肉彩虹篝火
+		Tooltip: ""
 	}
 
 	烤肉恶魔篝火: {
-		// DisplayName: 烤肉恶魔篝火
-		// Tooltip: ""
+		DisplayName: 烤肉恶魔篝火
+		Tooltip: ""
 	}
 
 	烤肉沙漠篝火: {
-		// DisplayName: 烤肉沙漠篝火
-		// Tooltip: ""
+		DisplayName: 烤肉沙漠篝火
+		Tooltip: ""
 	}
 
 	烤肉灵液篝火: {
-		// DisplayName: 烤肉灵液篝火
-		// Tooltip: ""
+		DisplayName: 烤肉灵液篝火
+		Tooltip: ""
 	}
 
 	烤肉猩红篝火: {
-		// DisplayName: 烤肉猩红篝火
-		// Tooltip: ""
+		DisplayName: 烤肉猩红篝火
+		Tooltip: ""
 	}
 
 	烤肉珊瑚篝火: {
-		// DisplayName: 烤肉珊瑚篝火
-		// Tooltip: ""
+		DisplayName: 烤肉珊瑚篝火
+		Tooltip: ""
 	}
 
 	烤肉神圣篝火: {
-		// DisplayName: 烤肉神圣篝火
-		// Tooltip: ""
+		DisplayName: 烤肉神圣篝火
+		Tooltip: ""
 	}
 
 	烤肉篝火: {
-		// DisplayName: 烤肉篝火
-		// Tooltip: ""
+		DisplayName: 烤肉篝火
+		Tooltip: ""
 	}
 
 	烤肉腐化篝火: {
-		// DisplayName: 烤肉腐化篝火
-		// Tooltip: ""
+		DisplayName: 烤肉腐化篝火
+		Tooltip: ""
 	}
 
 	烤肉诅咒篝火: {
-		// DisplayName: 烤肉诅咒篝火
-		// Tooltip: ""
+		DisplayName: 烤肉诅咒篝火
+		Tooltip: ""
 	}
 
 	烤肉超亮篝火: {
-		// DisplayName: 烤肉超亮篝火
-		// Tooltip: ""
+		DisplayName: 烤肉超亮篝火
+		Tooltip: ""
 	}
 
 	烤肉骨头篝火: {
-		// DisplayName: 烤肉骨头篝火
-		// Tooltip: ""
+		DisplayName: 烤肉骨头篝火
+		Tooltip: ""
 	}
 
 	牛奶发酵桶: {
-		// DisplayName: 牛奶发酵桶
-		// Tooltip: ""
+		DisplayName: 牛奶发酵桶
+		Tooltip: ""
 	}
 
 	消化药水: {
-		// DisplayName: 消化药水
-		/* Tooltip:
+		DisplayName: 消化药水
+		Tooltip:
 			'''
 			帮助消化
 			"这玩意真的不是混合果汁?"
-			''' */
+			'''
 	}
 
 	锄头: {
-		// DisplayName: 锄头
-		// Tooltip: 将普通泥土转化为耕地
+		DisplayName: 锄头
+		Tooltip: 将普通泥土转化为耕地
 	}
 
 	海燕麦种子: {
-		// DisplayName: 海燕麦种子
-		// Tooltip: '''"谁说这玩意只能种在沙滩上"'''
+		DisplayName: 海燕麦种子
+		Tooltip: '''"谁说这玩意只能种在沙滩上"'''
 	}
 
 	生命果实种子: {
-		// DisplayName: 生命果实种子
-		// Tooltip: ""
+		DisplayName: 生命果实种子
+		Tooltip: ""
 	}
 
 	蓝莓: {
-		// DisplayName: 蓝莓
-		// Tooltip: ""
+		DisplayName: 蓝莓
+		Tooltip: ""
 	}
 
 	蓝莓种子: {
-		// DisplayName: 蓝莓种子
-		// Tooltip: ""
+		DisplayName: 蓝莓种子
+		Tooltip: ""
 	}
 
 	接骨木果面包: {
-		// DisplayName: 接骨木果面包
-		// Tooltip: ""
+		DisplayName: 接骨木果面包
+		Tooltip: ""
 	}
 
 	蓝莓面包: {
-		// DisplayName: 蓝莓面包
-		// Tooltip: ""
+		DisplayName: 蓝莓面包
+		Tooltip: ""
 	}
 
 	苹果种子: {
-		// DisplayName: 苹果种子
-		// Tooltip: ""
+		DisplayName: 苹果种子
+		Tooltip: ""
 	}
 
 	金坷垃: {
-		// DisplayName: 金坷垃
-		// Tooltip: ""
+		DisplayName: 金坷垃
+		Tooltip: ""
 	}
 
 	冰箱: {
-		// DisplayName: 冰箱
-		// Tooltip: ""
+		DisplayName: 冰箱
+		Tooltip: ""
 	}
 
 	蛋: {
-		// DisplayName: 蛋
-		// Tooltip: ""
+		DisplayName: 蛋
+		Tooltip: ""
 	}
 
 	火龙果种子: {
-		// DisplayName: 火龙果种子
-		// Tooltip: ""
+		DisplayName: 火龙果种子
+		Tooltip: ""
 	}
 
 	石榴面包: {
-		// DisplayName: 石榴面包
-		// Tooltip: ""
+		DisplayName: 石榴面包
+		Tooltip: ""
 	}
 
 	烤兔兔: {
-		// DisplayName: 烤兔兔
-		// Tooltip: ""
+		DisplayName: 烤兔兔
+		Tooltip: ""
 	}
 
 	鸭笼: {
-		// DisplayName: 鸭笼
-		// Tooltip: ""
+		DisplayName: 鸭笼
+		Tooltip: ""
 	}
 
 	野鸭笼: {
-		// DisplayName: 野鸭笼
-		// Tooltip: ""
+		DisplayName: 野鸭笼
+		Tooltip: ""
 	}
 
 	李子种子: {
-		// DisplayName: 李子种子
-		// Tooltip: ""
+		DisplayName: 李子种子
+		Tooltip: ""
 	}
 
 	血橙种子: {
-		// DisplayName: 血橙种子
-		// Tooltip: ""
+		DisplayName: 血橙种子
+		Tooltip: ""
 	}
 
 	辣椒种子: {
-		// DisplayName: 辣椒种子
-		// Tooltip: ""
+		DisplayName: 辣椒种子
+		Tooltip: ""
 	}
 
 	黑醋栗种子: {
-		// DisplayName: 黑醋栗种子
-		// Tooltip: ""
+		DisplayName: 黑醋栗种子
+		Tooltip: ""
 	}
 }
 
 NPCs: {
-	// 奶牛.DisplayName: 奶牛
-	// 短爬兽.DisplayName: 短爬兽
-	// 丛莺.DisplayName: 丛莺
+	奶牛.DisplayName: 奶牛
+	短爬兽.DisplayName: 短爬兽
+	丛莺.DisplayName: 丛莺
 }
 
-// Projectiles.短爬兽宝宝.DisplayName: 短爬兽宝宝
+Projectiles.短爬兽宝宝.DisplayName: 短爬兽宝宝
 
 Configs: {
 	Configs: {
-		// DisplayName: Configs
+		DisplayName: Configs
 
 		HungerCausePlayerDown: {
-			// Label: 饱食度扣血机制开关
-			// Tooltip: 是, 在饱食度为零时扣血, 否, 以取消. 默认为否
+			Label: 饱食度扣血机制开关
+			Tooltip: 是, 在饱食度为零时扣血, 否, 以取消. 默认为否
 		}
 
 		Magnification: {
-			// Label: 农作物与牧场生长生产倍率
-			// Tooltip: 生长生产速度存在上限, 调整至足够大的值会使所有的农作物与牧场生长生产速度一致
+			Label: 农作物与牧场生长生产倍率
+			Tooltip: 生长生产速度存在上限, 调整至足够大的值会使所有的农作物与牧场生长生产速度一致
+		}
+
+		GrownCut: {
+			Label: 农作物成熟收割
+			Tooltip: 是, 镰刀只会收割成熟的农作物, 否, 以取消. 默认为否
 		}
 	}
 }

@@ -14,5 +14,9 @@
         /// 生长倍率调整
         /// </summary>
         public static int GrowMagnification = 1;
+        /// <summary>
+        /// 镰刀只收割成熟作物
+        /// </summary>
+        public static bool GrownCut = false;
     }
 }

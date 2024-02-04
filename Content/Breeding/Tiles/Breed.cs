@@ -156,7 +156,11 @@ namespace SAA.Content.Breeding.Tiles
                 int herbItemType = ProductItemType;//收获
                 int herbItemStack = 1;
                 ModifyPick(ref herbItemType, ref herbItemStack);
-                Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+                int item = Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
+                }
             }
         }
         protected virtual void ModifyPick(ref int herbItemType, ref int herbItemStack) { }

@@ -231,7 +231,11 @@ namespace SAA.Content.Planting.Tiles.Plants
             int herbItemType = HerbItemType;//收获
             int herbItemStack = 1;
             ModifyPick(ref herbItemType, ref herbItemStack);
-            Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+            int item = Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
+            }
         }
         protected virtual void ModifyPick(ref int herbItemType, ref int herbItemStack) { }
         public override bool RightClick(int i, int j)

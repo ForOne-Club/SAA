@@ -266,7 +266,20 @@ namespace SAA.Content.Sys
                         Tile tile = Framing.GetTileSafely(i, j);
                         if (tile.HasTile && TileLoader.GetTile(tile.TileType) is Plant plant)
                         {
-                            if (plant.CanBeReapedBySickle) player.PickTile(i, j, 10000);
+                            if (plant.CanBeReapedBySickle)
+                            {
+                                if (HungerSetting.GrownCut)
+                                {
+                                    if (plant.GetStage(i, j) == PlantStage.Grown)
+                                    {
+                                        player.PickTile(i, j, 10000);
+                                    }
+                                }
+                                else
+                                {
+                                    player.PickTile(i, j, 10000);
+                                }
+                            }
                         }
                     }
                 }

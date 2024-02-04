@@ -8,12 +8,13 @@ namespace SAA
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [BackgroundColor(53, 120, 178)]
+        [BackgroundColor(55, 120, 175)]
         [DefaultValue(false)]
         [Label("饱食度扣血机制开关")]
         [Tooltip("是, 在饱食度为零时扣血, 否, 以取消. 默认为否")]
         public bool HungerCausePlayerDown;
 
+        [BackgroundColor(55, 120, 175)]
         [Increment(1)]
         [Range(1, 100)]
         [DefaultValue(1)]
@@ -22,10 +23,17 @@ namespace SAA
         [Slider]
         public int Magnification;
 
+        [BackgroundColor(55, 120, 175)]
+        [DefaultValue(false)]
+        [Label("农作物成熟收割")]
+        [Tooltip("是, 镰刀只会收割成熟的农作物, 否, 以取消. 默认为否")]
+        public bool GrownCut;
+
         public override void OnChanged()
         {
             HungerSetting.HungerDown = HungerCausePlayerDown;
             HungerSetting.GrowMagnification = Magnification;
+            HungerSetting.GrownCut = GrownCut;
             base.OnChanged();
         }
     }

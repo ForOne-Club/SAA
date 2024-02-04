@@ -1,1 +1,12 @@
-SatietyAndAgriculture is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+饱食度与农业/SatietyAndAgriculture
+你需要兼顾自己的饱食度进行开荒，饱食度过低时将会有属性惩罚，饱食度较高时会有属性奖励，通过摄入食物来补充饱食度。
+提供了多种方式获取食物，修改增加了多种食物配方。
+可以在商人处购买锄头和镰刀发展农业，作物需要湿润的耕地才能正常生长，部分作物成熟后可以通过右键进行采摘，作物的成熟速度可以自行调整。
+模组目前正在开发多种农作物和畜牧业，尽情期待吧。
+QQ群: 574904188
+You need to take into account your satiety to clear the land, when the satiety is too low, there will be a attribute punishment, and when the satiety is high, there will be a attribute reward, by eating food to supplement the satiety.
+Provides a variety of ways to obtain food, modified to add a variety of food formulations.
+You can buy hoes and sickles from merchants to develop agriculture, crops need wet arable land to grow normally, some crops can be picked by right clicking after maturity, and the ripening speed of crops can be adjusted by itself.
+The module is currently developing a variety of crops and animal husbandry, so look forward to it.
+PS: With limited energy, I only translated some important content.
+Join a dicussion on the dev's discord: https://discord.gg/fjFpgBkRBZ

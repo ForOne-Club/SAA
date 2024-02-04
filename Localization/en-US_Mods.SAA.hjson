@@ -1,92 +1,92 @@
 Tooltips: {
-	1: 增加饱食度
-	2: 可以在耕地上种植
+	1: Increase satiety.
+	2: Can plant on arable land.
 }
 
 Tiles: {
-	烤肉篝火.MapEntry: 烤肉篝火
-	牛奶发酵桶.MapEntry: 牛奶发酵桶
-	白蘑木桩.MapEntry: 白蘑木桩
-	白蘑树桩.MapEntry: 白蘑树桩
-	Arable.MapEntry: 耕地
-	海麦作物.MapEntry: 海燕麦
-	生命果实.MapEntry: 生命果实
-	蓝莓.MapEntry: 蓝莓
-	苹果树.MapEntry: 苹果树
-	冰箱.MapEntry: 冰箱
-	火龙果.MapEntry: 火龙果
-	鸭笼.MapEntry: 鸭笼
-	野鸭笼.MapEntry: 野鸭笼
-	丛林鸟巢.MapEntry: 丛林鸟巢
-	李子树.MapEntry: 李子树
-	血橙树.MapEntry: 血橙树
-	辣椒.MapEntry: 辣椒
-	黑醋栗.MapEntry: 黑醋栗
+	烤肉篝火.MapEntry: Barbecue bonfire
+	牛奶发酵桶.MapEntry: Milk fermentation barrel
+	白蘑木桩.MapEntry: White mushroom stake
+	白蘑树桩.MapEntry: White mushroom tree stake
+	Arable.MapEntry: Arable
+	海麦作物.MapEntry: Seaweed crop
+	生命果实.MapEntry: Fruit of life
+	蓝莓.MapEntry: Blueberry
+	苹果树.MapEntry: Apple tree
+	冰箱.MapEntry: Refrigerator
+	火龙果.MapEntry: Dragon fruit
+	鸭笼.MapEntry: Duck cage
+	野鸭笼.MapEntry: Wild duck cage
+	丛林鸟巢.MapEntry: Jungle bird nest
+	李子树.MapEntry: Plum tree
+	血橙树.MapEntry: Blood orange tree
+	辣椒.MapEntry: Chili pepper
+	黑醋栗.MapEntry: Blackcurrant
 }
 
 Buffs: {
 	一级饱和: {
-		DisplayName: 一级饱和
-		Description: 所有属性小幅度提升
+		DisplayName: Satiate I
+		Description: All attributes are slightly improved
 	}
 
 	三级饱和: {
-		DisplayName: 三级饱和
-		Description: 所有属性大幅度提升
+		DisplayName: Satiate III
+		Description: All attributes have been greatly improved
 	}
 
 	二级饱和: {
-		DisplayName: 二级饱和
-		Description: 所有属性中幅度提升
+		DisplayName: Satiate II
+		Description: All properties are moderately improved
 	}
 
 	强效饱和: {
-		DisplayName: 强效饱和
-		Description: 所有属性很大幅度提升
+		DisplayName: Satiate IV
+		Description: All attributes have been more greatly improved
 	}
 
 	腐球免疫: {
-		DisplayName: 腐球免疫
-		Description: 免疫咒火与诅咒
+		DisplayName: Special immunity
+		Description: Immune spell Fire and curse
 	}
 
 	超级饱和: {
-		DisplayName: 超级饱和
-		Description: 所有属性巨大幅度提升
+		DisplayName: Satiate V
+		Description: All attributes have been most greatly improved
 	}
 
 	酸甜可口: {
-		DisplayName: 酸甜可口
-		Description: 多吃酸的帮助消化
+		DisplayName: Sweet and sour
+		Description: Eat more acid to help digestion
 	}
 
 	饱腹: {
-		DisplayName: 饱腹
+		DisplayName: Satiate
 		Description:
 			'''
-			饱食度下降小幅度减缓
-			"有点撑"
+			Satiety decreased slower
+			"A little full."
 			'''
 	}
 
 	饱食之火: {
-		DisplayName: 饱食之火
-		Description: 饱食度下降略有减缓
+		DisplayName: Satiate Fire
+		Description: Satiety decreased slower
 	}
 
 	饿瘪了: {
-		DisplayName: 饿瘪了
-		Description: 你快饿死了！马上吃点东西！
+		DisplayName: Starve
+		Description: You're starving! Eat something now!
 	}
 
 	短爬兽Buff: {
-		DisplayName: 短爬兽宝宝
-		Description: 短爬兽宝宝将跟着你
+		DisplayName: Brachys Baby
+		Description: Brachys Baby follow you
 	}
 
 	饥饿: {
-		DisplayName: 饥饿
-		Description: 你很饿，而且感觉很虚弱。
+		DisplayName: Hunger
+		Description: You're hungry and you feel weak.
 	}
 }
 
@@ -95,9 +95,9 @@ Items: {
 		DisplayName: 求生手册
 		Tooltip:
 			'''
-			免疫虚弱和中毒
-			饿的更慢且不会被饿死
-			可以切割藤蔓以获取藤蔓绳
+			Immune weakness and poisoning
+			Satiety decreased slower and don't starve to death
+			Vines can be cut for vine rope
 			"鬼知道你吃了些什么"
 			'''
 	}
@@ -109,7 +109,7 @@ Items: {
 
 	云锦果: {
 		DisplayName: 云锦果
-		Tooltip: 生长于空岛的水果，绵软无比
+		Tooltip: The fruit that grows on the empty island is very soft
 	}
 
 	云锦面包: {
@@ -117,7 +117,7 @@ Items: {
 		Tooltip:
 			'''
 			酥脆的面包与处理完美的酸味相结合，适合所有人的美味
-			会赋予你羽落效果
+			Gives you a slow drop effect
 			'''
 	}
 
@@ -187,7 +187,7 @@ Items: {
 	}
 
 	油果: {
-		DisplayName: 油果
+		DisplayName: Fat Fruit
 		Tooltip: 小小的身体里蕴含大大的能量
 	}
 
@@ -212,8 +212,8 @@ Items: {
 	}
 
 	油罐: {
-		DisplayName: 油罐
-		Tooltip: 油炸的必备材料
+		DisplayName: Oil Bottle
+		Tooltip: Essential ingredients for frying
 	}
 
 	海带: {
@@ -228,12 +228,12 @@ Items: {
 
 	海鲜浓汤: {
 		DisplayName: 海鲜浓汤
-		Tooltip: 会让你饱腹感十足
+		Tooltip: It'll fill you up
 	}
 
 	海麦: {
-		DisplayName: 海麦
-		Tooltip: 长在海边的麦子，泰拉瑞亚里真是什么都有呢
+		DisplayName: Sea Wheat
+		Tooltip: The wheat that grows by the sea.
 	}
 
 	海麦面包: {
@@ -277,7 +277,7 @@ Items: {
 	}
 
 	牛奶: {
-		DisplayName: 牛奶
+		DisplayName: Milk
 		Tooltip: '''"泰拉世界居然有牛，嗯，一定不是什么正常的牛"'''
 	}
 
@@ -297,8 +297,8 @@ Items: {
 	}
 
 	白蘑菇: {
-		DisplayName: 白蘑菇
-		Tooltip: 你能在树桩和木桩附近找到它们
+		DisplayName: White mushroom
+		Tooltip: You can find them near tree stumps and stakes
 	}
 
 	短爬兽排: {
@@ -321,7 +321,7 @@ Items: {
 		Tooltip:
 			'''
 			处理好的腐球果加上少许盐水，口味适中
-			会赋予你特殊的免疫效果
+			It gives you a special immune effect
 			'''
 	}
 
@@ -352,7 +352,7 @@ Items: {
 
 	蟹棒: {
 		DisplayName: 蟹棒
-		Tooltip: '''"你确定要生吃这玩意？"'''
+		Tooltip: '''"Are you sure you want to eat this raw?"'''
 	}
 
 	血橙面包: {
@@ -370,13 +370,13 @@ Items: {
 		Tooltip:
 			'''
 			第一只被发现的短爬兽被命名为贝克斯，此菜因此得名
-			会赋予你短暂的怒气效果
+			Gives you a temporary anger effect
 			'''
 	}
 
 	酸奶: {
 		DisplayName: 酸奶
-		Tooltip: '''"放心喝，它不会帮助消化"'''
+		Tooltip: '''"Don't worry, it won't help digestion"'''
 	}
 
 	鱼翅: {
@@ -391,7 +391,7 @@ Items: {
 
 	麻辣金鱼汤: {
 		DisplayName: 麻辣金鱼汤
-		Tooltip: 赋予饮用者怒气效果
+		Tooltip: Will give you the effect of anger
 	}
 
 	黄油: {
@@ -405,11 +405,11 @@ Items: {
 	}
 
 	丰收镰刀: {
-		DisplayName: 丰收镰刀
+		DisplayName: Harvest Sickle
 		Tooltip:
 			'''
-			帮助玩家快速收集种子但是无法收集干草
-			用它收集野果野菜将得到更高产量
+			Helps players quickly collect seeds but not hay
+			Use it to collect wild fruits and vegetables will get a higher yield
 			'''
 	}
 
@@ -499,7 +499,7 @@ Items: {
 	}
 
 	牛奶发酵桶: {
-		DisplayName: 牛奶发酵桶
+		DisplayName: Milk fermentation tank
 		Tooltip: ""
 	}
 
@@ -507,14 +507,14 @@ Items: {
 		DisplayName: 消化药水
 		Tooltip:
 			'''
-			帮助消化
+			Aid digestion
 			"这玩意真的不是混合果汁?"
 			'''
 	}
 
 	锄头: {
-		DisplayName: 锄头
-		Tooltip: 将普通泥土转化为耕地
+		DisplayName: Hoe
+		Tooltip: Convert ordinary soil into arable land
 	}
 
 	海燕麦种子: {
@@ -558,12 +558,12 @@ Items: {
 	}
 
 	冰箱: {
-		DisplayName: 冰箱
+		DisplayName: Icebox
 		Tooltip: ""
 	}
 
 	蛋: {
-		DisplayName: 蛋
+		DisplayName: Egg
 		Tooltip: ""
 	}
 
@@ -614,25 +614,30 @@ Items: {
 }
 
 NPCs: {
-	奶牛.DisplayName: 奶牛
-	短爬兽.DisplayName: 短爬兽
-	丛莺.DisplayName: 丛莺
+	奶牛.DisplayName: Milk Snail
+	短爬兽.DisplayName: Brachys
+	丛莺.DisplayName: Bush Warbler
 }
 
-Projectiles.短爬兽宝宝.DisplayName: 短爬兽宝宝
+Projectiles.短爬兽宝宝.DisplayName: Brachys Baby
 
 Configs: {
 	Configs: {
 		DisplayName: Configs
 
 		HungerCausePlayerDown: {
-			Label: 饱食度扣血机制开关
-			Tooltip: 是, 在饱食度为零时扣血, 否, 以取消. 默认为否
+			Label: Switch of satiety blood control mechanism
+			Tooltip: Yes, deduct blood when satiety is zero, no, cancel. Default no
 		}
 
 		Magnification: {
-			Label: 农作物与牧场生长生产倍率
-			Tooltip: 生长生产速度存在上限, 调整至足够大的值会使所有的农作物与牧场生长生产速度一致
+			Label: Crop and pasture growth production ratio
+			Tooltip: There is an upper limit to the growth rate. Adjusting a sufficiently large value will bring all crops into line with the growth rate of the pasture
+		}
+
+		GrownCut: {
+			Label: Crops are ripe and harvested
+			Tooltip: Yes, Scythe will only harvest mature crops, no, to cancel. Default no
 		}
 	}
 }

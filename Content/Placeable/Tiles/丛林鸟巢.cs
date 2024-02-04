@@ -100,7 +100,11 @@ namespace SAA.Content.Placeable.Tiles
                 Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();
                 int herbItemType = ModContent.ItemType<蛋>();//收获
                 int herbItemStack = 1;
-                Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+                int item = Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
+                }
             }
         }
         public override bool RightClick(int i, int j)

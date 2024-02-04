@@ -77,7 +77,7 @@ namespace SAA.Content.Sys
                     {
                         if (WorldGen.genRand.NextBool(50))
                         {
-                            if (Helper.HasNotAnySameOne(i, j, 30, 30, ModContent.TileType<白蘑木桩>()))
+                            if (Helper.HasNotAnySameOne(i, j, 40, 40, ModContent.TileType<白蘑木桩>()))
                             {
                                 if (Helper.CanPlaceOnIt(i, j - 1, 2, 1))
                                 {
@@ -87,7 +87,7 @@ namespace SAA.Content.Sys
                         }
                         if (WorldGen.genRand.NextBool(70))
                         {
-                            if (Helper.HasNotAnySameOne(i, j, 35, 35, ModContent.TileType<白蘑树桩>()))
+                            if (Helper.HasNotAnySameOne(i, j, 50, 50, ModContent.TileType<白蘑树桩>()))
                             {
                                 if (Helper.CanPlaceOnIt(i, j - 1, 2, 2))
                                 {
