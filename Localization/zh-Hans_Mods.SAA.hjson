@@ -22,6 +22,8 @@ Tiles: {
 	血橙树.MapEntry: 血橙树
 	辣椒.MapEntry: 辣椒
 	黑醋栗.MapEntry: 黑醋栗
+	丛林孢子.MapEntry: 丛林孢子
+	海带缸.MapEntry: 海带缸
 }
 
 Buffs: {
@@ -610,6 +612,11 @@ Items: {
 	黑醋栗种子: {
 		DisplayName: 黑醋栗种子
 		Tooltip: ""
+	}
+
+	海带缸: {
+		Tooltip: ""
+		DisplayName: 海带缸
 	}
 }
 

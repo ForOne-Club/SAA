@@ -19,6 +19,9 @@ namespace SAA.Content.Breeding.Tiles
         /// 生产速度1到100
         /// </summary>
         protected virtual int GrowthRate => 1;
+        /// <summary>
+        /// -1表示什么都不需要
+        /// </summary>
         protected virtual int NeedItemType => 283;
         protected virtual int ProductItemType => ModContent.ItemType<蛋>();
         protected virtual int DropItemType => ModContent.ItemType<Items.鸭笼>();
@@ -62,9 +65,23 @@ namespace SAA.Content.Breeding.Tiles
             BreedStage stage = GetStage(x, y);
             if (Main.dayTime || !needDayTime)//白天
             {
-                if (Main.rand.Next(100) < (GrowthRate * growMagnification))
+                if (Main.rand.Next(100) < (GrowthRate * growMagnification / 3 / Height))//保证概率准确需要除以物块数量
                 {
-                    if (stage == BreedStage.Producting)
+                    if (NeedItemType == -1 && stage != BreedStage.Product)
+                    {
+                        for (int w = 0; w < 3; w++)
+                        {
+                            for (int h = 0; h < Height; h++)
+                            {
+                                Main.tile[x + w, y + h].TileFrameX += 54;
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                {
+                                    NetMessage.SendTileSquare(-1, x + w, y + h, 1);
+                                }
+                            }
+                        }
+                    }
+                    else if (stage == BreedStage.Producting)
                     {
                         for (int w = 0; w < 3; w++)
                         {
@@ -97,7 +114,7 @@ namespace SAA.Content.Breeding.Tiles
             int y = j - Main.tile[i, j].TileFrameY / 18;
             BreedStage stage = GetStage(x, y);
             Player player = Main.LocalPlayer;
-            if (stage == BreedStage.Breeded)
+            if (NeedItemType != -1 && stage == BreedStage.Breeded)
             {
                 player.noThrow = 2;
                 player.cursorItemIconEnabled = true;
@@ -172,8 +189,15 @@ namespace SAA.Content.Breeding.Tiles
             BreedStage stage = GetStage(x, y);
             if (stage != BreedStage.Producting)
             {
-                TryPickOrFeed(i, j);
-                return true;
+                if (NeedItemType == -1 && stage == BreedStage.Breeded)
+                {
+                    return false;
+                }
+                else
+                {
+                    TryPickOrFeed(i, j);
+                    return true;
+                }
             }
             else
             {

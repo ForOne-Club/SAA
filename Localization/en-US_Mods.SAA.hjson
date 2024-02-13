@@ -9,7 +9,7 @@ Tiles: {
 	白蘑木桩.MapEntry: White mushroom stake
 	白蘑树桩.MapEntry: White mushroom tree stake
 	Arable.MapEntry: Arable
-	海麦作物.MapEntry: Seaweed crop
+	海麦作物.MapEntry: Sea Wheat crop
 	生命果实.MapEntry: Fruit of life
 	蓝莓.MapEntry: Blueberry
 	苹果树.MapEntry: Apple tree
@@ -22,6 +22,8 @@ Tiles: {
 	血橙树.MapEntry: Blood orange tree
 	辣椒.MapEntry: Chili pepper
 	黑醋栗.MapEntry: Blackcurrant
+	丛林孢子.MapEntry: Jungle spore
+	海带缸.MapEntry: Kelp jar
 }
 
 Buffs: {
@@ -92,7 +94,7 @@ Buffs: {
 
 Items: {
 	求生手册: {
-		DisplayName: 求生手册
+		DisplayName: Survival Manual
 		Tooltip:
 			'''
 			Immune weakness and poisoning
@@ -103,17 +105,17 @@ Items: {
 	}
 
 	乌贼: {
-		DisplayName: 乌贼
+		DisplayName: Squid
 		Tooltip: '''"眼疾手快!"'''
 	}
 
 	云锦果: {
-		DisplayName: 云锦果
+		DisplayName: Cloud fruit
 		Tooltip: The fruit that grows on the empty island is very soft
 	}
 
 	云锦面包: {
-		DisplayName: 云锦面包
+		DisplayName: Cloud Bread
 		Tooltip:
 			'''
 			酥脆的面包与处理完美的酸味相结合，适合所有人的美味
@@ -122,67 +124,67 @@ Items: {
 	}
 
 	全家桶: {
-		DisplayName: 全家桶
+		DisplayName: Family meal
 		Tooltip: '''"疯狂星期四v我50"'''
 	}
 
 	吐司面包: {
-		DisplayName: 吐司面包
+		DisplayName: Toast Bread
 		Tooltip: ""
 	}
 
 	奶油: {
-		DisplayName: 奶油
+		DisplayName: Cream
 		Tooltip: '''"简直是甜品爱好者的福音！"'''
 	}
 
 	奶油吐司面包: {
-		DisplayName: 奶油吐司面包
+		DisplayName: Cream Toast Bread
 		Tooltip: ""
 	}
 
 	奶油面包: {
-		DisplayName: 奶油面包
+		DisplayName: Cream Bread
 		Tooltip: ""
 	}
 
 	奶酪: {
-		DisplayName: 奶酪
+		DisplayName: Cheese
 		Tooltip: '''"某些人可能不太喜欢它的味道"'''
 	}
 
 	李子面包: {
-		DisplayName: 李子面包
+		DisplayName: Plum Bread
 		Tooltip: ""
 	}
 
 	杏子面包: {
-		DisplayName: 杏子面包
+		DisplayName: Apricot Bread
 		Tooltip: ""
 	}
 
 	杨桃面包: {
-		DisplayName: 杨桃面包
+		DisplayName: Carambola Bread
 		Tooltip: ""
 	}
 
 	柠檬面包: {
-		DisplayName: 柠檬面包
+		DisplayName: Lemon Bread
 		Tooltip: ""
 	}
 
 	桃子面包: {
-		DisplayName: 桃子面包
+		DisplayName: Peach Bread
 		Tooltip: ""
 	}
 
 	椰蓉: {
-		DisplayName: 椰蓉
+		DisplayName: Shredded coconut
 		Tooltip: ""
 	}
 
 	樱桃面包: {
-		DisplayName: 樱桃面包
+		DisplayName: Cherry Bread
 		Tooltip: ""
 	}
 
@@ -192,22 +194,22 @@ Items: {
 	}
 
 	油炸白蘑菇: {
-		DisplayName: 油炸白蘑菇
+		DisplayName: Fried White mushroom
 		Tooltip: ""
 	}
 
 	油炸翅尖: {
-		DisplayName: 油炸翅尖
+		DisplayName: Fried Wing tip
 		Tooltip: ""
 	}
 
 	油炸翅根: {
-		DisplayName: 油炸翅根
+		DisplayName: Fried Wing root
 		Tooltip: ""
 	}
 
 	油炸鸡腿: {
-		DisplayName: 油炸鸡腿
+		DisplayName: Fried Chicken leg
 		Tooltip: ""
 	}
 
@@ -217,17 +219,17 @@ Items: {
 	}
 
 	海带: {
-		DisplayName: 海生子
+		DisplayName: Kelp
 		Tooltip: 与长在深海中的海草共生，它可以很好的吸取海水中的盐分
 	}
 
 	海水: {
-		DisplayName: 海水
+		DisplayName: Water
 		Tooltip: 用海生子将水中的盐份吸收后饮用，然后将海生子一同食用回复少量饱食度
 	}
 
 	海鲜浓汤: {
-		DisplayName: 海鲜浓汤
+		DisplayName: Seafood chowder
 		Tooltip: It'll fill you up
 	}
 
@@ -237,42 +239,42 @@ Items: {
 	}
 
 	海麦面包: {
-		DisplayName: 海麦面包
+		DisplayName: Bread
 		Tooltip: ""
 	}
 
 	烤乌贼: {
-		DisplayName: 烤乌贼
+		DisplayName: Grilled Squid
 		Tooltip: ""
 	}
 
 	烤短爬兽排: {
-		DisplayName: 烤短爬兽排
+		DisplayName: Grilled Steak
 		Tooltip: ""
 	}
 
 	烤蚜虫: {
-		DisplayName: 烤蚜虫
+		DisplayName: Grilled Aphid
 		Tooltip: ""
 	}
 
 	烤蛆虫: {
-		DisplayName: 烤蛆虫
+		DisplayName: Grilled Maggot
 		Tooltip: ""
 	}
 
 	烤蝇蛆: {
-		DisplayName: 烤蝇蛆
+		DisplayName: Grilled Fly maggot
 		Tooltip: ""
 	}
 
 	烤鱼: {
-		DisplayName: 烤鱼
+		DisplayName: Grilled Fish
 		Tooltip: ""
 	}
 
 	烤鼻涕虫: {
-		DisplayName: 烤鼻涕虫
+		DisplayName: Grilled Slug
 		Tooltip: ""
 	}
 
@@ -282,17 +284,17 @@ Items: {
 	}
 
 	生翅尖: {
-		DisplayName: 生翅尖
+		DisplayName: Wing tip
 		Tooltip: ""
 	}
 
 	生翅根: {
-		DisplayName: 生翅根
+		DisplayName: Wing root
 		Tooltip: ""
 	}
 
 	生鸡腿: {
-		DisplayName: 生鸡腿
+		DisplayName: Chicken leg
 		Tooltip: ""
 	}
 
@@ -302,22 +304,22 @@ Items: {
 	}
 
 	短爬兽排: {
-		DisplayName: 短爬兽排
+		DisplayName: Steak
 		Tooltip: 短爬兽的背肋肉，因为经常的拉伸锻炼而导致口感紧致
 	}
 
 	碳烤蟹棒: {
-		DisplayName: 碳烤蟹棒
+		DisplayName: Grilled Krab stick
 		Tooltip: ""
 	}
 
 	腐球果: {
-		DisplayName: 腐球果
+		DisplayName: Purple fruit
 		Tooltip: 据说是腐化之地荆棘的果实，可食用，味甜且腻
 	}
 
 	腐球果饮: {
-		DisplayName: 腐球果饮
+		DisplayName: Purple Drink
 		Tooltip:
 			'''
 			处理好的腐球果加上少许盐水，口味适中
@@ -326,47 +328,47 @@ Items: {
 	}
 
 	芒果面包: {
-		DisplayName: 芒果面包
+		DisplayName: Mango Bread
 		Tooltip: ""
 	}
 
 	苹果面包: {
-		DisplayName: 苹果面包
+		DisplayName: Apple Bread
 		Tooltip: ""
 	}
 
 	菠萝面包: {
-		DisplayName: 菠萝面包
+		DisplayName: Pineapple Bread
 		Tooltip: ""
 	}
 
 	葡萄柚面包: {
-		DisplayName: 葡萄柚面包
+		DisplayName: Grapefruit Bread
 		Tooltip: ""
 	}
 
 	蜂蜜面包: {
-		DisplayName: 蜂蜜面包
+		DisplayName: Honey Bread
 		Tooltip: ""
 	}
 
 	蟹棒: {
-		DisplayName: 蟹棒
+		DisplayName: Krab stick
 		Tooltip: '''"Are you sure you want to eat this raw?"'''
 	}
 
 	血橙面包: {
-		DisplayName: 血橙面包
+		DisplayName: Blood orange Bread
 		Tooltip: ""
 	}
 
 	血角: {
-		DisplayName: 血角
+		DisplayName: Blood fruit
 		Tooltip: 据说是血腥之地荆棘的果实，辣味十足
 	}
 
 	贝克斯炖肉: {
-		DisplayName: 贝克斯炖肉
+		DisplayName: Stewed meat
 		Tooltip:
 			'''
 			第一只被发现的短爬兽被命名为贝克斯，此菜因此得名
@@ -375,32 +377,32 @@ Items: {
 	}
 
 	酸奶: {
-		DisplayName: 酸奶
+		DisplayName: Yogurt
 		Tooltip: '''"Don't worry, it won't help digestion"'''
 	}
 
 	鱼翅: {
-		DisplayName: 鱼翅
+		DisplayName: Shark fin
 		Tooltip: '''"没有买卖就没有杀害"'''
 	}
 
 	鱼藻复合粉: {
-		DisplayName: 鱼藻复合粉
+		DisplayName: MSG
 		Tooltip: ""
 	}
 
 	麻辣金鱼汤: {
-		DisplayName: 麻辣金鱼汤
+		DisplayName: Spicy fish soup
 		Tooltip: Will give you the effect of anger
 	}
 
 	黄油: {
-		DisplayName: 黄油
+		DisplayName: Butter
 		Tooltip: ""
 	}
 
 	黑醋栗面包: {
-		DisplayName: 黑醋栗面包
+		DisplayName: Blackcurrant Bread
 		Tooltip: ""
 	}
 
@@ -414,87 +416,87 @@ Items: {
 	}
 
 	种子机关枪: {
-		DisplayName: 种子机关枪
+		DisplayName: Seed Machine gun
 		Tooltip: 上吧！妙蛙种子，使用种子机枪
 	}
 
 	奶蜗牛: {
-		DisplayName: 奶蜗牛
+		DisplayName: Milk Snail
 		Tooltip: ""
 	}
 
 	草球: {
-		DisplayName: 草球
+		DisplayName: Grass ball
 		Tooltip: ""
 	}
 
 	烤肉丛林篝火: {
-		DisplayName: 烤肉丛林篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉冰冻篝火: {
-		DisplayName: 烤肉冰冻篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉彩虹篝火: {
-		DisplayName: 烤肉彩虹篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉恶魔篝火: {
-		DisplayName: 烤肉恶魔篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉沙漠篝火: {
-		DisplayName: 烤肉沙漠篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉灵液篝火: {
-		DisplayName: 烤肉灵液篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉猩红篝火: {
-		DisplayName: 烤肉猩红篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉珊瑚篝火: {
-		DisplayName: 烤肉珊瑚篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉神圣篝火: {
-		DisplayName: 烤肉神圣篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉篝火: {
-		DisplayName: 烤肉篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉腐化篝火: {
-		DisplayName: 烤肉腐化篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉诅咒篝火: {
-		DisplayName: 烤肉诅咒篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉超亮篝火: {
-		DisplayName: 烤肉超亮篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
 	烤肉骨头篝火: {
-		DisplayName: 烤肉骨头篝火
+		DisplayName: Barbecue bonfire
 		Tooltip: ""
 	}
 
@@ -504,7 +506,7 @@ Items: {
 	}
 
 	消化药水: {
-		DisplayName: 消化药水
+		DisplayName: 消化的药
 		Tooltip:
 			'''
 			Aid digestion
@@ -518,37 +520,37 @@ Items: {
 	}
 
 	海燕麦种子: {
-		DisplayName: 海燕麦种子
+		DisplayName: Sea Wheat Seed
 		Tooltip: '''"谁说这玩意只能种在沙滩上"'''
 	}
 
 	生命果实种子: {
-		DisplayName: 生命果实种子
+		DisplayName: Lifefruit Seed
 		Tooltip: ""
 	}
 
 	蓝莓: {
-		DisplayName: 蓝莓
+		DisplayName: Blueberry
 		Tooltip: ""
 	}
 
 	蓝莓种子: {
-		DisplayName: 蓝莓种子
+		DisplayName: Blueberry Seed
 		Tooltip: ""
 	}
 
 	接骨木果面包: {
-		DisplayName: 接骨木果面包
+		DisplayName: Elderberry Bread
 		Tooltip: ""
 	}
 
 	蓝莓面包: {
-		DisplayName: 蓝莓面包
+		DisplayName: Blueberry Bread
 		Tooltip: ""
 	}
 
 	苹果种子: {
-		DisplayName: 苹果种子
+		DisplayName: Apple Seed
 		Tooltip: ""
 	}
 
@@ -568,48 +570,53 @@ Items: {
 	}
 
 	火龙果种子: {
-		DisplayName: 火龙果种子
+		DisplayName: Pitaya Seed
 		Tooltip: ""
 	}
 
 	石榴面包: {
-		DisplayName: 石榴面包
+		DisplayName: Pomegranate Bread
 		Tooltip: ""
 	}
 
 	烤兔兔: {
-		DisplayName: 烤兔兔
+		DisplayName: Roast Rabbit
 		Tooltip: ""
 	}
 
 	鸭笼: {
-		DisplayName: 鸭笼
+		DisplayName: Duck Coop
 		Tooltip: ""
 	}
 
 	野鸭笼: {
-		DisplayName: 野鸭笼
+		DisplayName: Wild Duck coop
 		Tooltip: ""
 	}
 
 	李子种子: {
-		DisplayName: 李子种子
+		DisplayName: Plum Seed
 		Tooltip: ""
 	}
 
 	血橙种子: {
-		DisplayName: 血橙种子
+		DisplayName: Blood orange Seed
 		Tooltip: ""
 	}
 
 	辣椒种子: {
-		DisplayName: 辣椒种子
+		DisplayName: Chili Seed
 		Tooltip: ""
 	}
 
 	黑醋栗种子: {
-		DisplayName: 黑醋栗种子
+		DisplayName: Blackcurrant Seed
 		Tooltip: ""
+	}
+
+	海带缸: {
+		Tooltip: ""
+		DisplayName: Kelp jar
 	}
 }
 
