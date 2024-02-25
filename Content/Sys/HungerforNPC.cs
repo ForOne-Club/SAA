@@ -46,5 +46,64 @@ namespace SAA.Content.Sys
             }
             base.ModifyActiveShop(npc, shopName, items);
         }
+        public override bool PreAI(NPC npc)
+        {
+            int[] animals = new int[] { 46, 303, 337, 540, 443, 299, 538, 539, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652 };
+            if (animals.Contains(npc.type))
+            {
+                float distance = Helper.ModeNum(200, 250, 300);
+                Player t = null;
+                foreach (Player p in Main.player)
+                {
+                    if (p != null && p.active && !p.dead)
+                    {
+                        float d = Vector2.Distance(npc.Center, p.Center);
+                        if (d < distance)
+                        {
+                            distance = d;
+                            t = p;
+                        }
+                    }
+                }
+                if (t != null)
+                {
+                    if (distance > Helper.ModeNum(190, 240, 290) && t.velocity.X == 0 && Math.Abs(npc.velocity.X) < 0.5f)
+                    {
+                        npc.velocity.X = 0;
+                    }
+                    else
+                    {
+                        Vector2 d = npc.Center - Main.player[npc.target].Center;
+                        if (d.X > 0)
+                        {
+                            if (npc.velocity.X > -1)
+                                npc.velocity.X += 0.05f;
+                            else
+                                npc.velocity.X -= 0.05f;
+                        }
+                        else
+                        {
+                            if (npc.velocity.X > 1)
+                                npc.velocity.X += 0.05f;
+                            else
+                                npc.velocity.X -= 0.05f;
+                        }
+                        if (npc.velocity.X > 5) npc.velocity.X = 5;
+                        else if (npc.velocity.X < -5) npc.velocity.X = -5;
+                        if (npc.velocity.X > 0.5f) npc.direction = 1;
+                        else if (npc.velocity.X < 0.5f) npc.direction = -1;
+                        if (npc.collideX)
+                        {
+                            npc.Center -= new Vector2(npc.direction * 8, 8);
+                            npc.velocity.X = npc.direction * 5;
+                            npc.velocity.Y -= 2;
+                            //return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+            return base.PreAI(npc);
+        }
     }
 }

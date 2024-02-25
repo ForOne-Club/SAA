@@ -1,3 +1,5 @@
+DamageClass.Botanist: 植物
+
 Tooltips: {
 	1: 增加饱食度
 	2: 可以在耕地上种植
@@ -617,6 +619,11 @@ Items: {
 	海带缸: {
 		Tooltip: ""
 		DisplayName: 海带缸
+	}
+
+	草帽: {
+		DisplayName: 草帽
+		Tooltip: 收成增加10%
 	}
 }
 

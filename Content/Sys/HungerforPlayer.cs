@@ -14,6 +14,10 @@ public class HungerforPlayer : ModPlayer
     public bool HungerBook = false;
     public int PoopTime = 300;//拉臭臭间隔时间
     internal static int[] HungerBuff = { 26, 206, 207, 332, 333, 334, ModContent.BuffType<饿瘪了>(), ModContent.BuffType<一级饱和>(), ModContent.BuffType<二级饱和>(), ModContent.BuffType<三级饱和>(), ModContent.BuffType<强效饱和>(), ModContent.BuffType<超级饱和>() };
+    /// <summary>
+    /// 庄稼收成
+    /// </summary>
+    public float CropHarvest = 1;
     public override void SaveData(TagCompound tag)
     {
         tag["BaoShi"] = Hunger;
@@ -35,6 +39,8 @@ public class HungerforPlayer : ModPlayer
             int lifecut = (int)((20 - Hunger) / 20f * Player.statLifeMax2 / 5);
             Player.statLifeMax2 -= lifecut;
         }
+
+        CropHarvest = 1;
     }
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)//死亡惩罚
     {

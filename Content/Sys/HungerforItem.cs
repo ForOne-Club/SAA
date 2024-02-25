@@ -245,8 +245,9 @@ namespace SAA.Content.Sys
                 TooltipLine text = new(Mod, "饱食度", Language.GetTextValue("Mods.SAA.Tooltips.1") + $":{heal}");
                 tooltips.Insert(2, text);//第几行插入，1在名称下面
             }
-            //参考物品价值，测试使用
+            //参考物品价值和ID，测试使用
             //tooltips.Add(new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
+            tooltips.Add(new TooltipLine(Mod, "ID", Language.GetTextValue("ID") + $":{item.type}"));
             base.ModifyTooltips(item, tooltips);
         }
         //镰刀收割

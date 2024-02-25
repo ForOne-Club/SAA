@@ -1,3 +1,5 @@
+DamageClass.Botanist: Plant
+
 Tooltips: {
 	1: Increase satiety.
 	2: Can plant on arable land.
@@ -617,6 +619,11 @@ Items: {
 	海带缸: {
 		Tooltip: ""
 		DisplayName: Kelp jar
+	}
+
+	草帽: {
+		DisplayName: Straw hat
+		Tooltip: 10% increase in harvest
 	}
 }
 

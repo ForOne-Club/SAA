@@ -188,7 +188,16 @@ namespace SAA.Content.Planting.Tiles.Plants
                 ModifyDropHerbCount(ref herbItemType, ref herbItemStack, nearestPlayer, stage);
                 ModifyDropSeedCount(ref seedItemType, ref seedItemStack, nearestPlayer, stage);
             }
-
+            if (herbItemStack > 0)//农作物掉落会受到收成影响
+            {
+                float chance = herbItemStack * nearestPlayer.GetModPlayer<HungerforPlayer>().CropHarvest;
+                herbItemStack = (int)chance;
+                chance = chance - herbItemStack;
+                if (chance > 0 && Main.rand.NextFloat(0, 1) < chance)
+                {
+                    herbItemStack++;
+                }
+            }
             var source = new EntitySource_TileBreak(i, j);
 
             if (herbItemType > 0 && herbItemStack > 0)
@@ -228,9 +237,23 @@ namespace SAA.Content.Planting.Tiles.Plants
             }
 
             Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();
+            Player nearestPlayer = Main.player[Player.FindClosest(worldPosition, 16, 16)];
+
             int herbItemType = HerbItemType;//收获
             int herbItemStack = 1;
             ModifyPick(ref herbItemType, ref herbItemStack);
+
+            if (herbItemStack > 0)//农作物采摘会受到收成影响
+            {
+                float chance = herbItemStack * nearestPlayer.GetModPlayer<HungerforPlayer>().CropHarvest;
+                herbItemStack = (int)chance;
+                chance = chance - herbItemStack;
+                if (chance > 0 && Main.rand.NextFloat(0, 1) < chance)
+                {
+                    herbItemStack++;
+                }
+            }
+
             int item = Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
