@@ -22,7 +22,7 @@ namespace SAA.Content.Breeding.Tiles
         /// <summary>
         /// -1表示什么都不需要
         /// </summary>
-        protected virtual int NeedItemType => 283;
+        protected virtual int NeedItemType => ItemID.Seed;
         protected virtual int ProductItemType => ModContent.ItemType<蛋>();
         protected virtual int DropItemType => ModContent.ItemType<Items.鸭笼>();
         protected virtual void ModifyTileObjectData() { }

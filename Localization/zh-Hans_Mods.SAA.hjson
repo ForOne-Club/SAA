@@ -1,4 +1,4 @@
-DamageClass.Botanist: 植物
+DamageClass.Botanist: 植物伤害
 
 Tooltips: {
 	1: 增加饱食度
@@ -588,12 +588,12 @@ Items: {
 
 	鸭笼: {
 		DisplayName: 鸭笼
-		Tooltip: ""
+		Tooltip: 放置后右键喂食种子
 	}
 
 	野鸭笼: {
 		DisplayName: 野鸭笼
-		Tooltip: ""
+		Tooltip: 放置后右键喂食种子
 	}
 
 	李子种子: {
@@ -617,13 +617,13 @@ Items: {
 	}
 
 	海带缸: {
-		Tooltip: ""
 		DisplayName: 海带缸
+		Tooltip: 海带成熟后可采摘
 	}
 
 	草帽: {
 		DisplayName: 草帽
-		Tooltip: 收成增加10%
+		Tooltip: 收成增加5%
 	}
 }
 

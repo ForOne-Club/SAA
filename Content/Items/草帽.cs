@@ -1,4 +1,5 @@
-﻿using SAA.Content.Sys;
+﻿using SAA.Content.DamageClasses;
+using SAA.Content.Sys;
 using Terraria.ID;
 
 namespace SAA.Content.Items;
@@ -23,7 +24,8 @@ public class 草帽 : ModItem
     }
     public override void UpdateEquip(Player player)
     {
-        player.GetModPlayer<HungerforPlayer>().CropHarvest += 0.1f;
+        player.GetModPlayer<HungerforPlayer>().CropHarvest += 0.05f;
+        //player.GetDamage(ModContent.GetInstance<BotanistDamageClass>()) += 1;
     }
     public override void AddRecipes()
     {

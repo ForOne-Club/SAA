@@ -1,4 +1,4 @@
-DamageClass.Botanist: Plant
+DamageClass.Botanist: PlantDamage
 
 Tooltips: {
 	1: Increase satiety.
@@ -588,12 +588,12 @@ Items: {
 
 	鸭笼: {
 		DisplayName: Duck Coop
-		Tooltip: ""
+		Tooltip: Right click feed seeds after placement
 	}
 
 	野鸭笼: {
 		DisplayName: Wild Duck coop
-		Tooltip: ""
+		Tooltip: Right click feed seeds after placement
 	}
 
 	李子种子: {
@@ -617,13 +617,13 @@ Items: {
 	}
 
 	海带缸: {
-		Tooltip: ""
 		DisplayName: Kelp jar
+		Tooltip: Kelp can be picked when ripe
 	}
 
 	草帽: {
 		DisplayName: Straw hat
-		Tooltip: 10% increase in harvest
+		Tooltip: 5% increase in harvest
 	}
 }
 

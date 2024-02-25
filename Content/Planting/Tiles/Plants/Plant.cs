@@ -215,9 +215,8 @@ namespace SAA.Content.Planting.Tiles.Plants
         public override void MouseOver(int i, int j)
         {
             //顶格才可以采摘
-            Tile tile = Framing.GetTileSafely(i, j);
             PlantStage stage = GetStage(i, j);
-            if (CanPick && stage == PlantStage.Grown && tile.TileFrameY == 0)
+            if (CanPick && stage == PlantStage.Grown)
             {
                 Player player = Main.LocalPlayer;
                 player.noThrow = 2;
@@ -227,6 +226,19 @@ namespace SAA.Content.Planting.Tiles.Plants
         }
         public void TryPick(int i, int j)
         {
+            //由于贴图高度不确定，采用其他方法寻找顶部瓷砖
+            if (Main.tile[i, j].TileFrameY != 0)
+            {
+                for (int h = 0; h < Height; h++)
+                {
+                    if (Main.tile[i, j + h].TileType == ModContent.TileType<Arable>())
+                    {
+                        j += h - Height;
+                        break;
+                    }
+                }
+            }
+
             for (int h = 0; h < Height; h++)
             {
                 Main.tile[i, j + h].TileFrameX -= FrameWidth;
@@ -263,9 +275,8 @@ namespace SAA.Content.Planting.Tiles.Plants
         protected virtual void ModifyPick(ref int herbItemType, ref int herbItemStack) { }
         public override bool RightClick(int i, int j)
         {
-            Tile tile = Framing.GetTileSafely(i, j);
             PlantStage stage = GetStage(i, j);
-            if (CanPick && stage == PlantStage.Grown && tile.TileFrameY == 0)
+            if (CanPick && stage == PlantStage.Grown)
             {
                 TryPick(i, j);
                 return true;

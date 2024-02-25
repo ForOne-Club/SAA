@@ -32,11 +32,6 @@ namespace SAA.Content.Sys
             //距离屏幕左上角的宽，距离屏幕左上角的高（绘制位置），图片的宽，图片的高（缩放）
             Rectangle Bar2 = new(0, 0, texture1.Width, texture1.Height);
             //图片内距左上角的宽，图片内距左上角的高，取的图片的宽，取的图片的高
-            if (Bar1.Intersects(new Rectangle(Main.mouseX, Main.mouseY, 1, 1)))
-            {
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, $"{progress}/{HungerMax}",
-                    new Vector2(Main.mouseX + 16f, Main.mouseY + 10f), Color.White, 0f, Vector2.Zero, new Vector2(1f));
-            }
             Main.spriteBatch.Draw(texture1, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
             float factor1 = (float)progress / truemax;
             int newwidth = (int)(66 * factor1);
@@ -50,6 +45,13 @@ namespace SAA.Content.Sys
             Bar2.X = 28 + newwidth;
             Bar2.Width = texture1.Width - 28 - newwidth;
             Main.spriteBatch.Draw(texture3, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            //文字
+            Bar1 = new Rectangle((int)(Main.screenWidth * Width), (int)(Main.screenHeight * 0.02f), (int)(texture1.Width * scale), (int)(texture1.Height * scale));
+            if (Bar1.Intersects(new Rectangle(Main.mouseX, Main.mouseY, 1, 1)))
+            {
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, $"{progress}/{HungerMax}",
+                    new Vector2(Main.mouseX + 20, Main.mouseY + 20), Color.White, 0f, Vector2.Zero, new Vector2(1f));
+            }
         }
     }
     public class HungerSystem : ModSystem

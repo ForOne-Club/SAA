@@ -1,4 +1,5 @@
-﻿using SAA.Content.Items;
+﻿using SAA.Content.DamageClasses;
+using SAA.Content.Items;
 using SAA.Content.Planting.Tiles.Plants;
 
 namespace SAA.Content.Sys
@@ -128,6 +129,10 @@ namespace SAA.Content.Sys
                     int hunger = QuickBuff_FindFoodPriority(buff) * time / 3600;
                     entity.value = hunger * 300 * (level + 1);
                 }
+            }
+            if(entity.type == ItemID.Seed)
+            {
+                entity.DamageType = ModContent.GetInstance<BotanistDamageClass>();
             }
             base.SetDefaults(entity);
         }
