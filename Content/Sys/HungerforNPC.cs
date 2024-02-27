@@ -1,6 +1,8 @@
 ﻿using SAA.Content.Foods;
 using SAA.Content.Items;
+using SAA.Content.Planting.Seeds;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 
 namespace SAA.Content.Sys
 {
@@ -18,6 +20,10 @@ namespace SAA.Content.Sys
             if (npc.type == NPCID.Crab)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<蟹棒>(), 5, 1, 1));
+            }
+            if (npc.type == NPCID.WallCreeper|| npc.type == NPCID.WallCreeperWall|| npc.type == NPCID.BlackRecluse || npc.type == NPCID.BlackRecluseWall)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<棉花种子>(), 5, 1, 1));
             }
         }
         public override void ModifyShop(NPCShop shop)

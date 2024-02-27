@@ -265,14 +265,27 @@ namespace SAA.Content.Planting.Tiles.Plants
                     herbItemStack++;
                 }
             }
-
-            int item = Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+            if (ModifyPickDrop(i, j, herbItemStack))
             {
-                NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
+                int item = Item.NewItem(new EntitySource_TileBreak(i, j), worldPosition, herbItemType, herbItemStack);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
+                }
             }
         }
         protected virtual void ModifyPick(ref int herbItemType, ref int herbItemStack) { }
+        /// <summary>
+        /// 重写采摘掉落，返回false来阻止原先的掉落
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <param name="herbItemStack"></param>
+        /// <returns></returns>
+        protected virtual bool ModifyPickDrop(int i, int j, int herbItemStack)
+        {
+            return true;
+        }
         public override bool RightClick(int i, int j)
         {
             PlantStage stage = GetStage(i, j);

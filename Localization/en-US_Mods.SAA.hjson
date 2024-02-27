@@ -26,6 +26,7 @@ Tiles: {
 	黑醋栗.MapEntry: Blackcurrant
 	丛林孢子.MapEntry: Jungle spore
 	海带缸.MapEntry: Kelp jar
+	棉花.MapEntry: 棉花
 }
 
 Buffs: {
@@ -624,6 +625,35 @@ Items: {
 	草帽: {
 		DisplayName: Straw hat
 		Tooltip: 5% increase in harvest
+	}
+
+	棉线: {
+		DisplayName: 棉线
+		Tooltip: ""
+	}
+
+	棉花: {
+		DisplayName: Cotton
+		Tooltip: ""
+	}
+
+	采摘裤: {
+		DisplayName: Picker pants
+		Tooltip:
+			'''
+			5% increase in movement speed 
+			5% increase in harvest
+			'''
+	}
+
+	棉花种子: {
+		DisplayName: Cotton seed
+		Tooltip: ""
+	}
+
+	烤橡实: {
+		DisplayName: Roasted acorn
+		Tooltip: ""
 	}
 }
 

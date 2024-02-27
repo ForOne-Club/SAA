@@ -26,6 +26,7 @@ Tiles: {
 	黑醋栗.MapEntry: 黑醋栗
 	丛林孢子.MapEntry: 丛林孢子
 	海带缸.MapEntry: 海带缸
+	棉花.MapEntry: 棉花
 }
 
 Buffs: {
@@ -624,6 +625,35 @@ Items: {
 	草帽: {
 		DisplayName: 草帽
 		Tooltip: 收成增加5%
+	}
+
+	棉线: {
+		DisplayName: 棉线
+		Tooltip: ""
+	}
+
+	棉花: {
+		DisplayName: 棉花
+		Tooltip: ""
+	}
+
+	采摘裤: {
+		DisplayName: 采摘裤
+		Tooltip:
+			'''
+			移动速度增加5%
+			收成增加5%
+			'''
+	}
+
+	棉花种子: {
+		DisplayName: 棉花种子
+		Tooltip: ""
+	}
+
+	烤橡实: {
+		// DisplayName: 烤橡实
+		// Tooltip: ""
 	}
 }
 

@@ -17,13 +17,14 @@ public class 采摘裤 : ModItem
     public override void UpdateEquip(Player player)
     {
         player.GetModPlayer<HungerforPlayer>().CropHarvest += 0.05f;
+        player.moveSpeed += 0.05f;
         //player.GetDamage(ModContent.GetInstance<BotanistDamageClass>()) += 1;
     }
     public override void AddRecipes()//需要棉花做的布匹
     {
         CreateRecipe()
-        .AddIngredient(ItemID.Hay, 50)
-        .AddTile(TileID.WorkBenches)
+        .AddIngredient(ItemID.Silk, 20)
+        .AddTile(TileID.Loom)
         .Register();
     }
 }
