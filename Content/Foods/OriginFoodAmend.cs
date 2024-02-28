@@ -11,11 +11,11 @@ namespace SAA.Content.Foods
             .AddIngredient(ItemID.Marshmallow, 1)
             .AddTile(ModContent.TileType<烤肉篝火>())
             .Register();
-            //烤猫头鹰
-            Recipe.Create(4031)
-            .AddIngredient(ItemID.Owl, 1)
-            .AddTile(ModContent.TileType<烤肉篝火>())
-            .Register();
+            //烤猫头鹰, 不吃了, 尊重原版(猫头鹰、鹦鹉不可食用)
+            //Recipe.Create(4031)
+            //.AddIngredient(ItemID.Owl, 1)
+            //.AddTile(ModContent.TileType<烤肉篝火>())
+            //.Register();
             //披萨
             Recipe.Create(4029, 3)
             .AddIngredient<海麦>(4)

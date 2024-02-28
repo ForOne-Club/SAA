@@ -652,8 +652,18 @@ Items: {
 	}
 
 	烤橡实: {
-		// DisplayName: 烤橡实
-		// Tooltip: ""
+		DisplayName: 烤橡实
+		Tooltip: ""
+	}
+
+	小肉: {
+		DisplayName: 小肉
+		Tooltip: ""
+	}
+
+	烤小肉: {
+		DisplayName: 烤小肉
+		Tooltip: ""
 	}
 }
 
@@ -667,7 +677,7 @@ Projectiles.短爬兽宝宝.DisplayName: 短爬兽宝宝
 
 Configs: {
 	Configs: {
-		DisplayName: Configs
+		DisplayName: 设置
 
 		HungerCausePlayerDown: {
 			Label: 饱食度扣血机制开关

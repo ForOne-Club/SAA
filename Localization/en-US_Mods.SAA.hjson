@@ -628,7 +628,7 @@ Items: {
 	}
 
 	棉线: {
-		DisplayName: 棉线
+		DisplayName: Twine
 		Tooltip: ""
 	}
 
@@ -653,6 +653,16 @@ Items: {
 
 	烤橡实: {
 		DisplayName: Roasted acorn
+		Tooltip: ""
+	}
+
+	小肉: {
+		DisplayName: Meat
+		Tooltip: ""
+	}
+
+	烤小肉: {
+		DisplayName: Roasted meat
 		Tooltip: ""
 	}
 }

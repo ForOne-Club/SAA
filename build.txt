@@ -1,6 +1,6 @@
 displayName = 饱食度与农业/Satiety & Agriculture
 author = 逆风而行的信鸽
-version = 0.1.2
+version = 0.1.3
 hideCode = false
-hideResources = true
+hideResources = false
 dllReferences = NetSimplified

@@ -12,11 +12,7 @@ namespace SAA.Content.Planting.Seeds
             .Register();
             CreateRecipe()
             .AddIngredient(ItemID.BlueBerries)
-            .AddIngredient(ItemID.VileMushroom)
-            .Register();
-            CreateRecipe()
-            .AddIngredient(ItemID.BlueBerries)
-            .AddIngredient(ItemID.ViciousMushroom)
+            .AddIngredient(ItemID.VilePowder)
             .Register();
         }
     }
