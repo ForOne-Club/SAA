@@ -37,4 +37,23 @@ namespace SAA
             base.OnChanged();
         }
     }
+    internal class ClientConfigs : ModConfig
+    {
+        public override ConfigScope Mode => ConfigScope.ClientSide;
+
+        //[BackgroundColor(55, 120, 175)]
+        [Increment(1)]
+        [Range(-500, 500)]
+        [DefaultValue(0)]
+        [Label("饱食度UI横向位置调整")]
+        [Tooltip("减小此值会使UI向左挪, 反之向右")]
+        [Slider]
+        public int UIoffsetX;
+
+        public override void OnChanged()
+        {
+            HungerSetting.UIoffsetX = UIoffsetX;
+            base.OnChanged();
+        }
+    }
 }

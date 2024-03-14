@@ -18,5 +18,10 @@
         /// 镰刀只收割成熟作物
         /// </summary>
         public static bool GrownCut = false;
+        /// <summary>
+        /// 饱食度UI横向位置调整
+        /// </summary>
+        public static int UIoffsetX = 1;
+
     }
 }

@@ -130,7 +130,7 @@ namespace SAA.Content.Sys
                     entity.value = hunger * 300 * (level + 1);
                 }
             }
-            if(entity.type == ItemID.Seed)
+            if (entity.type == ItemID.Seed)
             {
                 entity.DamageType = ModContent.GetInstance<BotanistDamageClass>();
             }
@@ -206,15 +206,22 @@ namespace SAA.Content.Sys
                 float hungerheal = item.GetGlobalItem<HungerforItem>().HealHunger;
                 HungerforPlayer hungerforPlayer = player.GetModPlayer<HungerforPlayer>();
                 float hunger = hungerforPlayer.HungerMax - hungerforPlayer.Hunger;
-                hungerforPlayer.Hunger += hungerheal > hunger ? hunger : hungerheal;
-                hungerheal = hungerheal > hunger ? hunger - (int)hunger - 0.5f > 0 ? hunger + 1 : hunger : hungerheal;
-                if (hungerheal >= 10 && hungerforPlayer.HungerReduce > 0)
+                if (hunger > -50)
                 {
-                    hungerforPlayer.HungerReduce--;
-                    hungerforPlayer.Hunger++;
+                    hungerforPlayer.Hunger += hungerheal; //> hunger ? hunger : hungerheal;
+                    if (hungerheal >= 10 && hungerforPlayer.HungerReduce > 0)
+                    {
+                        hungerforPlayer.HungerReduce--;
+                        hungerforPlayer.Hunger++;
+                    }
+                    HungerHeal((int)hungerheal, player);
+                    Gluttony(player, (int)hungerheal, 1);
                 }
-                HungerHeal((int)hungerheal, player);
-                Gluttony(player, (int)hungerheal, 1);
+                else
+                {
+                    player.Hurt(PlayerDeathReason.ByCustomReason(player.name + (GameCulture.FromCultureName(GameCulture.CultureName.English).IsActive ? " " : "") + Language.GetTextValue("Mods.SAA.PlayerDeathReason")), HealHunger, 1, false, true, -1, false, 9999, 99, 0);
+                }
+                //hungerheal = hungerheal > hunger ? hunger - (int)hunger - 0.5f > 0 ? hunger + 1 : hunger : hungerheal;
             }
         }
         //暴食Buff吃东西回血

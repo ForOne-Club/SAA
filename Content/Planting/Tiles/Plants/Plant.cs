@@ -36,6 +36,10 @@ namespace SAA.Content.Planting.Tiles.Plants
         /// </summary>
         protected virtual bool CanPick => false;
         /// <summary>
+        /// 只能采摘一次
+        /// </summary>
+        protected virtual bool PickJustOneTime => false;
+        /// <summary>
         /// 风中摇摆（每格物块都会摆）
         /// </summary>
         protected virtual bool CanSwayInWind => true;
@@ -272,6 +276,10 @@ namespace SAA.Content.Planting.Tiles.Plants
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
                 }
+            }
+            if (PickJustOneTime)
+            {
+                nearestPlayer.PickTile(i, j, 1000);
             }
         }
         protected virtual void ModifyPick(ref int herbItemType, ref int herbItemStack) { }

@@ -83,6 +83,8 @@ public class HungerforPlayer : ModPlayer
             HungerReduce += cut;
             if (hungerMax - HungerReduce < 20) HungerReduce = hungerMax - 20;
         }
+        float h = HungerMax - HungerReduce;
+        if (Hunger > h) Hunger = h;
         base.Kill(damage, hitDirection, pvp, damageSource);
     }
     public override void UpdateLifeRegen()
@@ -99,13 +101,17 @@ public class HungerforPlayer : ModPlayer
             }
             foreach (int buff in Player.buffType)
             {
-                if (buff == ModContent.BuffType<饱食之火>() || buff == ModContent.BuffType<饱腹>())
+                if (buff == ModContent.BuffType<吃撑>())
                 {
-                    addi -= 0.0002f;
+                    mult *= 0.75f;
                 }
                 if (buff == ModContent.BuffType<酸甜可口>())
                 {
                     mult *= 1.5f;
+                }
+                if (buff == ModContent.BuffType<饱食之火>() || buff == ModContent.BuffType<饱腹>())
+                {
+                    addi -= 0.0002f;
                 }
             }
             HungerCut = Math.Clamp((HungerCut + addi) * mult, 0.0005f, 0.01f);
@@ -121,10 +127,10 @@ public class HungerforPlayer : ModPlayer
                 HungerMax = (HungerCount - 20) * 5 + 400.5f;
             }
             HungerMax -= HungerReduce;
-            if (Hunger >= HungerMax)
-            {
-                Hunger = HungerMax;//注意更新顺序
-            }
+            //if (Hunger >= HungerMax)
+            //{
+            //    Hunger = HungerMax;//注意更新顺序
+            //}
 
             Hunger -= Helper.ModeNum(1, 1.5f, 2) * HungerCut;
 
@@ -140,7 +146,8 @@ public class HungerforPlayer : ModPlayer
             }
             else if (HungerSetting.ForOne)
             {
-                if (Hunger < 20) type = ModContent.BuffType<饥饿>();//原版饥饿333会持续发言
+                if (Hunger > HungerMax) type = ModContent.BuffType<吃撑>();
+                else if (Hunger < 20) type = ModContent.BuffType<饥饿>();//原版饥饿333会持续发言
                 else if (Hunger < 100) { }
                 else if (Hunger < 180) type = ModContent.BuffType<一级饱和>();
                 else if (Hunger < 260) type = ModContent.BuffType<二级饱和>();
@@ -150,7 +157,8 @@ public class HungerforPlayer : ModPlayer
             }
             else
             {
-                if (Hunger < 20) type = ModContent.BuffType<饥饿>();
+                if (Hunger > HungerMax) type = ModContent.BuffType<吃撑>();
+                else if (Hunger < 20) type = ModContent.BuffType<饥饿>();
                 else if (Hunger < 40) { }
                 else if (Hunger < 60) type = ModContent.BuffType<一级饱和>();
                 else if (Hunger < 80) type = ModContent.BuffType<二级饱和>();
@@ -176,18 +184,18 @@ public class HungerforPlayer : ModPlayer
     }
     public override void UpdateDead()
     {
-        int hungerMax;
-        if (HungerCount > 20)
-        {
-            hungerMax = (HungerCount - 20) * 5;
-        }
-        else
-        {
-            hungerMax = HungerCount * 20;
-        }
-        int max = hungerMax - HungerReduce;
-        if (Hunger < 100) Hunger = 100;
-        if (max < 100) Hunger = max;
+        //int hungerMax;
+        //if (HungerCount > 20)
+        //{
+        //    hungerMax = (HungerCount - 20) * 5;
+        //}
+        //else
+        //{
+        //    hungerMax = HungerCount * 20;
+        //}
+        //int max = hungerMax - HungerReduce;
+        //if (Hunger < 100) Hunger = 100;
+        //if (max < 100) Hunger = max;
     }
     public virtual void HungerClear(int[] bufftype, int thisbufftype)
     {
@@ -218,35 +226,6 @@ public class HungerforPlayer : ModPlayer
         else
         {
             Player.AddBuff(type, 2);
-        }
-    }
-    public static bool HungerConsume(Player player, float Hunger, bool hurt = true)
-    {
-        if (player.GetModPlayer<HungerforPlayer>().Hunger < Hunger)
-        {
-            if (hurt)
-            {
-                int damage = 20;
-                if (player.statLife > damage)
-                {
-                    player.statLife -= damage;
-                    return true;
-                }
-                else
-                {
-                    player.KillMe(PlayerDeathReason.ByCustomReason(player.name + "饿死了"), damage, 0, false);
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            player.GetModPlayer<HungerforPlayer>().Hunger -= Hunger;
-            return true;
         }
     }
     public override void PreUpdate()//烤肉篝火判定

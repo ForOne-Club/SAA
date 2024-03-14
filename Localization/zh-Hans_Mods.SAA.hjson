@@ -1,4 +1,5 @@
 DamageClass.Botanist: 植物伤害
+PlayerDeathReason: 撑死了
 
 Tooltips: {
 	1: 增加饱食度
@@ -27,6 +28,7 @@ Tiles: {
 	丛林孢子.MapEntry: 丛林孢子
 	海带缸.MapEntry: 海带缸
 	棉花.MapEntry: 棉花
+	咬人甘蓝.MapEntry: 咬人甘蓝
 }
 
 Buffs: {
@@ -92,6 +94,11 @@ Buffs: {
 	饥饿: {
 		DisplayName: 饥饿
 		Description: 你很饿，而且感觉很虚弱。
+	}
+
+	吃撑: {
+		DisplayName: 吃撑
+		Description: 不要再吃了！
 	}
 }
 
@@ -665,6 +672,16 @@ Items: {
 		DisplayName: 烤小肉
 		Tooltip: ""
 	}
+
+	咬人甘蓝: {
+		DisplayName: 咬人甘蓝
+		Tooltip: ""
+	}
+
+	咬人甘蓝种子: {
+		DisplayName: 咬人甘蓝种子
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -673,11 +690,14 @@ NPCs: {
 	丛莺.DisplayName: 丛莺
 }
 
-Projectiles.短爬兽宝宝.DisplayName: 短爬兽宝宝
+Projectiles: {
+	短爬兽宝宝.DisplayName: 短爬兽宝宝
+	咬人甘蓝.DisplayName: 咬人甘蓝
+}
 
 Configs: {
 	Configs: {
-		DisplayName: 设置
+		DisplayName: 全局设置
 
 		HungerCausePlayerDown: {
 			Label: 饱食度扣血机制开关
@@ -692,6 +712,15 @@ Configs: {
 		GrownCut: {
 			Label: 农作物成熟收割
 			Tooltip: 是, 镰刀只会收割成熟的农作物, 否, 以取消. 默认为否
+		}
+	}
+
+	ClientConfigs: {
+		DisplayName: 个人设置
+
+		UIoffsetX: {
+			Label: 饱食度UI横向位置调整
+			Tooltip: 减小此值会使UI向左挪, 反之向右
 		}
 	}
 }

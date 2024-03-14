@@ -28,7 +28,8 @@ namespace SAA.Content.Sys
             {
                 truemax = k * 20;
             }
-            Rectangle Bar1 = new Rectangle((int)(Main.screenWidth * Width), (int)(Main.screenHeight * 0.02f), (int)(texture1.Width * scale), (int)(texture1.Height * scale));
+            int w = (int)(Main.screenWidth * Width) + HungerSetting.UIoffsetX;
+            Rectangle Bar1 = new Rectangle(w, (int)(Main.screenHeight * 0.021f), (int)(texture1.Width * scale), (int)(texture1.Height * scale));
             //距离屏幕左上角的宽，距离屏幕左上角的高（绘制位置），图片的宽，图片的高（缩放）
             Rectangle Bar2 = new(0, 0, texture1.Width, texture1.Height);
             //图片内距左上角的宽，图片内距左上角的高，取的图片的宽，取的图片的高
@@ -46,7 +47,7 @@ namespace SAA.Content.Sys
             Bar2.Width = texture1.Width - 28 - newwidth;
             Main.spriteBatch.Draw(texture3, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
             //文字
-            Bar1 = new Rectangle((int)(Main.screenWidth * Width), (int)(Main.screenHeight * 0.02f), (int)(texture1.Width * scale), (int)(texture1.Height * scale));
+            Bar1 = new Rectangle(w, (int)(Main.screenHeight * 0.02f), (int)(texture1.Width * scale), (int)(texture1.Height * scale));
             if (Bar1.Intersects(new Rectangle(Main.mouseX, Main.mouseY, 1, 1)))
             {
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, $"{progress}/{HungerMax}",

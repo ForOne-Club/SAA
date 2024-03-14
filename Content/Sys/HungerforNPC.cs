@@ -7,6 +7,10 @@ namespace SAA.Content.Sys
 {
     public class HungerforNPC : GlobalNPC
     {
+        public override void SetDefaults(NPC entity)
+        {
+            entity.value /= 10;
+        }
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == NPCID.Vulture)
@@ -24,7 +28,7 @@ namespace SAA.Content.Sys
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<棉花种子>(), 5, 1, 1));
             }
-            int[] animals = new int[] { 46, 303, 337, 540, 443, 299, 538, 539, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 74, 297, 298};
+            int[] animals = new int[] { 46, 303, 337, 540, 443, 299, 538, 539, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 74, 297, 298 };
             if (animals.Contains(npc.type))
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<小肉>(), 2, 1, 1));
@@ -32,17 +36,21 @@ namespace SAA.Content.Sys
         }
         public override void ModifyShop(NPCShop shop)
         {
-            //if (shop.Name == "Shop")
-            //{
-            //    if (shop.NpcType == NPCID.Merchant)
-            //    {
-            //        shop.Add(ModContent.ItemType<锄头>());
-            //        if (shop.TryGetEntry(ModContent.ItemType<锄头>(), out NPCShop.Entry entry))
-            //        {
-            //            _ = entry.Disable();//禁止售卖
-            //        }
-            //    }
-            //}
+            if (shop.Name == "Shop")
+            {
+                if (shop.NpcType == 20)
+                {
+                    shop.Add(ModContent.ItemType<咬人甘蓝种子>());
+                }
+                //    if (shop.NpcType == NPCID.Merchant)
+                //    {
+                //        shop.Add(ModContent.ItemType<锄头>());
+                //        if (shop.TryGetEntry(ModContent.ItemType<锄头>(), out NPCShop.Entry entry))
+                //        {
+                //            _ = entry.Disable();//禁止售卖
+                //        }
+                //    }
+            }
         }
         public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {

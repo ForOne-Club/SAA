@@ -1,4 +1,5 @@
 DamageClass.Botanist: PlantDamage
+PlayerDeathReason: was stuffed
 
 Tooltips: {
 	1: Increase satiety.
@@ -26,7 +27,8 @@ Tiles: {
 	黑醋栗.MapEntry: Blackcurrant
 	丛林孢子.MapEntry: Jungle spore
 	海带缸.MapEntry: Kelp jar
-	棉花.MapEntry: 棉花
+	棉花.MapEntry: Cotton
+	咬人甘蓝.MapEntry: 咬人甘蓝
 }
 
 Buffs: {
@@ -92,6 +94,11 @@ Buffs: {
 	饥饿: {
 		DisplayName: Hunger
 		Description: You're hungry and you feel weak.
+	}
+
+	吃撑: {
+		DisplayName: Stuffed
+		Description: Don't eat any more!
 	}
 }
 
@@ -665,6 +672,16 @@ Items: {
 		DisplayName: Roasted meat
 		Tooltip: ""
 	}
+
+	咬人甘蓝: {
+		DisplayName: Gnawing cabbage
+		Tooltip: ""
+	}
+
+	咬人甘蓝种子: {
+		DisplayName: Gnawing cabbage seed
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -673,11 +690,14 @@ NPCs: {
 	丛莺.DisplayName: Bush Warbler
 }
 
-Projectiles.短爬兽宝宝.DisplayName: Brachys Baby
+Projectiles: {
+	短爬兽宝宝.DisplayName: Brachys Baby
+	咬人甘蓝.DisplayName: Gnawing cabbage
+}
 
 Configs: {
 	Configs: {
-		DisplayName: Configs
+		DisplayName: Server Configs
 
 		HungerCausePlayerDown: {
 			Label: Switch of satiety blood control mechanism
@@ -692,6 +712,15 @@ Configs: {
 		GrownCut: {
 			Label: Crops are ripe and harvested
 			Tooltip: Yes, Scythe will only harvest mature crops, no, to cancel. Default no
+		}
+	}
+
+	ClientConfigs: {
+		DisplayName: Client Configs
+
+		UIoffsetX: {
+			Label: Satiety UI horizontal position adjustment
+			Tooltip: Reducing this value moves the UI to the left, and increasing it to the right
 		}
 	}
 }

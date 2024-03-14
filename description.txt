@@ -10,3 +10,8 @@ You can buy hoes and sickles from merchants to develop agriculture, crops need w
 The module is currently developing a variety of crops and animal husbandry, so look forward to it.
 PS: With limited energy, I only translated some important content.
 Join a dicussion on the dev's discord: https://discord.gg/fjFpgBkRBZ
+[i:1202]制作人员：
+程序：[c/00FFE5:逆风而行的信鸽]
+        [c/ffc9d4:Reits]
+画师：[c/00FFE5:逆风而行的信鸽]
+        [c/730000:枫林半叶]
