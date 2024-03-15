@@ -6,6 +6,12 @@ Tooltips: {
 	2: Can plant on arable land.
 }
 
+ArmorSet.草帽:
+	'''
+	5% increase in harvest
+	5% increase in PlantDamage
+	'''
+
 Tiles: {
 	烤肉篝火.MapEntry: Barbecue bonfire
 	牛奶发酵桶.MapEntry: Milk fermentation barrel
@@ -681,6 +687,11 @@ Items: {
 	咬人甘蓝种子: {
 		DisplayName: Gnawing cabbage seed
 		Tooltip: ""
+	}
+
+	采摘衣: {
+		DisplayName: 采摘衣
+		Tooltip: 5% increase in harvest
 	}
 }
 

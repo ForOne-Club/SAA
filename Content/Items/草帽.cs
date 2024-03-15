@@ -1,6 +1,5 @@
 ﻿using SAA.Content.DamageClasses;
 using SAA.Content.Sys;
-using Terraria.ID;
 
 namespace SAA.Content.Items;
 
@@ -34,26 +33,16 @@ public class 草帽 : ModItem
         .AddTile(TileID.WorkBenches)
         .Register();
     }
-    //public override bool IsArmorSet(Item head, Item body, Item legs)
-    //{
-    //    return body.type == YZIDs.Armor.Body_GA && legs.type == YZIDs.Armor.Legs_GA;
-    //}
-    //public override void UpdateArmorSet(Player player)
-    //{
-    //    player.setBonus = "最大召唤栏+1\n" + "召唤伤害增加120%\n" + "鞭子范围增加20%\n增加80最大护盾";
-    //    player.maxMinions++;
-    //    player.GetDamage<SummonDamageClass>() += 1.2f;
-    //    player.whipRangeMultiplier += 0.2f;
-    //    var spp = player.SPP();
-    //    spp.PowerShieldMax += 80;
-    //    int max = spp.SpiritualPowerMax / 10;
-    //    if (max >= 8)
-    //        player.GetDamage(DamageClass.Summon) += 0.2f;
-    //    if (max >= 9)
-    //        spp.PowerShieldMax += 20;
-    //    if (max >= 10)
-    //        player.GetDamage(DamageClass.Summon) += 0.6f;
-    //}
+    public override bool IsArmorSet(Item head, Item body, Item legs)
+    {
+        return body.type == ModContent.ItemType<采摘衣>() && legs.type == ModContent.ItemType<采摘裤>();
+    }
+    public override void UpdateArmorSet(Player player)
+    {
+        player.setBonus = Language.GetTextValue("Mods.SAA.ArmorSet.草帽");
+        player.GetModPlayer<HungerforPlayer>().CropHarvest += 0.05f;
+        player.GetDamage(ModContent.GetInstance<BotanistDamageClass>()) += 0.05f;
+    }
     //public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor)
     //{
     //    glowMask = ItemHelper.FindGlowMask(Texture + "_Head_Glow");

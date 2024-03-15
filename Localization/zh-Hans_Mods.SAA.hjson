@@ -6,6 +6,12 @@ Tooltips: {
 	2: 可以在耕地上种植
 }
 
+ArmorSet.草帽:
+	'''
+	收成增加5%
+	植物伤害增加5%
+	'''
+
 Tiles: {
 	烤肉篝火.MapEntry: 烤肉篝火
 	牛奶发酵桶.MapEntry: 牛奶发酵桶
@@ -681,6 +687,11 @@ Items: {
 	咬人甘蓝种子: {
 		DisplayName: 咬人甘蓝种子
 		Tooltip: ""
+	}
+
+	采摘衣: {
+		DisplayName: 采摘衣
+		Tooltip: 收成增加5%
 	}
 }
 

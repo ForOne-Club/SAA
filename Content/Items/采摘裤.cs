@@ -1,6 +1,4 @@
-﻿using SAA.Content.DamageClasses;
-using SAA.Content.Sys;
-using Terraria.ID;
+﻿using SAA.Content.Sys;
 
 namespace SAA.Content.Items;
 
