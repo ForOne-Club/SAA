@@ -735,3 +735,18 @@ Configs: {
 		}
 	}
 }
+
+ChangeLog:
+	'''
+	v0.1.4.1：Fixed an issue with item ID display
+	v0.1.4：Increased the effect of picking clothes and sets
+	v0.1.3：Added UI adjustment Settings
+	Enemy gold drop has been adjusted to 1/10 of its original value
+	Add the biting kale and plant the way, the seeds are purchased from the tree demon
+	After the cotton is picked, it is destroyed and the seeds are dropped
+	v0.1.2：Now squirrels and rabbits will actively stay away from you
+	Add straw hats, pickers pants, modify the silk formula
+	Add cotton and its plants, add bug net formula, add roasted acorns, improve UI drawing, improve picking feel
+	v0.1.1: More English translations added
+	Increased the cultivation of jungle spores. Added a seagrass tank. Fixed some growth rates
+	'''

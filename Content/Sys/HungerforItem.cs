@@ -259,7 +259,7 @@ namespace SAA.Content.Sys
             }
             //参考物品价值和ID，测试使用
             //tooltips.Add(new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
-            tooltips.Add(new TooltipLine(Mod, "ID", Language.GetTextValue("ID") + $":{item.type}"));
+            //tooltips.Add(new TooltipLine(Mod, "ID", Language.GetTextValue("ID") + $":{item.type}"));
             base.ModifyTooltips(item, tooltips);
         }
         //镰刀收割
