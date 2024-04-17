@@ -2,8 +2,9 @@ DamageClass.Botanist: PlantDamage
 PlayerDeathReason: was stuffed
 
 Tooltips: {
-	1: Increase satiety.
-	2: Can plant on arable land.
+	1: Increase satiety
+	2: Can plant on arable land
+	3: Can plant on the grass
 }
 
 ArmorSet.草帽:
@@ -34,7 +35,8 @@ Tiles: {
 	丛林孢子.MapEntry: Jungle spore
 	海带缸.MapEntry: Kelp jar
 	棉花.MapEntry: Cotton
-	咬人甘蓝.MapEntry: 咬人甘蓝
+	咬人甘蓝.MapEntry: Gnawing cabbage
+	向日葵.MapEntry: Sunflower
 }
 
 Buffs: {
@@ -690,8 +692,18 @@ Items: {
 	}
 
 	采摘衣: {
-		DisplayName: 采摘衣
+		DisplayName: Picking clothes
 		Tooltip: 5% increase in harvest
+	}
+
+	瓜子: {
+		DisplayName: Sunflower seed
+		Tooltip: ""
+	}
+
+	向日葵种子: {
+		DisplayName: Germinated sunflower seeds
+		Tooltip: ""
 	}
 }
 

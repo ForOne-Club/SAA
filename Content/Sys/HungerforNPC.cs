@@ -41,6 +41,11 @@ namespace SAA.Content.Sys
                 if (shop.NpcType == 20)
                 {
                     shop.Add(ModContent.ItemType<咬人甘蓝种子>());
+                    shop.Add(ModContent.ItemType<向日葵种子>());
+                    if (shop.TryGetEntry(ItemID.Sunflower, out NPCShop.Entry entry))
+                    {
+                        _ = entry.Disable();//禁止售卖
+                    }
                 }
                 //    if (shop.NpcType == NPCID.Merchant)
                 //    {

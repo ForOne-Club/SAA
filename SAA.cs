@@ -30,6 +30,9 @@ namespace SAA
         }
         public override void Load()
         {
+            //推广内容
+            ForOneAdvertisementSystem.ForOneAdvertisementSystem.Load(this);
+
             AddContent<NetModuleLoader>();
             //消耗饱食度生成臭臭
             On_Player.TryToPoop += On_Player_TryToPoop;

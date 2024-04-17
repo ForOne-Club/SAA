@@ -27,7 +27,7 @@ namespace SAA.Content.Planting.Seeds
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine text = new(Mod, "描述", Language.GetTextValue("Mods.SAA.Tooltips.2") + $"{TileLoader.GetTile(TileType).Name}");
+            TooltipLine text = new(Mod, "描述", Language.GetTextValue("Mods.SAA.Tooltips.2"));// + $"{TileLoader.GetTile(TileType).Name}");
             tooltips.Insert(tooltips.Count - 1, text);
         }
         public override bool CanUseItem(Player player)

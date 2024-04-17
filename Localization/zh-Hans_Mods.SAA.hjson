@@ -4,6 +4,7 @@ PlayerDeathReason: 撑死了
 Tooltips: {
 	1: 增加饱食度
 	2: 可以在耕地上种植
+	3: 可以在草地上种植
 }
 
 ArmorSet.草帽:
@@ -35,6 +36,7 @@ Tiles: {
 	海带缸.MapEntry: 海带缸
 	棉花.MapEntry: 棉花
 	咬人甘蓝.MapEntry: 咬人甘蓝
+	向日葵.MapEntry: 向日葵
 }
 
 Buffs: {
@@ -692,6 +694,16 @@ Items: {
 	采摘衣: {
 		DisplayName: 采摘衣
 		Tooltip: 收成增加5%
+	}
+
+	瓜子: {
+		DisplayName: 瓜子
+		Tooltip: ""
+	}
+
+	向日葵种子: {
+		DisplayName: 向日葵种子
+		Tooltip: ""
 	}
 }
 

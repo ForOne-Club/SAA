@@ -158,15 +158,28 @@ namespace SAA
         /// <param name="item"></param>
         /// <param name="ingredient">食材的id</param>
         /// <param name="amount">单次份数</param>
+        /// <param name="wheatamount">海麦用量</param>
         /// <returns></returns>
-        public static Recipe Fried(this ModItem item, int ingredient, int amount = 1)
+        public static Recipe Fried(this ModItem item, int ingredient, int amount = 1,int wheatamount = 1, bool bottle = false)
         {
-            return item.CreateRecipe(amount)
-                .AddIngredient(ingredient, amount)
-                .AddIngredient(ModContent.ItemType<海麦>(), amount)
-                .AddIngredient(ModContent.ItemType<油罐>())
-                .AddTile(TileID.CookingPots)
-                .Register();
+            if (bottle)
+            {
+                return item.CreateRecipe(amount)
+                    .AddIngredient(ingredient, amount)
+                    .AddIngredient(ModContent.ItemType<海麦>(), wheatamount)
+                    .AddIngredient(ModContent.ItemType<油罐>())
+                    .AddTile(TileID.CookingPots)
+                    .Register();
+            }
+            else
+            {
+                return item.CreateRecipe(amount)
+                    .AddIngredient(ingredient, amount)
+                    .AddIngredient(ModContent.ItemType<海麦>(), wheatamount)
+                    .AddIngredient(ModContent.ItemType<油果>())
+                    .AddTile(TileID.CookingPots)
+                    .Register();
+            }
         }
         /// <summary>
         /// 模式时间间隔区分

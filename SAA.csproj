@@ -17,6 +17,9 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ForOneAdvertisementSystem">
+      <HintPath>lib\ForOneAdvertisementSystem.dll</HintPath>
+    </Reference>
     <Reference Include="NetSimplified">
       <HintPath>lib\NetSimplified.dll</HintPath>
     </Reference>

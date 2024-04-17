@@ -8,8 +8,12 @@
         }
         public override void SetDefaults()
         {
-            Item.SetFood(24, 22, 1, 9);
+            Item.SetFood(24, 22, 1, 12);
         }
-        public override void AddRecipes() => this.Fried(ModContent.ItemType<生翅根>(), 4);
+        public override void AddRecipes()
+        {
+            this.Fried(ModContent.ItemType<生翅根>(), 4, 2);
+            this.Fried(ModContent.ItemType<生翅根>(), 20, 10, true);
+        }
     }
 }

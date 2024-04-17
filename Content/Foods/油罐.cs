@@ -17,6 +17,10 @@
                 .AddIngredient(ModContent.ItemType<油果>(), 5)
                 .AddTile(TileID.Bottles)
                 .Register();
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<瓜子>(), 8)
+                .AddTile(TileID.Bottles)
+                .Register();
         }
     }
 }

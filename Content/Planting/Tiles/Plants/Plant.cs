@@ -3,6 +3,7 @@ using SAA.Content.Items;
 using SAA.Content.Planting.Seeds;
 using SAA.Content.Planting.System;
 using SAA.Content.Sys;
+using Terraria.Enums;
 using Terraria.GameContent.Metadata;
 
 namespace SAA.Content.Planting.Tiles.Plants
@@ -82,10 +83,12 @@ namespace SAA.Content.Planting.Tiles.Plants
                     TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
                     break;
             }
-            ModifyTileObjectData();
             TileObjectData.newTile.AnchorValidTiles = new int[] {
                 ModContent.TileType<Arable>(),
             };
+            TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
+            TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
+            ModifyTileObjectData();
             TileObjectData.addTile(Type);
             if (CanSwayInWind) TileID.Sets.SwaysInWindBasic[Type] = true;//随风摇摆
             HitSound = SoundID.Grass;
@@ -111,7 +114,7 @@ namespace SAA.Content.Planting.Tiles.Plants
         /// <param name="growMagnification">生长倍率，与生长速度相乘提高生长概率</param>
         /// <param name="needDayTime">需要白天</param>
         /// <param name="needWet">需要耕地潮湿</param>
-        public void TryGrow(int i, int j, int growMagnification = 1, bool needDayTime = true, bool needWet = true)
+        public virtual void TryGrow(int i, int j, int growMagnification = 1, bool needDayTime = true, bool needWet = true)
         {
             Tile land = Framing.GetTileSafely(i, j + 1);
             bool flag = land.TileType == ModContent.TileType<Arable>();
@@ -218,7 +221,6 @@ namespace SAA.Content.Planting.Tiles.Plants
         }
         public override void MouseOver(int i, int j)
         {
-            //顶格才可以采摘
             PlantStage stage = GetStage(i, j);
             if (CanPick && stage == PlantStage.Grown)
             {

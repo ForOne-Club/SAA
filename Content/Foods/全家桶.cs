@@ -8,7 +8,7 @@
         }
         public override void SetDefaults()
         {
-            Item.SetFood(36, 46, 2, 34);
+            Item.SetFood(36, 46, 2, 45);
         }
         public override void AddRecipes()
         {
