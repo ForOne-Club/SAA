@@ -28,11 +28,11 @@ namespace SAA.Content.Planting.Tiles.Plants
             int g = Main.tile[i, j].TileFrameX / 18;
             int x = i - g % 2;
             int y = j - Main.tile[i, j].TileFrameY / 18 + Height - 1;
-
+            if (i != x || j != y) return;//底端物块有效
             PlantStage stage = GetStage(x, y);
             if (Main.dayTime)
             {
-                if (Main.rand.NextFloat(100) < (GrowthRate * growMagnification) / 8f)
+                if (Main.rand.Next(100) < GrowthRate * growMagnification)
                 {
                     if (stage != PlantStage.Grown)
                     {

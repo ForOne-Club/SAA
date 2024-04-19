@@ -37,6 +37,7 @@ Tiles: {
 	棉花.MapEntry: Cotton
 	咬人甘蓝.MapEntry: Gnawing cabbage
 	向日葵.MapEntry: Sunflower
+	杏树.MapEntry: Apricot tree
 }
 
 Buffs: {
@@ -703,6 +704,11 @@ Items: {
 
 	向日葵种子: {
 		DisplayName: Germinated sunflower seeds
+		Tooltip: ""
+	}
+
+	杏树种子: {
+		DisplayName: Apricot seed
 		Tooltip: ""
 	}
 }

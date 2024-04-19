@@ -37,6 +37,7 @@ Tiles: {
 	棉花.MapEntry: 棉花
 	咬人甘蓝.MapEntry: 咬人甘蓝
 	向日葵.MapEntry: 向日葵
+	杏树.MapEntry: 杏树
 }
 
 Buffs: {
@@ -703,6 +704,11 @@ Items: {
 
 	向日葵种子: {
 		DisplayName: 向日葵种子
+		Tooltip: ""
+	}
+
+	杏树种子: {
+		DisplayName: 杏树种子
 		Tooltip: ""
 	}
 }
