@@ -1,9 +1,8 @@
 ﻿using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader.Utilities;
 namespace SAA.Content.NPCs
 {
-    public class 奶牛 : ModNPC
+    public class 血腥奶牛 : ModNPC
     {
         public override void SetStaticDefaults()
         {
@@ -28,18 +27,18 @@ namespace SAA.Content.NPCs
             NPC.DeathSound = SoundID.NPCDeath1;
             AnimationType = 220;
             NPC.value = Item.buyPrice(0, 0, 0, 0);
-            NPC.catchItem = (short)ModContent.ItemType<奶蜗牛>();
+            NPC.catchItem = (short)ModContent.ItemType<血腥奶蜗牛>();
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCorruption,
-                new FlavorTextBestiaryInfoElement("奶蜗牛的体液具有一定的腐蚀性，但是它却有着能把腐化之地的污水净化成鲜奶的能力，真是了不起！")
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCrimson,
+                new FlavorTextBestiaryInfoElement("奶蜗牛的体液具有一定的腐蚀性，但是它却有着能把血腥之地的污水净化成鲜奶的能力，真是了不起！")
             });
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (spawnInfo.Player.ZoneDirtLayerHeight || spawnInfo.Player.ZoneRockLayerHeight) && spawnInfo.Player.ZoneCorrupt ? 0.08f : 0;
+            return (spawnInfo.Player.ZoneDirtLayerHeight || spawnInfo.Player.ZoneRockLayerHeight) && spawnInfo.Player.ZoneCrimson ? 0.08f : 0;
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {

@@ -440,7 +440,7 @@ Items: {
 	}
 
 	奶蜗牛: {
-		DisplayName: 奶蜗牛
+		DisplayName: 腐化奶蜗牛
 		Tooltip: ""
 	}
 
@@ -711,12 +711,18 @@ Items: {
 		DisplayName: 杏树种子
 		Tooltip: ""
 	}
+
+	血腥奶蜗牛: {
+		DisplayName: 血腥奶蜗牛
+		Tooltip: ""
+	}
 }
 
 NPCs: {
-	奶牛.DisplayName: 奶牛
+	奶牛.DisplayName: 腐化奶蜗牛
 	短爬兽.DisplayName: 短爬兽
 	丛莺.DisplayName: 丛莺
+	血腥奶牛.DisplayName: 血腥奶蜗牛
 }
 
 Projectiles: {

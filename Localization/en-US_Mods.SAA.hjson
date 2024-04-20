@@ -711,12 +711,18 @@ Items: {
 		DisplayName: Apricot seed
 		Tooltip: ""
 	}
+
+	血腥奶蜗牛: {
+		DisplayName: Milk Snail
+		Tooltip: ""
+	}
 }
 
 NPCs: {
 	奶牛.DisplayName: Milk Snail
 	短爬兽.DisplayName: Brachys
 	丛莺.DisplayName: Bush Warbler
+	血腥奶牛.DisplayName: Milk Snail
 }
 
 Projectiles: {

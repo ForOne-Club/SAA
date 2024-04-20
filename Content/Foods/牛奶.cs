@@ -15,10 +15,14 @@ namespace SAA.Content.Foods
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.Bottle)
-                .AddNPC(ModContent.NPCType<奶牛>())
-                .Register();
+            //CreateRecipe()
+            //    .AddIngredient(ItemID.Bottle)
+            //    .AddNPC(ModContent.NPCType<奶牛>())
+            //    .Register();
+            //CreateRecipe()
+            //    .AddIngredient(ItemID.Bottle)
+            //    .AddNPC(ModContent.NPCType<血腥奶牛>())
+            //    .Register();
         }
     }
 }
