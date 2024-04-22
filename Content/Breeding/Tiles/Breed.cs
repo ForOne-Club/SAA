@@ -20,6 +20,10 @@ namespace SAA.Content.Breeding.Tiles
         /// </summary>
         protected virtual int GrowthRate => 1;
         /// <summary>
+        /// 生产速度1到100
+        /// </summary>
+        protected virtual bool NeedSun => true;
+        /// <summary>
         /// -1表示什么都不需要
         /// </summary>
         protected virtual int NeedItemType => ItemID.Seed;
@@ -65,7 +69,7 @@ namespace SAA.Content.Breeding.Tiles
             BreedStage stage = GetStage(x, y);
             if (Main.dayTime || !needDayTime)//白天
             {
-                if (Main.rand.Next(100) < (GrowthRate * growMagnification / 3 / Height))//保证概率准确需要除以物块数量
+                if (Main.rand.NextFloat(100) < (GrowthRate * growMagnification / 3f / Height))//保证概率准确需要除以物块数量
                 {
                     if (NeedItemType == -1 && stage != BreedStage.Product)
                     {
@@ -100,7 +104,7 @@ namespace SAA.Content.Breeding.Tiles
         }
         public override void RandomUpdate(int i, int j)
         {
-            TryGrow(i, j, HungerSetting.GrowMagnification);
+            TryGrow(i, j, HungerSetting.GrowMagnification, NeedSun);
         }
         public BreedStage GetStage(int i, int j)
         {

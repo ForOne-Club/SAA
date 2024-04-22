@@ -32,9 +32,15 @@ namespace SAA.Content.Foods
             .Register();
             //鲜虾三明治
             Recipe.Create(4035)
-            .AddIngredient<海麦>(2)
             .AddIngredient<油果>()
             .AddIngredient(ItemID.Shrimp)
+            .AddIngredient<海麦>(2)
+            .AddTile(TileID.CookingPots)
+            .Register();
+            Recipe.Create(4035, 5)
+            .AddIngredient<油罐>()
+            .AddIngredient(ItemID.Shrimp, 5)
+            .AddIngredient<海麦>(10)
             .AddTile(TileID.CookingPots)
             .Register();
             //盒装牛奶
@@ -50,6 +56,11 @@ namespace SAA.Content.Foods
             Recipe.Create(4020)
             .AddIngredient<油果>()
             .AddIngredient<蛋>(2)
+            .AddTile(TileID.CookingPots)
+            .Register();
+            Recipe.Create(4020, 5)
+            .AddIngredient<油罐>()
+            .AddIngredient<蛋>(10)
             .AddTile(TileID.CookingPots)
             .Register();
             //冰淇淋
