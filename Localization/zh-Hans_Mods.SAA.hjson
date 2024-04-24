@@ -39,6 +39,8 @@ Tiles: {
 	向日葵.MapEntry: 向日葵
 	杏树.MapEntry: 杏树
 	柠檬树.MapEntry: 柠檬树
+	桃树.MapEntry: 桃树
+	芒果树.MapEntry: 芒果树
 }
 
 Buffs: {
@@ -720,6 +722,16 @@ Items: {
 
 	柠檬种子: {
 		DisplayName: 柠檬种子
+		Tooltip: ""
+	}
+
+	桃核: {
+		DisplayName: 桃核
+		Tooltip: ""
+	}
+
+	芒果种子: {
+		DisplayName: 芒果种子
 		Tooltip: ""
 	}
 }

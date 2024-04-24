@@ -39,6 +39,8 @@ Tiles: {
 	向日葵.MapEntry: Sunflower
 	杏树.MapEntry: Apricot tree
 	柠檬树.MapEntry: Lemon tree
+	桃树.MapEntry: Peach tree
+	芒果树.MapEntry: Mango tree
 }
 
 Buffs: {
@@ -709,7 +711,7 @@ Items: {
 	}
 
 	杏树种子: {
-		DisplayName: Apricot seed
+		DisplayName: Apricot pit
 		Tooltip: ""
 	}
 
@@ -720,6 +722,16 @@ Items: {
 
 	柠檬种子: {
 		DisplayName: Lemon seed
+		Tooltip: ""
+	}
+
+	桃核: {
+		DisplayName: Peach pit
+		Tooltip: ""
+	}
+
+	芒果种子: {
+		DisplayName: Mango seed
 		Tooltip: ""
 	}
 }
