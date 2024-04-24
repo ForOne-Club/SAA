@@ -38,6 +38,7 @@ Tiles: {
 	咬人甘蓝.MapEntry: Gnawing cabbage
 	向日葵.MapEntry: Sunflower
 	杏树.MapEntry: Apricot tree
+	柠檬树.MapEntry: Lemon tree
 }
 
 Buffs: {
@@ -714,6 +715,11 @@ Items: {
 
 	血腥奶蜗牛: {
 		DisplayName: Milk Snail
+		Tooltip: ""
+	}
+
+	柠檬种子: {
+		DisplayName: Lemon seed
 		Tooltip: ""
 	}
 }

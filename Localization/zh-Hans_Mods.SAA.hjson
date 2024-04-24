@@ -38,6 +38,7 @@ Tiles: {
 	咬人甘蓝.MapEntry: 咬人甘蓝
 	向日葵.MapEntry: 向日葵
 	杏树.MapEntry: 杏树
+	柠檬树.MapEntry: 柠檬树
 }
 
 Buffs: {
@@ -614,7 +615,7 @@ Items: {
 	}
 
 	李子种子: {
-		DisplayName: 李子种子
+		DisplayName: 李子核
 		Tooltip: ""
 	}
 
@@ -708,12 +709,17 @@ Items: {
 	}
 
 	杏树种子: {
-		DisplayName: 杏树种子
+		DisplayName: 杏核
 		Tooltip: ""
 	}
 
 	血腥奶蜗牛: {
 		DisplayName: 血腥奶蜗牛
+		Tooltip: ""
+	}
+
+	柠檬种子: {
+		DisplayName: 柠檬种子
 		Tooltip: ""
 	}
 }
