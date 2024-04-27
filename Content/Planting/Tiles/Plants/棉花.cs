@@ -17,6 +17,10 @@ namespace SAA.Content.Planting.Tiles.Plants
             TileObjectData.newTile.CoordinateWidth = 32;
             TileObjectData.newTile.DrawYOffset = -12;//所以要上升12
         }
+        protected override void ModifyDropHerbCount(ref int herbItemType, ref int herbItemStack, Player player, PlantStage stage)
+        {
+            herbItemStack = Main.rand.Next(2, 4);
+        }
         protected override bool ModifyPickDrop(int i, int j, int herbItemStack)
         {
             Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();

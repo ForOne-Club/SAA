@@ -734,6 +734,11 @@ Items: {
 		DisplayName: 芒果种子
 		Tooltip: ""
 	}
+
+	高级肥料: {
+		DisplayName: 高级肥料
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -746,6 +751,7 @@ NPCs: {
 Projectiles: {
 	短爬兽宝宝.DisplayName: 短爬兽宝宝
 	咬人甘蓝.DisplayName: 咬人甘蓝
+	施肥.DisplayName: 施肥
 }
 
 Configs: {

@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-
-namespace SAA.Content.Items
+﻿namespace SAA.Content.Items
 {
     public class OriginItemAmend : ModSystem
     {
@@ -12,11 +9,11 @@ namespace SAA.Content.Items
             .AddTile(TileID.Loom)
             .Register();
             Recipe.Create(1991)//捕虫网
-            .AddIngredient(ItemID.Cobweb,10)
+            .AddIngredient(ItemID.Cobweb, 10)
             .AddRecipeGroup(RecipeGroupID.IronBar)
             .AddTile(TileID.Loom)
             .Register();
-            Recipe.Create(254,2)//黑线
+            Recipe.Create(254, 2)//黑线
             .AddIngredient<棉线>(2)
             .AddIngredient(ItemID.BlackDye)
             .AddTile(TileID.DyeVat)

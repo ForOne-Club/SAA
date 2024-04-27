@@ -734,6 +734,11 @@ Items: {
 		DisplayName: Mango seed
 		Tooltip: ""
 	}
+
+	高级肥料: {
+		DisplayName: High-grade fertilizer
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -746,6 +751,7 @@ NPCs: {
 Projectiles: {
 	短爬兽宝宝.DisplayName: Brachys Baby
 	咬人甘蓝.DisplayName: Gnawing cabbage
+	施肥.DisplayName: Fertilizer
 }
 
 Configs: {

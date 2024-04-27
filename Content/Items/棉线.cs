@@ -1,7 +1,4 @@
-﻿using SAA.Content.Foods;
-using Terraria.ID;
-
-namespace SAA.Content.Items
+﻿namespace SAA.Content.Items
 {
     public class 棉线 : ModItem
     {
