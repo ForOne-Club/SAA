@@ -41,6 +41,7 @@ Tiles: {
 	柠檬树.MapEntry: Lemon tree
 	桃树.MapEntry: Peach tree
 	芒果树.MapEntry: Mango tree
+	菠萝.MapEntry: Pineapple
 }
 
 Buffs: {
@@ -737,6 +738,11 @@ Items: {
 
 	高级肥料: {
 		DisplayName: High-grade fertilizer
+		Tooltip: ""
+	}
+
+	菠萝头: {
+		DisplayName: Pineapple crown bud
 		Tooltip: ""
 	}
 }

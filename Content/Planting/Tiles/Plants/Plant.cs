@@ -41,6 +41,10 @@ namespace SAA.Content.Planting.Tiles.Plants
         /// </summary>
         protected virtual bool PickJustOneTime => false;
         /// <summary>
+        /// 不受收成影响
+        /// </summary>
+        protected virtual bool CropHarvestCantAffect => false;
+        /// <summary>
         /// 风中摇摆（每格物块都会摆）
         /// </summary>
         protected virtual bool CanSwayInWind => true;
@@ -195,7 +199,7 @@ namespace SAA.Content.Planting.Tiles.Plants
                 ModifyDropHerbCount(ref herbItemType, ref herbItemStack, nearestPlayer, stage);
                 ModifyDropSeedCount(ref seedItemType, ref seedItemStack, nearestPlayer, stage);
             }
-            if (herbItemStack > 0)//农作物掉落会受到收成影响
+            if (!CropHarvestCantAffect && herbItemStack > 0)//农作物掉落会受到收成影响
             {
                 float chance = herbItemStack * nearestPlayer.GetModPlayer<HungerforPlayer>().CropHarvest;
                 herbItemStack = (int)chance;
@@ -261,7 +265,7 @@ namespace SAA.Content.Planting.Tiles.Plants
             int herbItemStack = 1;
             ModifyPick(ref herbItemType, ref herbItemStack);
 
-            if (herbItemStack > 0)//农作物采摘会受到收成影响
+            if (!CropHarvestCantAffect && herbItemStack > 0)//农作物采摘会受到收成影响
             {
                 float chance = herbItemStack * nearestPlayer.GetModPlayer<HungerforPlayer>().CropHarvest;
                 herbItemStack = (int)chance;

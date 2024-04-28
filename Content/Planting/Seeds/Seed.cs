@@ -1,13 +1,11 @@
 using SAA.Content.Planting.Tiles;
 using SAA.Content.Planting.Tiles.Plants;
-using Terraria;
-using Terraria.ID;
 
 namespace SAA.Content.Planting.Seeds
 {
     public abstract class Seed : ModItem
     {
-        protected virtual int Width => 18;
+        protected virtual int Width => 20;
         protected virtual int Height => 18;
         protected virtual int TileType => ModContent.TileType<海麦作物>();
         public override void SetDefaults()

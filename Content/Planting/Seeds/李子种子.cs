@@ -4,6 +4,7 @@ namespace SAA.Content.Planting.Seeds
 {
     public class 李子种子 : Seed
     {
+        protected override int Width => 18;
         protected override int TileType => ModContent.TileType<李子树>();
         public override void AddRecipes()
         {

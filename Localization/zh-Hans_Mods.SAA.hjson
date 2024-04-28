@@ -41,6 +41,7 @@ Tiles: {
 	柠檬树.MapEntry: 柠檬树
 	桃树.MapEntry: 桃树
 	芒果树.MapEntry: 芒果树
+	菠萝.MapEntry: 菠萝
 }
 
 Buffs: {
@@ -737,6 +738,11 @@ Items: {
 
 	高级肥料: {
 		DisplayName: 高级肥料
+		Tooltip: ""
+	}
+
+	菠萝头: {
+		DisplayName: 菠萝冠芽
 		Tooltip: ""
 	}
 }
