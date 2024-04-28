@@ -7,6 +7,35 @@ Tooltips: {
 	3: Can plant on the grass
 }
 
+Book: {
+	0:
+		'''
+		Welcome to 'Satiety & Agriculture ', use the book or right click to continue reading
+		The current content is still being enriched, and more interesting content will be added later
+		'''
+	1:
+		'''
+		This mod is not complicated, you only need to buy a hoe from the merchant to start
+		A field can be cultivated by tapping the soil with a hoe, and the field needs water around it to be wet
+		'''
+	2:
+		'''
+		Crops need to be cut with scythes when they are ripe so that as many seeds as possible can be obtained
+		Some crops can be right-picked after ripening without harvesting, while others can be picked without waiting until they are fully ripe
+		Most of the seeds come from wild exploration, and wild plants also need scythe to get more seeds
+		'''
+	3:
+		'''
+		In the early stages, acorns can be roasted over a campfire as a transition
+		When you dig for iron ore, the barbecue bonfire you create will give you more food options
+		'''
+	4:
+		'''
+		This mod tweaks some of the original recipes and adds many new ones, and if desired, you can subscribe ''Recipe Browser'' for easy searching and viewing
+		Note: This mod does not explain food sources in all mods, please forgive me
+		'''
+}
+
 ArmorSet.草帽:
 	'''
 	5% increase in harvest
@@ -743,6 +772,11 @@ Items: {
 
 	菠萝头: {
 		DisplayName: Pineapple crown bud
+		Tooltip: ""
+	}
+
+	农业百科: {
+		DisplayName: 农业百科
 		Tooltip: ""
 	}
 }

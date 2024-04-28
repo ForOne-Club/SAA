@@ -1,4 +1,5 @@
 ﻿using SAA.Content.Buffs;
+using SAA.Content.Items;
 using Terraria.ModLoader.IO;
 
 namespace SAA.Content.Sys;
@@ -247,5 +248,9 @@ public class HungerforPlayer : ModPlayer
             }
         }
         base.PreUpdate();
+    }
+    public override void ModifyStartingInventory(IReadOnlyDictionary<string, List<Item>> itemsByMod, bool mediumCoreDeath)
+    {
+        itemsByMod["Terraria"].Add(new Item(ModContent.ItemType<农业百科>()));
     }
 }
