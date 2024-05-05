@@ -6,8 +6,8 @@ namespace SAA.Content.Planting.Tiles.Plants
         protected override int Height => 4;
         protected override short FrameWidth => 36;
         protected override int GrowthRate => 10;
-        protected override bool CanPick => true;
-        protected override bool PickJustOneTime => true;
+        public override bool CanPick => true;
+        public override bool PickJustOneTime => true;
         protected override bool CanSwayInWind => false;
         protected override bool FlipHorizontally => false;
         protected override int HerbItemType => ModContent.ItemType<Foods.瓜子>();

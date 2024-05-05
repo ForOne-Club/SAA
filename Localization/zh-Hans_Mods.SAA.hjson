@@ -71,6 +71,8 @@ Tiles: {
 	桃树.MapEntry: 桃树
 	芒果树.MapEntry: 芒果树
 	菠萝.MapEntry: 菠萝
+	蜗牛牧场.MapEntry: 腐化蜗牛牧场
+	血腥蜗牛牧场.MapEntry: 血腥蜗牛牧场
 }
 
 Buffs: {
@@ -776,8 +778,23 @@ Items: {
 	}
 
 	农业百科: {
-		// DisplayName: 农业百科
-		// Tooltip: ""
+		DisplayName: 农业百科
+		Tooltip: ""
+	}
+
+	长棍: {
+		DisplayName: 长棍
+		Tooltip: 用来收集可以重复采摘的农作物
+	}
+
+	蜗牛牧场: {
+		DisplayName: 腐化蜗牛牧场
+		Tooltip: ""
+	}
+
+	血腥蜗牛牧场: {
+		DisplayName: 血腥蜗牛牧场
+		Tooltip: ""
 	}
 }
 

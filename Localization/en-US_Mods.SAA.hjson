@@ -71,6 +71,8 @@ Tiles: {
 	桃树.MapEntry: Peach tree
 	芒果树.MapEntry: Mango tree
 	菠萝.MapEntry: Pineapple
+	蜗牛牧场.MapEntry: Milk Snail Pasture
+	血腥蜗牛牧场.MapEntry: Milk Snail Pasture
 }
 
 Buffs: {
@@ -776,7 +778,22 @@ Items: {
 	}
 
 	农业百科: {
-		DisplayName: 农业百科
+		DisplayName: Agricultural encyclopedia
+		Tooltip: ""
+	}
+
+	长棍: {
+		DisplayName: Long stick
+		Tooltip: Used to collect crops that can be harvested repeatedly
+	}
+
+	蜗牛牧场: {
+		DisplayName: Milk Snail Pasture
+		Tooltip: ""
+	}
+
+	血腥蜗牛牧场: {
+		DisplayName: Milk Snail Pasture
 		Tooltip: ""
 	}
 }

@@ -7,7 +7,7 @@ namespace SAA.Content.Planting.Tiles.Plants
         public override bool CanBeReapedBySickle => false;
         protected override short FrameWidth => 32;
         protected override int GrowthRate => 12;
-        protected override bool CanPick => true;
+        public override bool CanPick => true;
         protected override bool CropHarvestCantAffect => true;
         protected override int HerbItemType => ItemID.Pineapple;
         protected override int SeedItemType => ModContent.ItemType<菠萝头>();

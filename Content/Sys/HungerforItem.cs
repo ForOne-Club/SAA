@@ -297,6 +297,51 @@ namespace SAA.Content.Sys
                     }
                 }
             }
+            if (item.type == ModContent.ItemType<长棍>())
+            {
+                int minX = hitbox.X / 16;
+                int maxX = (hitbox.X + hitbox.Width) / 16 + 1;
+                int minY = hitbox.Y / 16;
+                int maxY = (hitbox.Y + hitbox.Height) / 16 + 1;
+                Utils.ClampWithinWorld(ref minX, ref minY, ref maxX, ref maxY);
+                for (int i = minX; i < maxX; i++)
+                {
+                    for (int j = minY; j < maxY; j++)
+                    {
+                        Tile tile = Framing.GetTileSafely(i, j);
+                        if (tile.HasTile && TileLoader.GetTile(tile.TileType) is Plant plant)
+                        {
+                            if (plant.CanPick && !plant.PickJustOneTime)
+                            {
+                                if (HungerSetting.GrownCut)
+                                {
+                                    if (plant.GetStage(i, j) == PlantStage.Grown)
+                                    {
+                                        plant.TryPick(i, j);
+                                    }
+                                }
+                                else
+                                {
+                                    plant.TryPick(i, j);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        internal static void LoadFoodID()
+        {
+            Item item = new();
+            SAA.FoodID = new();
+            for (int i = 0; i < ItemLoader.ItemCount; i++)
+            {
+                item.SetDefaults(i);
+                if (Helper.IsFoods(item, out _, out _))
+                {
+                    SAA.FoodID.Add(item.type);
+                }
+            }
         }
         public override bool InstancePerEntity => true;
     }

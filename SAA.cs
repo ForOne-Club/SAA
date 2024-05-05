@@ -20,12 +20,17 @@ namespace SAA
 {
     public class SAA : Mod
     {
+        public static List<int> FoodID = new List<int>();
         public override void PostSetupContent()
         {
-            ModLoader.TryGetMod("ForOne", out Mod mod);
-            if (mod != null)
+            HungerforItem.LoadFoodID();
+            if (ModLoader.TryGetMod("ForOne", out Mod mod))
             {
                 HungerSetting.ForOne = true;
+            }
+            if (ModLoader.TryGetMod("ImproveGame", out Mod qot))
+            {
+                qot.Call("IgnoreInfItem", FoodID);
             }
         }
         public override void Load()

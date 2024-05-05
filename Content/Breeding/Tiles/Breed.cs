@@ -14,6 +14,10 @@ namespace SAA.Content.Breeding.Tiles
         /// <summary>
         /// 物块高度, 2/3
         /// </summary>
+        protected virtual int Width => 3;
+        /// <summary>
+        /// 物块高度, 2/3
+        /// </summary>
         protected virtual int Height => 2;
         /// <summary>
         /// 生产速度1到100
@@ -24,9 +28,9 @@ namespace SAA.Content.Breeding.Tiles
         /// </summary>
         protected virtual bool NeedSun => true;
         /// <summary>
-        /// -1表示什么都不需要
+        /// null表示什么都不需要
         /// </summary>
-        protected virtual int NeedItemType => ItemID.Seed;
+        protected virtual int[] NeedItemType => new int[] { ItemID.Seed, ModContent.ItemType<瓜子>() };
         protected virtual int ProductItemType => ModContent.ItemType<蛋>();
         protected virtual int DropItemType => ModContent.ItemType<Items.鸭笼>();
         protected virtual void ModifyTileObjectData() { }
@@ -63,7 +67,7 @@ namespace SAA.Content.Breeding.Tiles
         public void TryGrow(int i, int j, int growMagnification = 1, bool needDayTime = true)
         {
             int g = Main.tile[i, j].TileFrameX / 18;
-            int x = i - g % 3;
+            int x = i - g % Width;
             int y = j - Main.tile[i, j].TileFrameY / 18;
 
             BreedStage stage = GetStage(x, y);
@@ -71,13 +75,13 @@ namespace SAA.Content.Breeding.Tiles
             {
                 if (Main.rand.NextFloat(100) < (GrowthRate * growMagnification / 3f / Height))//保证概率准确需要除以物块数量
                 {
-                    if (NeedItemType == -1 && stage != BreedStage.Product)
+                    if (NeedItemType == null && stage != BreedStage.Product)
                     {
-                        for (int w = 0; w < 3; w++)
+                        for (int w = 0; w < Width; w++)
                         {
                             for (int h = 0; h < Height; h++)
                             {
-                                Main.tile[x + w, y + h].TileFrameX += 54;
+                                Main.tile[x + w, y + h].TileFrameX += (short)(Width * 18);
                                 if (Main.netMode != NetmodeID.SinglePlayer)
                                 {
                                     NetMessage.SendTileSquare(-1, x + w, y + h, 1);
@@ -87,11 +91,11 @@ namespace SAA.Content.Breeding.Tiles
                     }
                     else if (stage == BreedStage.Producting)
                     {
-                        for (int w = 0; w < 3; w++)
+                        for (int w = 0; w < Width; w++)
                         {
                             for (int h = 0; h < Height; h++)
                             {
-                                Main.tile[x + w, y + h].TileFrameX += 54;
+                                Main.tile[x + w, y + h].TileFrameX += (short)(Width * 18);
                                 if (Main.netMode != NetmodeID.SinglePlayer)
                                 {
                                     NetMessage.SendTileSquare(-1, x + w, y + h, 1);
@@ -109,20 +113,33 @@ namespace SAA.Content.Breeding.Tiles
         public BreedStage GetStage(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j);
-            return (BreedStage)(tile.TileFrameX / 54);
+            return (BreedStage)(tile.TileFrameX / (Width * 18));
         }
         public override void MouseOver(int i, int j)
         {
             int g = Main.tile[i, j].TileFrameX / 18;
-            int x = i - g % 3;
+            int x = i - g % Width;
             int y = j - Main.tile[i, j].TileFrameY / 18;
             BreedStage stage = GetStage(x, y);
             Player player = Main.LocalPlayer;
-            if (NeedItemType != -1 && stage == BreedStage.Breeded)
+            if (NeedItemType != null && stage == BreedStage.Breeded)
             {
                 player.noThrow = 2;
                 player.cursorItemIconEnabled = true;
-                player.cursorItemIconID = NeedItemType;
+                bool canfind = false;
+                for (int k = 0; k < NeedItemType.Length; k++)
+                {
+                    if (player.HasItem(NeedItemType[k]))
+                    {
+                        player.cursorItemIconID = NeedItemType[k];
+                        canfind = true;
+                        break;
+                    }
+                }
+                if (!canfind)
+                {
+                    player.cursorItemIconID = NeedItemType[0];
+                }
             }
             if (stage == BreedStage.Product)
             {
@@ -134,38 +151,45 @@ namespace SAA.Content.Breeding.Tiles
         public void TryPickOrFeed(int i, int j)
         {
             int g = Main.tile[i, j].TileFrameX / 18;
-            int x = i - g % 3;
+            int x = i - g % Width;
             int y = j - Main.tile[i, j].TileFrameY / 18;
 
             BreedStage stage = GetStage(x, y);
             Player player = Main.LocalPlayer;
             if (stage == BreedStage.Breeded)
             {
-                if (player.HasItem(NeedItemType))
+                for (int k = 0; k < NeedItemType.Length; k++)
                 {
-                    if (player.ConsumeItem(NeedItemType))
+                    if (player.HasItem(NeedItemType[k]))
                     {
-                        for (int w = 0; w < 3; w++)
+                        int item = player.FindItem(NeedItemType[k]);
+                        player.inventory[item].stack--;
+                        if (player.inventory[item].stack <= 0) player.inventory[item].TurnToAir();
+                        //if (player.ConsumeItem(NeedItemType[k]))如果是食物的话将被算作食用
+                        //{
+                        for (int w = 0; w < Width; w++)
                         {
                             for (int h = 0; h < Height; h++)
                             {
-                                Main.tile[x + w, y + h].TileFrameX += 54;
+                                Main.tile[x + w, y + h].TileFrameX += (short)(Width * 18);
                                 if (Main.netMode != NetmodeID.SinglePlayer)
                                 {
                                     NetMessage.SendTileSquare(-1, x + w, y + h, 1);
                                 }
                             }
                         }
+                        break;
+                        //}
                     }
                 }
             }
             else if (stage == BreedStage.Product)
             {
-                for (int w = 0; w < 3; w++)
+                for (int w = 0; w < Width; w++)
                 {
                     for (int h = 0; h < Height; h++)
                     {
-                        Main.tile[x + w, y + h].TileFrameX -= 108;
+                        Main.tile[x + w, y + h].TileFrameX -= (short)(Width * 36);
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendTileSquare(-1, x + w, y + h, 1);
@@ -188,12 +212,12 @@ namespace SAA.Content.Breeding.Tiles
         public override bool RightClick(int i, int j)
         {
             int g = Main.tile[i, j].TileFrameX / 18;
-            int x = i - g % 3;
+            int x = i - g % Width;
             int y = j - Main.tile[i, j].TileFrameY / 18;
             BreedStage stage = GetStage(x, y);
             if (stage != BreedStage.Producting)
             {
-                if (NeedItemType == -1 && stage == BreedStage.Breeded)
+                if (NeedItemType == null && stage == BreedStage.Breeded)
                 {
                     return false;
                 }

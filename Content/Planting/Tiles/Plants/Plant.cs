@@ -35,11 +35,11 @@ namespace SAA.Content.Planting.Tiles.Plants
         /// <summary>
         /// 采摘
         /// </summary>
-        protected virtual bool CanPick => false;
+        public virtual bool CanPick => false;
         /// <summary>
         /// 只能采摘一次
         /// </summary>
-        protected virtual bool PickJustOneTime => false;
+        public virtual bool PickJustOneTime => false;
         /// <summary>
         /// 不受收成影响
         /// </summary>
@@ -234,8 +234,10 @@ namespace SAA.Content.Planting.Tiles.Plants
                 player.cursorItemIconID = HerbItemType;
             }
         }
-        public void TryPick(int i, int j)
+        public virtual void TryPick(int i, int j)
         {
+            if (GetStage(i, j) != PlantStage.Grown) return;
+
             //由于贴图高度不确定，采用其他方法寻找顶部瓷砖
             if (Main.tile[i, j].TileFrameY != 0)
             {
