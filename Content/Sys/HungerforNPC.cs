@@ -47,26 +47,27 @@ namespace SAA.Content.Sys
                         _ = entry.Disable();//禁止售卖
                     }
                 }
-                //    if (shop.NpcType == NPCID.Merchant)
-                //    {
-                //        shop.Add(ModContent.ItemType<锄头>());
-                //        if (shop.TryGetEntry(ModContent.ItemType<锄头>(), out NPCShop.Entry entry))
-                //        {
-                //            _ = entry.Disable();//禁止售卖
-                //        }
-                //    }
+                if (shop.NpcType == NPCID.Merchant)
+                {
+                    if (shop.TryGetEntry(1786, out NPCShop.Entry entry))
+                    {
+                        _ = entry.Disable();//禁止售卖
+                    }
+                    shop.Add(1786);
+                    shop.Add(ModContent.ItemType<锄头>());
+                }
             }
         }
         public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
-            if (npc.type == NPCID.Merchant)
-            {
-                for (int i = items.Length - 1; i > 16; i--)
-                {
-                    if (items[i - 1] != null) items[i] = items[i - 1];
-                }
-                items[16] = new Item(ModContent.ItemType<锄头>());
-            }
+            //if (npc.type == NPCID.Merchant)
+            //{
+            //    for (int i = items.Length - 1; i > 16; i--)
+            //    {
+            //        if (items[i - 1] != null) items[i] = items[i - 1];
+            //    }
+            //    items[16] = new Item(ModContent.ItemType<锄头>());
+            //}
             base.ModifyActiveShop(npc, shopName, items);
         }
         public override bool PreAI(NPC npc)

@@ -6,6 +6,7 @@ namespace SAA.Content.Sys;
 
 public class HungerforPlayer : ModPlayer
 {
+    public static float BaseHungerCut = 0.001f;
     public float HungerCut = 0.001f;//削减速度
     public int HungerCount = 5;//饱食数(秘制料理数)
     public int HungerKillTime = 0;//死亡饥饿计时，未死亡且增加足够的饱食度后清零，无需退出保存，没有必要
@@ -33,7 +34,7 @@ public class HungerforPlayer : ModPlayer
     }
     public override void ResetEffects()
     {
-        HungerCut = 0.001f;
+        HungerCut = BaseHungerCut;
         HungerBook = false;
         if (Hunger < 20)
         {
@@ -95,7 +96,7 @@ public class HungerforPlayer : ModPlayer
             float addi = 0, mult = 1;
             if (HungerBook)
             {
-                addi -= 0.0002f;
+                addi -= BaseHungerCut/5;
                 Player.cordage = true;
                 Player.buffImmune[BuffID.Poisoned] = true;//免疫中毒            
                 Player.buffImmune[BuffID.Weak] = true;//免疫虚弱
@@ -112,7 +113,7 @@ public class HungerforPlayer : ModPlayer
                 }
                 if (buff == ModContent.BuffType<饱食之火>() || buff == ModContent.BuffType<饱腹>())
                 {
-                    addi -= 0.0002f;
+                    addi -= BaseHungerCut/5;
                 }
             }
             HungerCut = Math.Clamp((HungerCut + addi) * mult, 0.0005f, 0.01f);
@@ -239,11 +240,14 @@ public class HungerforPlayer : ModPlayer
         {
             for (int j = -tiler; j <= tiler; j++)
             {
-                if (Main.tile[x + i, y + j].TileType == ModContent.TileType<Placeable.Tiles.烤肉篝火>())
+                if(WorldGen.InWorld(x + i, y + j))
                 {
-                    Player.AddBuff(87, 2, false, false);
-                    Player.AddBuff(ModContent.BuffType<饱食之火>(), 2, false, false);
-                    break;
+                    if (Main.tile[x + i, y + j].TileType == ModContent.TileType<Placeable.Tiles.烤肉篝火>())
+                    {
+                        Player.AddBuff(87, 2, false, false);
+                        Player.AddBuff(ModContent.BuffType<饱食之火>(), 2, false, false);
+                        break;
+                    }
                 }
             }
         }

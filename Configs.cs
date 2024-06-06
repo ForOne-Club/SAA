@@ -15,6 +15,13 @@ namespace SAA
         public bool HungerCausePlayerDown;
 
         [BackgroundColor(55, 120, 175)]
+        [Increment(0.1f)]
+        [Range(0.1f, 10f)]
+        [DefaultValue(1)]
+        [Label("饱食度消耗速度")]
+        public float HungerCutIndex;
+
+        [BackgroundColor(55, 120, 175)]
         [Increment(1)]
         [Range(1, 100)]
         [DefaultValue(1)]
@@ -34,6 +41,7 @@ namespace SAA
             HungerSetting.HungerDown = HungerCausePlayerDown;
             HungerSetting.GrowMagnification = Magnification;
             HungerSetting.GrownCut = GrownCut;
+            HungerforPlayer.BaseHungerCut = 0.001f * HungerCutIndex;
             base.OnChanged();
         }
     }

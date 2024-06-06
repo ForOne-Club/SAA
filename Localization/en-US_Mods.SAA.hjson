@@ -73,6 +73,8 @@ Tiles: {
 	菠萝.MapEntry: Pineapple
 	蜗牛牧场.MapEntry: Milk Snail Pasture
 	血腥蜗牛牧场.MapEntry: Milk Snail Pasture
+	樱桃树.MapEntry: Cherry tree
+	杨桃树.MapEntry: Carambola
 }
 
 Buffs: {
@@ -796,6 +798,16 @@ Items: {
 		DisplayName: Milk Snail Pasture
 		Tooltip: ""
 	}
+
+	樱桃种子: {
+		DisplayName: Cherry seed
+		Tooltip: ""
+	}
+
+	杨桃种子: {
+		DisplayName: Carambola seed
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -829,6 +841,11 @@ Configs: {
 			Label: Crops are ripe and harvested
 			Tooltip: Yes, Scythe will only harvest mature crops, no, to cancel. Default no
 		}
+
+		HungerCutIndex: {
+			Label: Satiety consumption rate
+			Tooltip: ""
+		}
 	}
 
 	ClientConfigs: {
@@ -843,8 +860,22 @@ Configs: {
 
 ChangeLog:
 	'''
-	v0.1.4.1：Fixed an issue with item ID display.
-	v0.1.4：Increased the effect of picking clothes and sets.
+	v0.1.6.0：Adapts the Store extend mod
+	Fixed an issue where bonfire determination was overrun at world boundaries
+	Added cherry seeds and cherry crops
+	Increased star fruit seeds and star fruit crops
+	v0.1.5: Adjust cotton yield
+	Increase high-grade fertilizer
+	Add pineapple plants
+	Added sunflower planting and related items with drop compositing
+	Added almond trees and related items
+	Added Bloody cow
+	Removed the milk unlimited synthesis method
+	Adjust frying recipe and satiety
+	Adjust the seed bag drawing
+	Added trial mod promotion
+	v0.1.4：Fixed an issue with item ID display.
+	Increased the effect of picking clothes and sets.
 	v0.1.3：Added UI adjustment Settings.
 	Enemy gold drop has been adjusted to 1/10 of its original value.
 	Add the biting kale and plant the way, the seeds are purchased from the tree demon.

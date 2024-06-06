@@ -332,14 +332,14 @@ namespace SAA.Content.Sys
         }
         internal static void LoadFoodID()
         {
-            Item item = new();
+            //Item item = new();
             SAA.FoodID = new();
             for (int i = 0; i < ItemLoader.ItemCount; i++)
             {
-                item.SetDefaults(i);
-                if (Helper.IsFoods(item, out _, out _))
+                //item.SetDefaults(i);
+                if (Helper.IsFoods(ContentSamples.ItemsByType[i], out _, out _))
                 {
-                    SAA.FoodID.Add(item.type);
+                    SAA.FoodID.Add(ContentSamples.ItemsByType[i].type);
                 }
             }
         }
