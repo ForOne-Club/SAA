@@ -96,7 +96,7 @@ public class HungerforPlayer : ModPlayer
             float addi = 0, mult = 1;
             if (HungerBook)
             {
-                addi -= BaseHungerCut/5;
+                addi -= BaseHungerCut / 5;
                 Player.cordage = true;
                 Player.buffImmune[BuffID.Poisoned] = true;//免疫中毒            
                 Player.buffImmune[BuffID.Weak] = true;//免疫虚弱
@@ -110,10 +110,11 @@ public class HungerforPlayer : ModPlayer
                 if (buff == ModContent.BuffType<酸甜可口>())
                 {
                     mult *= 1.5f;
+                    if (Hunger > 0 && Player.lifeRegen >= 0) Player.lifeRegen++;
                 }
                 if (buff == ModContent.BuffType<饱食之火>() || buff == ModContent.BuffType<饱腹>())
                 {
-                    addi -= BaseHungerCut/5;
+                    addi -= BaseHungerCut / 5;
                 }
             }
             HungerCut = Math.Clamp((HungerCut + addi) * mult, 0.0005f, 0.01f);
@@ -240,7 +241,7 @@ public class HungerforPlayer : ModPlayer
         {
             for (int j = -tiler; j <= tiler; j++)
             {
-                if(WorldGen.InWorld(x + i, y + j))
+                if (WorldGen.InWorld(x + i, y + j))
                 {
                     if (Main.tile[x + i, y + j].TileType == ModContent.TileType<Placeable.Tiles.烤肉篝火>())
                     {

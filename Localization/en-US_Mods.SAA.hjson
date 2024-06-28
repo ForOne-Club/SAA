@@ -860,10 +860,11 @@ Configs: {
 
 ChangeLog:
 	'''
-	v0.1.6.0：Adapts the Store extend mod
+	v0.1.6：Adapts the Store extend mod
 	Fixed an issue where bonfire determination was overrun at world boundaries
 	Added cherry seeds and cherry crops
-	Increased star fruit seeds and star fruit crops
+	Added star fruit seeds and star fruit crops
+	Increased satiety consumption speed setting
 	v0.1.5: Adjust cotton yield
 	Increase high-grade fertilizer
 	Add pineapple plants

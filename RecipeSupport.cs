@@ -1,6 +1,6 @@
 ﻿namespace SAA
 {
-    internal static class RecipeSupport
+    public static class RecipeSupport
     {
         #region RecipeExtensionMethods
         #region RecipeInfoStruct
