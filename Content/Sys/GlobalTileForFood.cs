@@ -30,12 +30,15 @@ namespace SAA.Content.Sys
         }
         private static bool ShouldDropSeeds(int x, int y)
         {
-            //让背包里有这三种武器的玩家可以在割草时得到种子
+            //让背包里有这些物品的玩家可以在割草时得到种子
             if (!GetPlayerForTile(x, y).HasItem(281))
             {
                 if (!GetPlayerForTile(x, y).HasItem(986))
                 {
-                    return GetPlayerForTile(x, y).HasItem(ModContent.ItemType<种子机关枪>());
+                    if (!GetPlayerForTile(x, y).HasItem(ModContent.ItemType<种子机关枪>()))
+                    {
+                        return GetPlayerForTile(x, y).HasItem(ModContent.ItemType<作物采集器>());
+                    }
                 }
             }
             return true;

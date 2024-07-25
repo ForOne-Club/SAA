@@ -808,6 +808,11 @@ Items: {
 		DisplayName: Carambola seed
 		Tooltip: ""
 	}
+
+	作物采集器: {
+		DisplayName: Crop collector
+		Tooltip: Gather any agricultural goods that can be easily collected
+	}
 }
 
 NPCs: {
@@ -821,6 +826,7 @@ Projectiles: {
 	短爬兽宝宝.DisplayName: Brachys Baby
 	咬人甘蓝.DisplayName: Gnawing cabbage
 	施肥.DisplayName: Fertilizer
+	采集.DisplayName: 采集
 }
 
 Configs: {
@@ -860,7 +866,8 @@ Configs: {
 
 ChangeLog:
 	'''
-	v0.1.6：Adapts the Store extend mod
+	v0.1.6：Added a crop collector
+	Adapts the Store extend mod
 	Fixed an issue where bonfire determination was overrun at world boundaries
 	Added cherry seeds and cherry crops
 	Added star fruit seeds and star fruit crops

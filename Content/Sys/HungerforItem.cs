@@ -1,6 +1,7 @@
 ﻿using SAA.Content.DamageClasses;
 using SAA.Content.Items;
 using SAA.Content.Planting.Tiles.Plants;
+using SAA.Content.Projectiles;
 
 namespace SAA.Content.Sys
 {
@@ -325,6 +326,23 @@ namespace SAA.Content.Sys
                                     plant.TryPick(i, j);
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+        public override void GrabRange(Item item, Player player, ref int grabRange)
+        {
+            foreach (Projectile p in Main.projectile)
+            {
+                if (p != null && p.type == ModContent.ProjectileType<采集>() && p.active)
+                {
+                    if (Vector2.Distance(p.Center, item.Center) < 18 && player.whoAmI == p.owner)
+                    {
+                        if (player.active && !player.dead)
+                        {
+                            grabRange = 10000;
+                            //item.velocity += (player.Center - item.Center).SafeNormalize(Vector2.Zero);
                         }
                     }
                 }

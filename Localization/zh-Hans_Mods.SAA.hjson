@@ -808,6 +808,11 @@ Items: {
 		DisplayName: 杨桃种子
 		Tooltip: ""
 	}
+
+	作物采集器: {
+		DisplayName: 作物采集器
+		Tooltip: 采集任何可被轻易收集的农货
+	}
 }
 
 NPCs: {
@@ -821,6 +826,7 @@ Projectiles: {
 	短爬兽宝宝.DisplayName: 短爬兽宝宝
 	咬人甘蓝.DisplayName: 咬人甘蓝
 	施肥.DisplayName: 施肥
+	采集.DisplayName: 采集
 }
 
 Configs: {
@@ -860,7 +866,8 @@ Configs: {
 
 ChangeLog:
 	'''
-	v0.1.6：适配商店查询
+	v0.1.6：增加作物采集器
+	适配商店查询
 	修复了篝火判定在世界边界超限的问题
 	增加樱桃种子和樱桃作物
 	增加杨桃种子和杨桃作物
