@@ -1,4 +1,5 @@
 ﻿using SAA.Content.Placeable.Tiles;
+using SAA.Content.Sys;
 
 namespace SAA.Content.Foods
 {
@@ -119,7 +120,45 @@ namespace SAA.Content.Foods
                     rec.AddIngredient(ModContent.ItemType<海麦>());
                 }
             }
+            SetCookRecipe();//添加烹饪合成
             base.PostAddRecipes();
+        }
+        private static void SetCookRecipe()
+        {
+            if (RecipeSupport.TryFindRecipes(new Predicate<Recipe>((r) => r.requiredTile.Contains(TileID.CookingPots)), out IEnumerable<Recipe> recipe))
+            {
+                foreach (Recipe rec in recipe)
+                {
+                    if (rec.Conditions.Count == 0)
+                    {
+                        if (rec.requiredItem.Count < 7 && rec.requiredItem.Count > 0)
+                        {
+                            rec.AddCondition(Language.GetText("Mods.SAA.Cook"), () => false);//锁死配方并告知使用烹饪锅烹饪
+
+                            List<Point> require = new();
+                            List<Point> requiregroup = new();
+                            for (int i = 0; i < rec.requiredItem.Count; i++)
+                            {
+                                bool add = false;
+                                if (rec.acceptedGroups.Count > 0)
+                                {
+                                    for (int j = 0; j < rec.acceptedGroups.Count - 1; j++)
+                                    {
+                                        if (RecipeGroup.recipeGroups[rec.acceptedGroups[j]].IconicItemId == rec.requiredItem[i].type)
+                                        {
+                                            requiregroup.Add(new Point(rec.acceptedGroups[j], rec.requiredItem[i].stack));
+                                            add = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (!add) require.Add(new Point(rec.requiredItem[i].type, rec.requiredItem[i].stack));
+                            }
+                            CookSystem.PotCookRecipe.Add((require.ToArray(), new Point(rec.createItem.type, rec.createItem.stack), 60 * ((rec.createItem.rare + 2) * rec.requiredItem.Count),requiregroup.ToArray()));
+                        }
+                    }
+                }
+            }
         }
     }
 }

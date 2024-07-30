@@ -73,8 +73,6 @@ namespace SAA.Content.Sys
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            Player player = Main.player[Main.myPlayer];
-            HungerforPlayer mplayer = player.GetModPlayer<HungerforPlayer>();
             //寻找一个名字为Vanilla: Mouse Text的绘制层，也就是绘制鼠标字体的那一层，并且返回那一层的索引
             int MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
             //寻找到索引时

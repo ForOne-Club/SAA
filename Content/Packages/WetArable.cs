@@ -20,7 +20,7 @@ namespace SAA.Content.Packages
         {
             if (Main.dedServ)
             {
-                Send(-1, Sender);
+                base.Send(-1, Sender);
             }
             if (wet.Contains((tileX, tileY)))
             {
