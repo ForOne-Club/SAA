@@ -38,7 +38,7 @@ public class CookTile : GlobalTile
             }
             else
             {
-                CookSystem.Cook.Add(new CookStore(new Point(x, y), [new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0)], 0, 0, 0, 0));
+                CookSystem.Cook.Add(new CookStore(new Point(x, y), [new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0)], 0, 0, 0, 0,Point.Zero));
                 Cook.Send(x, y, true);//创建并同步
                 Main.LocalPlayer.GetModPlayer<CookPlayer>().CookInfo = CookSystem.Cook.Count - 1;
                 CookUI.Open = true;

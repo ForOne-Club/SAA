@@ -140,21 +140,21 @@ namespace SAA.Content.Foods
                             for (int i = 0; i < rec.requiredItem.Count; i++)
                             {
                                 bool add = false;
-                                if (rec.acceptedGroups.Count > 0)
+                                for (int j = 0; j < rec.acceptedGroups.Count; j++)
                                 {
-                                    for (int j = 0; j < rec.acceptedGroups.Count - 1; j++)
+                                    if (RecipeGroup.recipeGroups[rec.acceptedGroups[j]].IconicItemId == rec.requiredItem[i].type)//认定这是一个材料组
                                     {
-                                        if (RecipeGroup.recipeGroups[rec.acceptedGroups[j]].IconicItemId == rec.requiredItem[i].type)
-                                        {
-                                            requiregroup.Add(new Point(rec.acceptedGroups[j], rec.requiredItem[i].stack));
-                                            add = true;
-                                            break;
-                                        }
+                                        requiregroup.Add(new Point(rec.acceptedGroups[j], rec.requiredItem[i].stack));
+                                        add = true;
+                                        break;
                                     }
                                 }
-                                if (!add) require.Add(new Point(rec.requiredItem[i].type, rec.requiredItem[i].stack));
+                                if (!add)
+                                {
+                                    require.Add(new Point(rec.requiredItem[i].type, rec.requiredItem[i].stack));
+                                }
                             }
-                            CookSystem.PotCookRecipe.Add((require.ToArray(), new Point(rec.createItem.type, rec.createItem.stack), 60 * ((rec.createItem.rare + 2) * rec.requiredItem.Count),requiregroup.ToArray()));
+                            CookSystem.PotCookRecipe.Add(new RecipeStore(require, requiregroup, new Point(rec.createItem.type, rec.createItem.stack)));
                         }
                     }
                 }

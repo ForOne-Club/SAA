@@ -12,13 +12,19 @@ namespace SAA.Content.Sys
         {
             Player player = Main.LocalPlayer;
             var cp = player.GetModPlayer<CookPlayer>();
-            if (cp.CookInfo < 0) Open = false;//无需同步因为根本打不开
+            if (cp.CookInfo < 0)
+            {
+                Open = false;//无需同步因为根本没打开
+                return;
+            }
             CookStore a = CookSystem.Cook[cp.CookInfo];
+            CookSystem.FindRecipe(cp.CookInfo);
             Vector2 worldPosition = new Vector2(a.CookTile.X, a.CookTile.Y).ToWorldCoordinates();
             if (Vector2.Distance(worldPosition, player.Center) > 200)
             {
                 Open = false;
                 Cook.Send(a.CookTile.X, a.CookTile.Y, false);
+                return;
             }
 
             Texture2D texture1 = ModContent.Request<Texture2D>("SAA/Content/Sys/CookUI1").Value;
@@ -37,7 +43,7 @@ namespace SAA.Content.Sys
             Main.spriteBatch.Draw(texture1, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture2, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
 
-            Main.inventoryScale *= 1.652f;
+            Main.inventoryScale *= 1.652f;//第一次进游戏打开背包前这个值貌似不对劲
             Vector2 pos = new Vector2(Bar1.X, Bar1.Y);
             for (int i = 0; i < 6; i++)
             {
@@ -67,14 +73,18 @@ namespace SAA.Content.Sys
             ItemSlot.Draw(Main.spriteBatch, ref a.CookItems[7], 14, pos + new Vector2(138, 176));
             Main.inventoryScale /= 1.652f;
 
-            float factor1 = (float)a.BurnTime / a.MaxBurnTime;
+            float factor1;
+            if (a.MaxBurnTime <= 0) factor1 = 0;
+            else factor1 = (float)a.BurnTime / a.MaxBurnTime;
             int newheight1 = (int)(31 * (1 - factor1));
             Bar1 = new Rectangle(w, (int)(Main.screenHeight * height) + 136 + newheight1, (int)(texture3.Width * scale), (int)(texture3.Height * scale) - newheight1);
             //距离屏幕左上角的宽，距离屏幕左上角的高（绘制位置），图片的宽，图片的高（缩放）
             Bar2 = new(0, newheight1, texture3.Width, texture3.Height - newheight1);
             //图片内距左上角的宽，图片内距左上角的高，取的图片的宽，取的图片的高
             Main.spriteBatch.Draw(texture3, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
-            float factor2 = (float)a.FinishTime / a.MaxFinishTime;
+            float factor2;
+            if (a.MaxFinishTime <= 0) factor2 = 0;
+            else factor2 = (float)a.FinishTime / a.MaxFinishTime;
             int newheight2 = (int)(30 * (1 - factor2));
             Bar1 = new Rectangle(w, (int)(Main.screenHeight * height), (int)(texture4.Width * scale), (int)(texture4.Height * scale) - newheight2);
             //距离屏幕左上角的宽，距离屏幕左上角的高（绘制位置），图片的宽，图片的高（缩放）

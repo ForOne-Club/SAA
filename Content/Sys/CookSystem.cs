@@ -12,7 +12,8 @@ namespace SAA.Content.Sys
         public int FinishTime;
         public int MaxFinishTime;
         public bool PlayerUse;
-        public CookStore(Point cookTile, Item[] cookItems, int burnTime, int maxBurnTime, int finishTime, int maxFinishTime, bool playerUse = false)
+        public Point CreateItem;
+        public CookStore(Point cookTile, Item[] cookItems, int burnTime, int maxBurnTime, int finishTime, int maxFinishTime, Point createItem, bool playerUse = false)
         {
             CookTile = cookTile;
             CookItems = cookItems;
@@ -21,15 +22,29 @@ namespace SAA.Content.Sys
             FinishTime = finishTime;
             MaxFinishTime = maxFinishTime;
             PlayerUse = playerUse;
+            CreateItem = createItem;
+        }
+    }
+    public class RecipeStore
+    {
+        public List<Point> CookItems;
+        public List<Point> CookItemGroups;
+        public Point CreateItem;
+        public int Amount => CookItems.Count + CookItemGroups.Count;
+        public RecipeStore(List<Point> cookItems, List<Point> cookItemGroups, Point createItem)
+        {
+            CookItems = cookItems;
+            CookItemGroups = cookItemGroups;
+            CreateItem = createItem;
         }
     }
     public class CookSystem : ModSystem
     {
         internal static List<CookStore> Cook = new();
         /// <summary>
-        /// 材料(type,stack),成品,所需燃烧时间,材料组(grouptype,stack)
+        /// 所有满足条件的烹饪锅合成
         /// </summary>
-        public static HashSet<(Point[], Point, int, Point[])> PotCookRecipe = new();
+        public static List<RecipeStore> PotCookRecipe = new();
         public override void SaveWorldData(TagCompound tag)
         {
             var cooks = new List<TagCompound>();
@@ -50,6 +65,8 @@ namespace SAA.Content.Sys
                     ["BurnTime_maxtime"] = c.MaxBurnTime,
                     ["FinishTime_time"] = c.FinishTime,
                     ["FinishTime_maxtime"] = c.MaxFinishTime,
+                    ["CreateItem_type"] = c.CreateItem.X,
+                    ["CreateItem_stack"] = c.CreateItem.Y,
                 };
                 cooks.Add(ntc);
             }
@@ -73,9 +90,52 @@ namespace SAA.Content.Sys
                 {
                     ItemIO.Load(items[l], list[l]);
                 }
-                Cook.Add(new CookStore(new Point(ntc.GetInt("Cook_x"), ntc.GetInt("Cook_y")), items, ntc.GetInt("BurnTime_time"), ntc.GetInt("BurnTime_maxtime"), ntc.GetInt("FinishTime_time"), ntc.GetInt("FinishTime_maxtime")));
+                Cook.Add(new CookStore(new Point(ntc.GetInt("Cook_x"), ntc.GetInt("Cook_y")), items, ntc.GetInt("BurnTime_time"), ntc.GetInt("BurnTime_maxtime"), ntc.GetInt("FinishTime_time"), ntc.GetInt("FinishTime_maxtime"), new Point(ntc.GetInt("CreateItem_type"), ntc.GetInt("CreateItem_stack"))));
             }
         }
+        public static void FindRecipe(int cookInfo)
+        {
+            List<RecipeStore> list = new();
+            int amount = 0;
+            for (int i = 0; i < Cook[cookInfo].CookItems.Length - 2; i++)//燃烧物和成品占据最后两格
+            {
+                if (Cook[cookInfo].CookItems[i].type > 0 && Cook[cookInfo].CookItems[i].stack > 0)
+                {
+                    amount++;
+                    if (TryFindRecipes(new Predicate<RecipeStore>((r) => (r.CookItems.Exists(item => item.X == Cook[cookInfo].CookItems[i].type && item.Y == Cook[cookInfo].CookItems[i].stack)) || (r.CookItemGroups.Exists(item => RecipeGroup.recipeGroups[item.X].ValidItems.Contains(Cook[cookInfo].CookItems[i].type) && item.Y == Cook[cookInfo].CookItems[i].stack))), out List<RecipeStore> recipes))
+                    {
+                        if (list.Count == 0) list = recipes;
+                        else list = (list.Intersect(recipes)).ToList();
+                    }
+                    else
+                    {
+                        Cook[cookInfo].CreateItem = Point.Zero;
+                        return;
+                    }
+                }
+            }
+            if (list.Count == 0)
+            {
+                Cook[cookInfo].CreateItem = Point.Zero;
+                return;
+            }
+            foreach (RecipeStore r in list)
+            {
+                if (r.Amount == amount)
+                {
+                    Cook[cookInfo].MaxFinishTime = r.Amount * (ContentSamples.ItemsByType[r.CreateItem.X].rare + 2) * 60;
+                    Cook[cookInfo].CreateItem = r.CreateItem;
+                    return;
+                }
+            }
+            Cook[cookInfo].CreateItem = Point.Zero;
+        }
+        public static bool TryFindRecipes(Predicate<RecipeStore> predicate, out List<RecipeStore> recipes)
+        {
+            recipes = (from RecipeStore r in PotCookRecipe where r is not null && predicate(r) select r).ToList();
+            return recipes.Any();
+        }
+
         public override void PostUpdateTime()
         {
             for (int k = 0; k < Cook.Count; k++)
@@ -89,71 +149,58 @@ namespace SAA.Content.Sys
                     Cook[k].BurnTime--;
                     Burn = true;
                 }
-                List<Point> require = new();
-                for (int i = 0; i < Cook[k].CookItems.Length - 2; i++)//燃烧物和成品占据最后两格
+                if (Cook[k].CreateItem.X > 0 && Cook[k].CreateItem.Y > 0)
                 {
-                    if (Cook[k].CookItems[i] != null && Cook[k].CookItems[i].type > 0 && Cook[k].CookItems[i].stack > 0)
+                    if (Cook[k].CookItems[^1].stack > 0 && Cook[k].CreateItem.X != Cook[k].CookItems[^1].type)//产出与配方产出不符
                     {
-                        require.Add(new Point(Cook[k].CookItems[i].type, Cook[k].CookItems[i].stack));
-                    }
-                }
-                foreach (var c in PotCookRecipe)
-                {
-                    if (c.Item1.ToList().Count == require.Count && c.Item1.ToList().All(require.Contains))//配方匹配成功，目前写法需要材料数量完全一致并且为一份，不能多也不能少
-                    {
-                        if (Cook[k].CookItems[^1].stack > 0 && c.Item2.X != Cook[k].CookItems[^1].type)//产出与配方产出不符
-                        {
-                            break;
-                        }
-                        Cook[k].MaxFinishTime = c.Item3;//完成时间
-                        //尝试烹饪
-                        if (Burn)
-                        {
-                            if (Cook[k].FinishTime < 0)
-                            {
-                                Cook[k].FinishTime = 0;
-                            }
-                            if (Cook[k].FinishTime < Cook[k].MaxFinishTime)
-                            {
-                                Cook[k].FinishTime++;
-                            }
-                            else//完成此次烹饪
-                            {
-                                Cook[k].FinishTime = 0;
-                                for (int i = 0; i < Cook[k].CookItems.Length - 2; i++)//消耗
-                                {
-                                    Cook[k].CookItems[i].stack -= c.Item1.ToList()
-                                                                         .Find(a => a.X == Cook[k].CookItems[i].type).Y;
-                                    if (Cook[k].CookItems[i].stack < 1)
-                                    {
-                                        Cook[k].CookItems[i].TurnToAir();
-                                    }
-                                }
-                                if (Cook[k].CookItems[^1].stack < 1)
-                                {
-                                    Cook[k].CookItems[^1].SetDefaults(c.Item2.X);
-                                    Cook[k].CookItems[^1].stack = c.Item2.Y;
-                                }
-                                else
-                                {
-                                    Cook[k].CookItems[^1].stack += c.Item2.Y;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (Cook[k].CookItems[^2].type > 0 && Cook[k].CookItems[^2].stack > 0 && Cook[k].CookItems[^2].GetGlobalItem<CookItem>().BurnTime > 0)
-                            {
-                                Cook[k].BurnTime = Cook[k].MaxBurnTime = Cook[k].CookItems[^2].GetGlobalItem<CookItem>().BurnTime;
-                                Cook[k].CookItems[^2].stack--;
-                                if (Cook[k].CookItems[^2].stack < 1)
-                                {
-                                    Cook[k].CookItems[^2].TurnToAir();
-                                }
-                            }
-                        }
                         break;
                     }
+
+                    if (Burn)//尝试烹饪
+                    {
+                        if (Cook[k].FinishTime < 0)
+                        {
+                            Cook[k].FinishTime = 0;
+                        }
+                        if (Cook[k].FinishTime < Cook[k].MaxFinishTime)
+                        {
+                            Cook[k].FinishTime++;
+                        }
+                        else//完成此次烹饪
+                        {
+                            Cook[k].FinishTime = 0;
+                            for (int i = 0; i < Cook[k].CookItems.Length - 2; i++)//消耗
+                            {
+                                Cook[k].CookItems[i].TurnToAir();//一锅一份所以直接清除就行
+                            }
+                            if (Cook[k].CookItems[^1].stack < 1)
+                            {
+                                Cook[k].CookItems[^1].SetDefaults(Cook[k].CreateItem.X);
+                                Cook[k].CookItems[^1].stack = Cook[k].CreateItem.Y;
+                            }
+                            else
+                            {
+                                Cook[k].CookItems[^1].stack += Cook[k].CreateItem.Y;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Cook[k].CookItems[^2].type > 0 && Cook[k].CookItems[^2].stack > 0 && Cook[k].CookItems[^2].GetGlobalItem<CookItem>().BurnTime > 0)
+                        {
+                            Cook[k].BurnTime = Cook[k].MaxBurnTime = Cook[k].CookItems[^2].GetGlobalItem<CookItem>().BurnTime;
+                            Cook[k].CookItems[^2].stack--;
+                            if (Cook[k].CookItems[^2].stack < 1)
+                            {
+                                Cook[k].CookItems[^2].TurnToAir();
+                            }
+                        }
+                    }
+                    break;
+                }
+                else
+                {
+                    if (Cook[k].FinishTime > 0) Cook[k].FinishTime = 0;
                 }
             }
             base.PostUpdateTime();
