@@ -1,5 +1,6 @@
 ﻿using SAA.Content.Placeable.Tiles;
 using SAA.Content.Sys;
+using Terraria.ID;
 
 namespace SAA.Content.Foods
 {
@@ -118,6 +119,15 @@ namespace SAA.Content.Foods
                 foreach (Recipe rec in recipe4)
                 {
                     rec.AddIngredient(ModContent.ItemType<海麦>());
+                }
+            }
+            //冰冻香蕉
+            if (RecipeSupport.TryFindRecipes(new Predicate<Recipe>((r) => r.createItem.type == ItemID.BananaDaiquiri), out IEnumerable<Recipe> recipe5))
+            {
+                foreach (Recipe rec in recipe5)
+                {
+                    rec.requiredTile.Clear();
+                    rec.requiredTile.Add(ModContent.TileType<冰箱>());
                 }
             }
             SetCookRecipe();//添加烹饪合成

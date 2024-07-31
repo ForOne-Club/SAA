@@ -8,6 +8,7 @@ public class CookPlayer : ModPlayer
 }
 public class CookTile : GlobalTile
 {
+    public static int[] CookTileType = { 96 };
     public override void MouseOver(int i, int j, int type)
     {
         if (type == 96)
@@ -30,18 +31,31 @@ public class CookTile : GlobalTile
             {
                 if (!CookSystem.Cook.Find(a => a.CookTile == new Point(x, y)).PlayerUse)
                 {
-                    int index = CookSystem.Cook.FindIndex(a => a.CookTile == new Point(x, y));
-                    Cook.Send(x, y, true);//同步
-                    Main.LocalPlayer.GetModPlayer<CookPlayer>().CookInfo = index;
-                    CookUI.Open = true;
+                    if (CookUI.Open && CookSystem.Cook.FindIndex(a => a.CookTile == new Point(x, y)) == Main.LocalPlayer.GetModPlayer<CookPlayer>().CookInfo)
+                    {
+                        CookUI.Open = false;
+                        SoundEngine.PlaySound(SoundID.MenuClose);
+                        Cook.Send(x, y, false);//同步
+                    }
+                    else
+                    {
+                        int index = CookSystem.Cook.FindIndex(a => a.CookTile == new Point(x, y));
+                        Cook.Send(x, y, true);//同步
+                        Main.LocalPlayer.GetModPlayer<CookPlayer>().CookInfo = index;
+                        CookUI.Open = true;
+                        Main.playerInventory = true;
+                        SoundEngine.PlaySound(SoundID.MenuOpen);
+                    }
                 }
             }
             else
             {
-                CookSystem.Cook.Add(new CookStore(new Point(x, y), [new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0)], 0, 0, 0, 0,Point.Zero));
+                CookSystem.Cook.Add(new CookStore(new Point(x, y), [new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0)], 0, 0, 0, 0, Point.Zero));
                 Cook.Send(x, y, true);//创建并同步
                 Main.LocalPlayer.GetModPlayer<CookPlayer>().CookInfo = CookSystem.Cook.Count - 1;
                 CookUI.Open = true;
+                Main.playerInventory = true;
+                SoundEngine.PlaySound(SoundID.MenuOpen);
             }
         }
         base.RightClick(i, j, type);
@@ -56,12 +70,28 @@ public class CookTile : GlobalTile
             if (CookSystem.Cook.Exists(a => a.CookTile == new Point(x, y)))
             {
                 var c = CookSystem.Cook.Find(a => a.CookTile == new Point(x, y));
-                Vector2 worldPosition = new Vector2(i, j).ToWorldCoordinates();
                 foreach (Item item in c.CookItems)
                 {
                     if (item != null && item.type > 0 && item.stack > 0)
                     {
-                        return false;//有东西存放则不可破坏
+                        return false;//有东西存放则不可破坏，但是只这样写可以通过破坏底部物块进行间接破坏，所以要下面加上判断
+                    }
+                }
+            }
+        }
+        else
+        {
+            int g = Main.tile[i, j - 1].TileFrameX / 18;
+            int x = i - g % 2;
+            int y = j - 1 - Main.tile[i, j - 1].TileFrameY / 18;
+            if (CookSystem.Cook.Exists(a => a.CookTile == new Point(x, y)))
+            {
+                var c = CookSystem.Cook.Find(a => a.CookTile == new Point(x, y));
+                foreach (Item item in c.CookItems)
+                {
+                    if (item != null && item.type > 0 && item.stack > 0)
+                    {
+                        return false;
                     }
                 }
             }

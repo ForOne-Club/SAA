@@ -20,9 +20,10 @@ namespace SAA.Content.Sys
             CookStore a = CookSystem.Cook[cp.CookInfo];
             CookSystem.FindRecipe(cp.CookInfo);
             Vector2 worldPosition = new Vector2(a.CookTile.X, a.CookTile.Y).ToWorldCoordinates();
-            if (Vector2.Distance(worldPosition, player.Center) > 200)
+            if (Vector2.Distance(worldPosition, player.Center) > 200 || !Main.playerInventory)//距离超过或关闭背包
             {
                 Open = false;
+                SoundEngine.PlaySound(SoundID.MenuClose);
                 Cook.Send(a.CookTile.X, a.CookTile.Y, false);
                 return;
             }
@@ -43,7 +44,7 @@ namespace SAA.Content.Sys
             Main.spriteBatch.Draw(texture1, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture2, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
 
-            Main.inventoryScale *= 1.652f;//第一次进游戏打开背包前这个值貌似不对劲
+            Main.inventoryScale *= 1.652f;//第一次进游戏打开背包前这个值貌似不对劲，所以我只需要打开UI的同时打开背包即可
             Vector2 pos = new Vector2(Bar1.X, Bar1.Y);
             for (int i = 0; i < 6; i++)
             {
@@ -101,6 +102,7 @@ namespace SAA.Content.Sys
                 if (Main.mouseLeft && Main.mouseLeftRelease)
                 {
                     Open = false;
+                    SoundEngine.PlaySound(SoundID.MenuClose);
                     Cook.Send(a.CookTile.X, a.CookTile.Y, false);
                 }
             }

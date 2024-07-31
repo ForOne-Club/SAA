@@ -140,8 +140,7 @@ namespace SAA.Content.Sys
         {
             for (int k = 0; k < Cook.Count; k++)
             {
-                //这样写相当于和烹饪锅绑定了，需要改
-                if (!WorldGen.InWorld(Cook[k].CookTile.X, Cook[k].CookTile.Y) || Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y] == null || !Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].HasTile || Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].TileType != 96)
+                if (!WorldGen.InWorld(Cook[k].CookTile.X, Cook[k].CookTile.Y) || Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y] == null || !Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].HasTile || !CookTile.CookTileType.Contains(Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].TileType))
                     Cook.Remove(Cook[k]);
                 bool Burn = false;
                 if (Cook[k].BurnTime > 0)
