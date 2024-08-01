@@ -96,13 +96,14 @@ namespace SAA.Content.Sys
         public static void FindRecipe(int cookInfo)
         {
             List<RecipeStore> list = new();
-            int amount = 0;
+            List<Point> Materials = new();
             for (int i = 0; i < Cook[cookInfo].CookItems.Length - 2; i++)//燃烧物和成品占据最后两格
             {
                 if (Cook[cookInfo].CookItems[i].type > 0 && Cook[cookInfo].CookItems[i].stack > 0)
                 {
-                    amount++;
-                    if (TryFindRecipes(new Predicate<RecipeStore>((r) => (r.CookItems.Exists(item => item.X == Cook[cookInfo].CookItems[i].type && item.Y == Cook[cookInfo].CookItems[i].stack)) || (r.CookItemGroups.Exists(item => RecipeGroup.recipeGroups[item.X].ValidItems.Contains(Cook[cookInfo].CookItems[i].type) && item.Y == Cook[cookInfo].CookItems[i].stack))), out List<RecipeStore> recipes))
+                    Materials.Add(new Point(Cook[cookInfo].CookItems[i].type, Cook[cookInfo].CookItems[i].stack));
+                    //原材料筛选
+                    if (TryFindRecipes(new Predicate<RecipeStore>((r) => (r.CookItems.Count > 0 && r.CookItems.Exists(item => item.X == Cook[cookInfo].CookItems[i].type && Cook[cookInfo].CookItems[i].stack % item.Y == 0)) || (r.CookItemGroups.Count > 0 && r.CookItemGroups.Exists(item => RecipeGroup.recipeGroups[item.X].ValidItems.Contains(Cook[cookInfo].CookItems[i].type) && Cook[cookInfo].CookItems[i].stack % item.Y == 0))), out List<RecipeStore> recipes))
                     {
                         if (list.Count == 0) list = recipes;
                         else list = (list.Intersect(recipes)).ToList();
@@ -114,19 +115,64 @@ namespace SAA.Content.Sys
                     }
                 }
             }
-            if (list.Count == 0)
+            if (list.Count == 0 || Materials.Count == 0)
             {
                 Cook[cookInfo].CreateItem = Point.Zero;
                 return;
             }
             foreach (RecipeStore r in list)
             {
-                if (r.Amount == amount)
+                //原材料种数对应
+                if (r.Amount != Materials.Count)
                 {
-                    Cook[cookInfo].MaxFinishTime = r.Amount * (ContentSamples.ItemsByType[r.CreateItem.X].rare + 2) * 60;
-                    Cook[cookInfo].CreateItem = r.CreateItem;
-                    return;
+                    continue;
                 }
+                //原材料排除
+                if ((r.CookItems.Count > 0 && r.CookItems.Exists(i => !Materials.Exists(m => m.X == i.X && m.Y % i.Y == 0))) || (r.CookItemGroups.Count > 0 && r.CookItemGroups.Exists(i => !Materials.Exists(m => RecipeGroup.recipeGroups[i.X].ValidItems.Contains(m.X) && m.Y % i.Y == 0))))
+                {
+                    continue;
+                }
+                //数量统计
+                int c1 = 0;
+                List<int> cm1 = new();
+                for (int i = 0; i < r.CookItems.Count; i++)
+                {
+                    c1 += r.CookItems[i].Y;
+                    cm1.Add(r.CookItems[i].Y);
+                }
+                for (int i = 0; i < r.CookItemGroups.Count; i++)
+                {
+                    c1 += r.CookItemGroups[i].Y;
+                    cm1.Add(r.CookItemGroups[i].Y);
+                }
+                int c2 = 0;
+                List<int> cm2 = new();
+                for (int i = 0; i < Materials.Count; i++)
+                {
+                    c2 += Materials[i].Y;
+                    cm2.Add(Materials[i].Y);
+                }
+                int k = 0;
+                if (c1 != c2 && c2 % c1 != 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    k = c2 / c1;
+                }
+                cm1.Sort();
+                cm2.Sort();
+                bool flag = false;
+                for (int i = 0; i < cm1.Count; i++)
+                {
+                    if (cm2[i] / cm1[i] != k) flag = true;
+                }
+                if (flag) continue;
+                Cook[cookInfo].MaxFinishTime = r.Amount * (ContentSamples.ItemsByType[r.CreateItem.X].rare + 2) * 60 * k;
+                Cook[cookInfo].CreateItem = r.CreateItem;
+                Cook[cookInfo].CreateItem.Y *= k;
+                return;
             }
             Cook[cookInfo].CreateItem = Point.Zero;
         }
@@ -135,13 +181,19 @@ namespace SAA.Content.Sys
             recipes = (from RecipeStore r in PotCookRecipe where r is not null && predicate(r) select r).ToList();
             return recipes.Any();
         }
-
         public override void PostUpdateTime()
         {
             for (int k = 0; k < Cook.Count; k++)
             {
                 if (!WorldGen.InWorld(Cook[k].CookTile.X, Cook[k].CookTile.Y) || Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y] == null || !Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].HasTile || !CookTile.CookTileType.Contains(Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].TileType))
+                {
+                    if (CookUI.Open && Main.LocalPlayer.GetModPlayer<CookPlayer>().CookInfo == k)
+                    {
+                        CookUI.Open = false;
+                    }
                     Cook.Remove(Cook[k]);
+                    continue;
+                }
                 bool Burn = false;
                 if (Cook[k].BurnTime > 0)
                 {

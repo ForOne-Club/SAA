@@ -24,7 +24,7 @@ namespace SAA.Content.Sys
             {
                 Open = false;
                 SoundEngine.PlaySound(SoundID.MenuClose);
-                Cook.Send(a.CookTile.X, a.CookTile.Y, false);
+                Cook.NetSend(a.CookTile.X, a.CookTile.Y, false);
                 return;
             }
 
@@ -103,7 +103,7 @@ namespace SAA.Content.Sys
                 {
                     Open = false;
                     SoundEngine.PlaySound(SoundID.MenuClose);
-                    Cook.Send(a.CookTile.X, a.CookTile.Y, false);
+                    Cook.NetSend(a.CookTile.X, a.CookTile.Y, false);
                 }
             }
             //图片内距左上角的宽，图片内距左上角的高，取的图片的宽，取的图片的高
