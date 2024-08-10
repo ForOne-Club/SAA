@@ -11,6 +11,7 @@
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<海麦面包>(), 1);
             recipe.AddIngredient(ItemID.BottledHoney, 1);
+            recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }
     }

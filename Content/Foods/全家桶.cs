@@ -1,4 +1,6 @@
-﻿namespace SAA.Content.Foods
+﻿using Terraria;
+
+namespace SAA.Content.Foods
 {
     public class 全家桶 : ModItem
     {
@@ -16,6 +18,7 @@
                 .AddIngredient(ModContent.ItemType<油炸翅尖>())
                 .AddIngredient(ModContent.ItemType<油炸翅根>())
                 .AddIngredient(ModContent.ItemType<油炸鸡腿>())
+                .AddTile(TileID.WorkBenches)
                 .Register();
         }
     }

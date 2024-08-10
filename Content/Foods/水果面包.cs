@@ -13,6 +13,7 @@
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<海麦面包>(), 1);
             recipe.AddIngredient(FruitType, 1);
+            recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }
     }

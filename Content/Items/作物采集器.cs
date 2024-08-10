@@ -1,5 +1,4 @@
 ﻿using SAA.Content.Projectiles;
-using Terraria.ID;
 
 namespace SAA.Content.Items
 {
@@ -25,6 +24,17 @@ namespace SAA.Content.Items
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-6, +0);
+        }
+        public override void UseAnimation(Player player)
+        {
+            Vector2 distance = Main.MouseWorld - player.MountedCenter;
+            Vector2 unit = distance.SafeNormalize(Vector2.One);
+            float n = 170;
+            if (n < distance.Length()) n = distance.Length();
+            if (n <= 20) n = 20;
+            Dust d = Dust.NewDustDirect(player.MountedCenter + n * unit, 30, 30, DustID.Cloud, -unit.X, -unit.Y, 0, default, 0.5f);
+            d.velocity = (player.MountedCenter-d.position).SafeNormalize(Vector2.One) * 5;
+            base.UseAnimation(player);
         }
         public override void AddRecipes()
         {

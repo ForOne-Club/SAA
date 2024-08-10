@@ -20,7 +20,7 @@
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<海麦面包>(), 1);
             recipe.AddIngredient(ModContent.ItemType<云锦果>(), 4);
-            recipe.AddTile(TileID.CookingPots);
+            recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }
     }

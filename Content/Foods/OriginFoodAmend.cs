@@ -130,6 +130,14 @@ namespace SAA.Content.Foods
                     rec.requiredTile.Add(ModContent.TileType<冰箱>());
                 }
             }
+            //茶
+            if (RecipeSupport.TryFindRecipes(new Predicate<Recipe>((r) => r.createItem.type == ItemID.Teacup), out IEnumerable<Recipe> recipe6))
+            {
+                foreach (Recipe rec in recipe6)
+                {
+                    rec.AddIngredient(ModContent.ItemType<绿茶>());
+                }
+            }
             SetCookRecipe();//添加烹饪合成
             base.PostAddRecipes();
         }

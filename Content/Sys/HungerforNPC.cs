@@ -2,6 +2,7 @@
 using SAA.Content.Items;
 using SAA.Content.Planting.Seeds;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 
 namespace SAA.Content.Sys
 {
@@ -13,22 +14,31 @@ namespace SAA.Content.Sys
         }
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == NPCID.Vulture)
+            switch (npc.type)
             {
-                npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生翅尖>(), 0.17f));
-                npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生翅根>(), 0.12f));
-                npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生鸡腿>(), 0.08f));
-                npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<蛋>(), 0.02f));
-            }
-            if (npc.type == NPCID.Crab)
-            {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<蟹棒>(), 5, 1, 1));
+                case NPCID.Vulture:
+                    npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生翅尖>(), 0.17f));
+                    npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生翅根>(), 0.12f));
+                    npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<生鸡腿>(), 0.08f));
+                    npcLoot.Add(Helper.PercentageDrop(ModContent.ItemType<蛋>(), 0.02f));
+                    break;
+                case NPCID.Crab:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<蟹棒>(), 5, 1, 1));
+                    break;
+                case NPCID.ManEater:
+                case NPCID.Snatcher:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<东方树叶>(), 5, 1, 1));
+                    break;
+                case NPCID.AngryTrapper:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<东方树叶>(), 3, 1, 1));
+                    break;
+
             }
             if (npc.type == NPCID.WallCreeper || npc.type == NPCID.WallCreeperWall || npc.type == NPCID.BlackRecluse || npc.type == NPCID.BlackRecluseWall)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<棉花种子>(), 5, 1, 1));
             }
-            int[] animals = new int[] { 46, 303, 337, 540, 443, 299, 538, 539, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 74, 297, 298 };
+            int[] animals = [46, 303, 337, 540, 443, 299, 538, 539, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 74, 297, 298];
             if (animals.Contains(npc.type))
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<小肉>(), 2, 1, 1));

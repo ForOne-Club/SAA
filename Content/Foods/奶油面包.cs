@@ -15,6 +15,7 @@
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<海麦面包>(), 1);
             recipe.AddIngredient(ModContent.ItemType<奶油>(), 1);
+            recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }
     }

@@ -815,6 +815,21 @@ Items: {
 		DisplayName: Crop collector
 		Tooltip: Gather any agricultural goods that can be easily collected
 	}
+
+	香酥鸡腿堡: {
+		DisplayName: Chicken drumstick burger
+		Tooltip: ""
+	}
+
+	东方树叶: {
+		DisplayName: Oriental leaf
+		Tooltip: ""
+	}
+
+	绿茶: {
+		DisplayName: Green tea
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -828,7 +843,7 @@ Projectiles: {
 	短爬兽宝宝.DisplayName: Brachys Baby
 	咬人甘蓝.DisplayName: Gnawing cabbage
 	施肥.DisplayName: Fertilizer
-	采集.DisplayName: 采集
+	采集.DisplayName: Gather Ingredients
 }
 
 Configs: {
@@ -868,22 +883,26 @@ Configs: {
 
 ChangeLog:
 	'''
-	v0.1.6：Added a crop collector
-	Adapts the Store extend mod
-	Fixed an issue where bonfire determination was overrun at world boundaries
-	Added cherry seeds and cherry crops
-	Added star fruit seeds and star fruit crops
-	Increased satiety consumption speed setting
-	v0.1.5: Adjust cotton yield
-	Increase high-grade fertilizer
-	Add pineapple plants
-	Added sunflower planting and related items with drop compositing
-	Added almond trees and related items
-	Added Bloody cow
-	Removed the milk unlimited synthesis method
-	Adjust frying recipe and satiety
-	Adjust the seed bag drawing
-	Added trial mod promotion
+	v0.1.7：Added a new cooking system for cooking pots which require wood as fuel.
+	Added crispy chicken leg burger and its formula.
+	Added tea leaves, dropped by ogres, can be synthesized into green tea.
+	Modify where some recipes are made.
+	v0.1.6：Added a crop collector.
+	Adapts the Store extend mod.
+	Fixed an issue where bonfire determination was overrun at world boundaries.
+	Added cherry seeds and cherry crops.
+	Added star fruit seeds and star fruit crops.
+	Increased satiety consumption speed setting.
+	v0.1.5: Adjust cotton yield.
+	Increase high-grade fertilizer.
+	Add pineapple plants.
+	Added sunflower planting and related items with drop compositing.
+	Added almond trees and related items.
+	Added Bloody cow.
+	Removed the milk unlimited synthesis method.
+	Adjust frying recipe and satiety.
+	Adjust the seed bag drawing.
+	Added trial mod promotion.
 	v0.1.4：Fixed an issue with item ID display.
 	Increased the effect of picking clothes and sets.
 	v0.1.3：Added UI adjustment Settings.
