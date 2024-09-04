@@ -12,7 +12,7 @@ namespace SAA.Content.Breeding.Tiles
     public abstract class Breed : ModTile
     {
         /// <summary>
-        /// 物块高度, 2/3
+        /// 物块宽度
         /// </summary>
         protected virtual int Width => 3;
         /// <summary>

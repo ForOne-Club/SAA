@@ -141,7 +141,7 @@ namespace SAA.Content.Foods
             SetCookRecipe();//添加烹饪合成
             base.PostAddRecipes();
         }
-        private static void SetCookRecipe()
+        private static void SetCookRecipe()//增加烹饪配方(配种配方)
         {
             if (RecipeSupport.TryFindRecipes(new Predicate<Recipe>((r) => r.requiredTile.Contains(TileID.CookingPots)), out IEnumerable<Recipe> recipe))
             {
@@ -172,11 +172,12 @@ namespace SAA.Content.Foods
                                     require.Add(new Point(rec.requiredItem[i].type, rec.requiredItem[i].stack));
                                 }
                             }
-                            CookSystem.PotCookRecipe.Add(new RecipeStore(require, requiregroup, new Point(rec.createItem.type, rec.createItem.stack)));
+                            CookSystem.PotCookRecipe.Add(new RecipeStore(require, requiregroup, new Point(rec.createItem.type, rec.createItem.stack), TileID.CookingPots));
                         }
                     }
                 }
             }
+            MatingRecipe.SetMatingRecipes();
         }
     }
 }

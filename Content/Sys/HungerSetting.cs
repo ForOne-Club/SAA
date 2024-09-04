@@ -22,6 +22,10 @@
         /// 饱食度UI横向位置调整
         /// </summary>
         public static int UIoffsetX = 1;
+        /// <summary>
+        /// 繁殖速度调整,未添加设置
+        /// </summary>
+        public static float ReproductiveRate = 1f;
 
     }
 }

@@ -77,6 +77,7 @@ Tiles: {
 	血腥蜗牛牧场.MapEntry: Milk Snail Pasture
 	樱桃树.MapEntry: Cherry tree
 	杨桃树.MapEntry: Carambola
+	配种机.MapEntry: 配种机
 }
 
 Buffs: {
@@ -830,6 +831,11 @@ Items: {
 		DisplayName: Green tea
 		Tooltip: ""
 	}
+
+	配种机: {
+		DisplayName: 配种机
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -883,7 +889,7 @@ Configs: {
 
 ChangeLog:
 	'''
-	v0.1.7：Added a new cooking system for cooking pots which require wood as fuel.
+	v0.1.7：New cooking systems were added to recipes that required cooking POTS, which required combustibles such as wood as fuel.
 	Added crispy chicken leg burger and its formula.
 	Added tea leaves, dropped by ogres, can be synthesized into green tea.
 	Modify where some recipes are made.

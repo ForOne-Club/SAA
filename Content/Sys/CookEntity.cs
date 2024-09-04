@@ -1,4 +1,5 @@
 ﻿using NetSimplified;
+using SAA.Content.Breeding.Tiles;
 using SAA.Content.Packages;
 
 namespace SAA.Content.Sys;
@@ -13,25 +14,36 @@ public class CookPlayer : ModPlayer
 }
 public class CookTile : GlobalTile
 {
-    public static int[] CookTileType = { 96 };
+    public static int[] CookTileType = { 96, ModContent.TileType<配种机>() };
     public override void MouseOver(int i, int j, int type)
     {
-        if (type == 96)
+        if (CookTileType.Contains(type))
         {
             Player player = Main.LocalPlayer;
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
             player.cursorItemIconID = 345;
+            if (type == ModContent.TileType<配种机>()) player.cursorItemIconID = ModContent.ItemType<Breeding.Items.配种机>();
         }
         base.MouseOver(i, j, type);
     }
+    /// <summary>
+    /// 得到烹饪物块的左上角坐标
+    /// </summary>
+    public static void OutputCookTileTopLeftCorner(int i, int j, int type, out int x, out int y)
+    {
+        int g = Main.tile[i, j].TileFrameX / 18;
+        x = i - g % 2;//%帧图横向格数
+        if (type == ModContent.TileType<配种机>()) x = i - g;
+        int h = Main.tile[i, j].TileFrameY / 18;
+        y = j - h % 2;
+        if (type == ModContent.TileType<配种机>()) y = j - h;
+    }
     public override void RightClick(int i, int j, int type)
     {
-        if (type == 96)
+        if (CookTileType.Contains(type))
         {
-            int g = Main.tile[i, j].TileFrameX / 18;
-            int x = i - g % 2;
-            int y = j - Main.tile[i, j].TileFrameY / 18;
+            OutputCookTileTopLeftCorner(i, j, type, out int x, out int y);
             if (CookSystem.Cook.Exists(a => a.CookTile == new Point(x, y)))
             {
                 if (!CookSystem.Cook.Find(a => a.CookTile == new Point(x, y)).PlayerUse)
@@ -55,7 +67,10 @@ public class CookTile : GlobalTile
             }
             else
             {
-                CookSystem.Cook.Add(new CookStore(new Point(x, y), [new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0)], 0, 0, 0, 0, Point.Zero));
+                if (type == ModContent.TileType<配种机>())
+                    CookSystem.Cook.Add(new CookStore(new Point(x, y), [new Item(0), new Item(0), new Item(0), new Item(0)], 0, 0, 0, 0, Point.Zero));
+                else
+                    CookSystem.Cook.Add(new CookStore(new Point(x, y), [new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0), new Item(0)], 0, 0, 0, 0, Point.Zero));
                 Cook.NetSend(x, y, true);//创建并同步
                 Main.LocalPlayer.GetModPlayer<CookPlayer>().CookInfo = CookSystem.Cook.Count - 1;
                 CookUI.Open = true;
@@ -67,11 +82,9 @@ public class CookTile : GlobalTile
     }
     public override bool CanExplode(int i, int j, int type)
     {
-        if (type == 96)
+        if (CookTileType.Contains(type))
         {
-            int g = Main.tile[i, j].TileFrameX / 18;
-            int x = i - g % 2;
-            int y = j - Main.tile[i, j].TileFrameY / 18;
+            OutputCookTileTopLeftCorner(i, j, type, out int x, out int y);
             if (CookSystem.Cook.Exists(a => a.CookTile == new Point(x, y)))
             {
                 var c = CookSystem.Cook.Find(a => a.CookTile == new Point(x, y));
@@ -86,9 +99,7 @@ public class CookTile : GlobalTile
         }
         else
         {
-            int g = Main.tile[i, j - 1].TileFrameX / 18;
-            int x = i - g % 2;
-            int y = j - 1 - Main.tile[i, j - 1].TileFrameY / 18;
+            OutputCookTileTopLeftCorner(i, j - 1, type, out int x, out int y);
             if (CookSystem.Cook.Exists(a => a.CookTile == new Point(x, y)))
             {
                 var c = CookSystem.Cook.Find(a => a.CookTile == new Point(x, y));
@@ -105,11 +116,9 @@ public class CookTile : GlobalTile
     }
     public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
     {
-        if (type == 96)
+        if (CookTileType.Contains(type))
         {
-            int g = Main.tile[i, j].TileFrameX / 18;
-            int x = i - g % 2;
-            int y = j - Main.tile[i, j].TileFrameY / 18;
+            OutputCookTileTopLeftCorner(i, j, type, out int x, out int y);
             if (CookSystem.Cook.Exists(a => a.CookTile == new Point(x, y)))
             {
                 var c = CookSystem.Cook.Find(a => a.CookTile == new Point(x, y));
@@ -124,9 +133,7 @@ public class CookTile : GlobalTile
         }
         else
         {
-            int g = Main.tile[i, j - 1].TileFrameX / 18;
-            int x = i - g % 2;
-            int y = j - 1 - Main.tile[i, j - 1].TileFrameY / 18;
+            OutputCookTileTopLeftCorner(i, j-1, type, out int x, out int y);
             if (CookSystem.Cook.Exists(a => a.CookTile == new Point(x, y)))
             {
                 var c = CookSystem.Cook.Find(a => a.CookTile == new Point(x, y));
@@ -169,6 +176,13 @@ public class CookItem : GlobalItem
             case 1729://阴森木
                 entity.GetGlobalItem<CookItem>().BurnTime = 7 * 60;
                 break;
+            case 23://凝胶
+                entity.GetGlobalItem<CookItem>().BurnTime = 8 * 60;
+                break;
+            case 3458://日耀碎片
+                entity.GetGlobalItem<CookItem>().BurnTime = 100 * 60;
+                break;
+
         }
     }
     public override bool InstancePerEntity => true;

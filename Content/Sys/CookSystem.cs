@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader.IO;
+﻿using SAA.Content.Breeding.Tiles;
+using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 namespace SAA.Content.Sys
@@ -30,12 +31,14 @@ namespace SAA.Content.Sys
         public List<Point> CookItems;
         public List<Point> CookItemGroups;
         public Point CreateItem;
+        public int TileType;//制作物块类
         public int Amount => CookItems.Count + CookItemGroups.Count;
-        public RecipeStore(List<Point> cookItems, List<Point> cookItemGroups, Point createItem)
+        public RecipeStore(List<Point> cookItems, List<Point> cookItemGroups, Point createItem, int tileType)
         {
             CookItems = cookItems;
             CookItemGroups = cookItemGroups;
             CreateItem = createItem;
+            TileType = tileType;
         }
     }
     public class CookSystem : ModSystem
@@ -103,7 +106,7 @@ namespace SAA.Content.Sys
                 {
                     Materials.Add(new Point(Cook[cookInfo].CookItems[i].type, Cook[cookInfo].CookItems[i].stack));
                     //原材料筛选
-                    if (TryFindRecipes(new Predicate<RecipeStore>((r) => (r.CookItems.Count > 0 && r.CookItems.Exists(item => item.X == Cook[cookInfo].CookItems[i].type && Cook[cookInfo].CookItems[i].stack % item.Y == 0)) || (r.CookItemGroups.Count > 0 && r.CookItemGroups.Exists(item => RecipeGroup.recipeGroups[item.X].ValidItems.Contains(Cook[cookInfo].CookItems[i].type) && Cook[cookInfo].CookItems[i].stack % item.Y == 0))), out List<RecipeStore> recipes))
+                    if (TryFindRecipes(new Predicate<RecipeStore>((r) => (r.TileType == Main.tile[Cook[cookInfo].CookTile.X, Cook[cookInfo].CookTile.Y].TileType && r.CookItems.Count > 0 && r.CookItems.Exists(item => item.X == Cook[cookInfo].CookItems[i].type && Cook[cookInfo].CookItems[i].stack % item.Y == 0)) || (r.CookItemGroups.Count > 0 && r.CookItemGroups.Exists(item => RecipeGroup.recipeGroups[item.X].ValidItems.Contains(Cook[cookInfo].CookItems[i].type) && Cook[cookInfo].CookItems[i].stack % item.Y == 0))), out List<RecipeStore> recipes))
                     {
                         if (list.Count == 0) list = recipes;
                         else list = (list.Intersect(recipes)).ToList();
@@ -169,7 +172,10 @@ namespace SAA.Content.Sys
                     if (cm2[i] / cm1[i] != k) flag = true;
                 }
                 if (flag) continue;
-                Cook[cookInfo].MaxFinishTime = r.Amount * (ContentSamples.ItemsByType[r.CreateItem.X].rare + 2) * 60 * k;
+                if(r.TileType == ModContent.TileType<配种机>())
+                    Cook[cookInfo].MaxFinishTime = (int)(r.CreateItem.Y * (ContentSamples.ItemsByType[r.CreateItem.X].rare + 2) * 28800 / HungerSetting.ReproductiveRate);
+                else
+                    Cook[cookInfo].MaxFinishTime = r.Amount * (ContentSamples.ItemsByType[r.CreateItem.X].rare + 2) * 60 * k;
                 Cook[cookInfo].CreateItem = r.CreateItem;
                 Cook[cookInfo].CreateItem.Y *= k;
                 return;
@@ -185,7 +191,7 @@ namespace SAA.Content.Sys
         {
             for (int k = 0; k < Cook.Count; k++)
             {
-                if (!WorldGen.InWorld(Cook[k].CookTile.X, Cook[k].CookTile.Y) || Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y] == null || !Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].HasTile || !CookTile.CookTileType.Contains(Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].TileType))
+                if (!WorldGen.InWorld(Cook[k].CookTile.X, Cook[k].CookTile.Y) || Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y] == null || !Main.tile[Cook[k].CookTile.X, Cook[k].CookTile.Y].HasTile || !CookTile.CookTileType.Contains(Main.tile[Cook[k].CookTile].TileType))
                 {
                     if (CookUI.Open && Main.LocalPlayer.GetModPlayer<CookPlayer>().CookInfo == k)
                     {
@@ -220,9 +226,12 @@ namespace SAA.Content.Sys
                         else//完成此次烹饪
                         {
                             Cook[k].FinishTime = 0;
-                            for (int i = 0; i < Cook[k].CookItems.Length - 2; i++)//消耗
+                            if (Cook[k].CookItems.Length > 4)//等于4为配种机
                             {
-                                Cook[k].CookItems[i].TurnToAir();//一锅一份所以直接清除就行
+                                for (int i = 0; i < Cook[k].CookItems.Length - 2; i++)//消耗
+                                {
+                                    Cook[k].CookItems[i].TurnToAir();//一锅一份所以直接清除就行
+                                }
                             }
                             if (Cook[k].CookItems[^1].stack < 1)
                             {
@@ -237,13 +246,31 @@ namespace SAA.Content.Sys
                     }
                     else
                     {
-                        if (Cook[k].CookItems[^2].type > 0 && Cook[k].CookItems[^2].stack > 0 && Cook[k].CookItems[^2].GetGlobalItem<CookItem>().BurnTime > 0)
+                        if (Cook[k].CookItems[^2].type > 0 && Cook[k].CookItems[^2].stack > 0)
                         {
-                            Cook[k].BurnTime = Cook[k].MaxBurnTime = Cook[k].CookItems[^2].GetGlobalItem<CookItem>().BurnTime;
-                            Cook[k].CookItems[^2].stack--;
-                            if (Cook[k].CookItems[^2].stack < 1)
+                            if (Cook[k].CookItems.Length > 4)
                             {
-                                Cook[k].CookItems[^2].TurnToAir();
+                                if (Cook[k].CookItems[^2].GetGlobalItem<CookItem>().BurnTime > 0)
+                                {
+                                    Cook[k].BurnTime = Cook[k].MaxBurnTime = Cook[k].CookItems[^2].GetGlobalItem<CookItem>().BurnTime;
+                                    Cook[k].CookItems[^2].stack--;
+                                    if (Cook[k].CookItems[^2].stack < 1)
+                                    {
+                                        Cook[k].CookItems[^2].TurnToAir();
+                                    }
+                                }
+                            }
+                            else//配种机消耗食物
+                            {
+                                if (Cook[k].CookItems[^2].GetGlobalItem<HungerforItem>().HealHunger > 0)
+                                {
+                                    Cook[k].BurnTime = Cook[k].MaxBurnTime = (int)(Cook[k].CookItems[^2].GetGlobalItem<HungerforItem>().HealHunger * 864/HungerSetting.ReproductiveRate);
+                                    Cook[k].CookItems[^2].stack--;
+                                    if (Cook[k].CookItems[^2].stack < 1)
+                                    {
+                                        Cook[k].CookItems[^2].TurnToAir();
+                                    }
+                                }
                             }
                         }
                     }
