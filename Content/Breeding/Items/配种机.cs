@@ -1,5 +1,3 @@
-using SAA.Content.NPCs;
-
 namespace SAA.Content.Breeding.Items
 {
     public class 配种机 : PlaceItem
@@ -10,9 +8,9 @@ namespace SAA.Content.Breeding.Items
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient<奶蜗牛>()
-            .AddIngredient(ItemID.WaterBucket, 2)
-            .AddRecipeGroup(RecipeGroupID.IronBar, 6)
+            .AddIngredient(ItemID.WaterBucket, 4)
+            .AddIngredient(ItemID.Glass, 6)
+            .AddRecipeGroup(RecipeGroupID.IronBar, 8)
             .Register();
         }
     }

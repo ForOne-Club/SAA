@@ -2,12 +2,34 @@
 using SAA.Content.Items;
 using SAA.Content.Planting.Seeds;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
 
 namespace SAA.Content.Sys
 {
     public class HungerforNPC : GlobalNPC
     {
+        public static int[] AnimalsNPCType = //掉小肉
+        [
+            46, 303, 337, 540, //兔子
+            646, 647, 648, 649, 650, 651, 652, //宝石兔子
+            299, 538, //松鼠
+            639, 640, 641, 642, 643, 644, 645, //宝石松鼠
+            74, 297, 298, //小鸟
+            148, 149, //企鹅
+            671, 672, 673, 674, 675, //鹦鹉和巨嘴鸟(丛林)
+            616, 617, 625, //乌龟和海龟
+            361, //青蛙
+            362, 363, 364, 365, //两个状态的鸭子
+            602, 603, //海鸥
+            608, 609, //䴙䴘
+            610, //大鼠
+        ];
+        public static int[] GoldAnimalsNPCType = //这部分我感觉应该掉金小肉
+        [
+            443, //金兔子
+            539, //金松鼠
+            442, //金小鸟
+            445, //金青蛙
+        ];
         public override void SetDefaults(NPC entity)
         {
             entity.value /= 10;
@@ -38,8 +60,7 @@ namespace SAA.Content.Sys
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<棉花种子>(), 5, 1, 1));
             }
-            int[] animals = [46, 303, 337, 540, 443, 299, 538, 539, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 74, 297, 298];
-            if (animals.Contains(npc.type))
+            if (AnimalsNPCType.Contains(npc.type))
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<小肉>(), 2, 1, 1));
             }

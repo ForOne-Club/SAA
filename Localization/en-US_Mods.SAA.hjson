@@ -77,7 +77,8 @@ Tiles: {
 	血腥蜗牛牧场.MapEntry: Milk Snail Pasture
 	樱桃树.MapEntry: Cherry tree
 	杨桃树.MapEntry: Carambola
-	配种机.MapEntry: 配种机
+	配种机.MapEntry: Breeding machine
+	䴙䴘笼.MapEntry: Great grebe cage
 }
 
 Buffs: {
@@ -833,7 +834,12 @@ Items: {
 	}
 
 	配种机: {
-		DisplayName: 配种机
+		DisplayName: Breeding machine
+		Tooltip: Providing an environment for large and medium organisms to thrive
+	}
+
+	䴙䴘笼: {
+		DisplayName: Great grebe cage
 		Tooltip: ""
 	}
 }
@@ -889,6 +895,9 @@ Configs: {
 
 ChangeLog:
 	'''
+	v0.1.8：Added breeding machine.
+	Added great grebe cage.
+	The variety of animals that drop their small meat has increased.
 	v0.1.7：New cooking systems were added to recipes that required cooking POTS, which required combustibles such as wood as fuel.
 	Added crispy chicken leg burger and its formula.
 	Added tea leaves, dropped by ogres, can be synthesized into green tea.

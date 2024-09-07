@@ -1,9 +1,17 @@
-﻿using SAA.Content.NPCs;
+﻿using SAA.Content.Foods;
+using SAA.Content.NPCs;
 
 namespace SAA.Content.Sys;
 
 public class MatingRecipe
 {
+    /// <summary>
+    /// 较大或大型动物配种配方, 使用配种机交配, 消耗食物较多, 产出动物较少, 用于扩大生产
+    /// </summary>
+    /// <param name="require"></param>
+    /// <param name="requiregroup"></param>
+    /// <param name="createtype"></param>
+    /// <param name="createamount"></param>
     public static void SetMatingRecipe(List<int> require, List<int> requiregroup, int createtype, int createamount = 1)
     {
         int c = require.Count + requiregroup.Count;
@@ -20,8 +28,22 @@ public class MatingRecipe
         }
         CookSystem.PotCookRecipe.Add(new RecipeStore(Require, Requiregroup, new Point(createtype, createamount), ModContent.TileType<Breeding.Tiles.配种机>()));
     }
+    public static void SetSameTypeMatingRecipe(int type, int createamount = 1)
+    {
+        SetMatingRecipe(new List<int> { type, type }, new List<int>(), type, createamount);
+    }
+
     public static void SetMatingRecipes()
     {
-        SetMatingRecipe(new List<int> { ModContent.ItemType<奶蜗牛>(), ModContent.ItemType<奶蜗牛>() }, new List<int>(), ModContent.ItemType<奶蜗牛>());
+        SetSameTypeMatingRecipe(ModContent.ItemType<奶蜗牛>());
+        SetSameTypeMatingRecipe(ModContent.ItemType<血腥奶蜗牛>());
+        //SetSameTypeMatingRecipe(ModContent.ItemType<乌贼>());这算是小型动物
+        //下面是原版
+        SetSameTypeMatingRecipe(2122);//鸭子
+        SetSameTypeMatingRecipe(2123);
+        SetSameTypeMatingRecipe(4374);//䴙䴘
+
+
+        SetMatingRecipe(new List<int> { 2122, 2123 }, new List<int>(), 2123);
     }
 }

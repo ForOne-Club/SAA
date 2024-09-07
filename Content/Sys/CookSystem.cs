@@ -274,7 +274,6 @@ namespace SAA.Content.Sys
                             }
                         }
                     }
-                    break;
                 }
                 else
                 {
