@@ -881,6 +881,11 @@ Configs: {
 			Label: 饱食度消耗速度
 			Tooltip: ""
 		}
+
+		ReproductiveRate: {
+			Label: 繁殖速度倍率
+			Tooltip: ""
+		}
 	}
 
 	ClientConfigs: {

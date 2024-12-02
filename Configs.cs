@@ -31,6 +31,14 @@ namespace SAA
         public int Magnification;
 
         [BackgroundColor(55, 120, 175)]
+        [Increment(0.1f)]
+        [Range(0.1f, 10f)]
+        [DefaultValue(1)]
+        [Label("繁殖速度倍率")]
+        [Slider]
+        public float ReproductiveRate;
+
+        [BackgroundColor(55, 120, 175)]
         [DefaultValue(false)]
         [Label("农作物成熟收割")]
         [Tooltip("是, 镰刀只会收割成熟的农作物, 否, 以取消. 默认为否")]
@@ -40,6 +48,7 @@ namespace SAA
         {
             HungerSetting.HungerDown = HungerCausePlayerDown;
             HungerSetting.GrowMagnification = Magnification;
+            HungerSetting.ReproductiveRate = ReproductiveRate;
             HungerSetting.GrownCut = GrownCut;
             HungerforPlayer.BaseHungerCut = 0.001f * HungerCutIndex;
             base.OnChanged();

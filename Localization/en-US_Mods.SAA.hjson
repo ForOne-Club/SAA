@@ -881,6 +881,11 @@ Configs: {
 			Label: Satiety consumption rate
 			Tooltip: ""
 		}
+
+		ReproductiveRate: {
+			Label: Reproductive rate multiplier
+			Tooltip: ""
+		}
 	}
 
 	ClientConfigs: {
