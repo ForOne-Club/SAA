@@ -207,7 +207,7 @@ namespace SAA.Content.Sys
                 float hungerheal = item.GetGlobalItem<HungerforItem>().HealHunger;
                 HungerforPlayer hungerforPlayer = player.GetModPlayer<HungerforPlayer>();
                 float hunger = hungerforPlayer.HungerMax - hungerforPlayer.Hunger;
-                if (hunger > -50)
+                if (hunger > -(hungerforPlayer.HungerMax / 2))//1.5倍极限胃容量
                 {
                     hungerforPlayer.Hunger += hungerheal; //> hunger ? hunger : hungerheal;
                     if (hungerheal >= 10 && hungerforPlayer.HungerReduce > 0)

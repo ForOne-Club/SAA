@@ -10,12 +10,13 @@ namespace SAA.Content.Buffs
             Main.debuff[Type] = true;
         }
         public override void Update(Player player, ref int buffIndex)
-        {
-            float k = player.GetModPlayer<HungerforPlayer>().HungerMax - player.GetModPlayer<HungerforPlayer>().Hunger;
-            player.GetDamage(DamageClass.Generic) += 0.01f * k;
-            player.GetAttackSpeed(DamageClass.Melee) += 0.005f * k;
-            player.pickSpeed -= 0.01f * k;
-            player.moveSpeed += 0.01f * k;
+        { 
+            var hp = player.GetModPlayer<HungerforPlayer>();
+            float k = 1 - hp.Hunger/ hp.HungerMax;
+            player.GetDamage(DamageClass.Generic) += k;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.5f * k;
+            player.pickSpeed -= k;
+            player.moveSpeed += k;
         }
     }
 }

@@ -76,7 +76,7 @@ public class HungerforPlayer : ModPlayer
             int hungerMax;
             if (HungerCount > 20)
             {
-                hungerMax = (HungerCount - 20) * 5;
+                hungerMax = (HungerCount - 20) * 5 + 400;
             }
             else
             {
@@ -89,7 +89,8 @@ public class HungerforPlayer : ModPlayer
         if (Hunger > h) Hunger = h;
         base.Kill(damage, hitDirection, pvp, damageSource);
     }
-    public override void UpdateLifeRegen()
+    //liferegen更新太后面了，加buff还是放到这里比较好
+    public override void PreUpdateBuffs()
     {
         if (Player.whoAmI == Main.myPlayer)
         {
@@ -180,6 +181,9 @@ public class HungerforPlayer : ModPlayer
             //臭臭
             if (PoopTime > 0) PoopTime--;
         }
+    }
+    public override void UpdateLifeRegen()
+    {
     }
     public override void UpdateBadLifeRegen()
     {
