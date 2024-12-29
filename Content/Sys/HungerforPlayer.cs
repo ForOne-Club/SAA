@@ -110,8 +110,12 @@ public class HungerforPlayer : ModPlayer
                 }
                 if (buff == ModContent.BuffType<酸甜可口>())
                 {
-                    mult *= 1.5f;
+                    mult *= 1.35f;
                     if (Hunger > 0 && Player.lifeRegen >= 0) Player.lifeRegen++;
+                }
+                if (buff == ModContent.BuffType<腹泻>())
+                {
+                    mult *= 1.5f;
                 }
                 if (buff == ModContent.BuffType<饱食之火>() || buff == ModContent.BuffType<饱腹>())
                 {

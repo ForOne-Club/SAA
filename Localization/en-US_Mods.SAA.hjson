@@ -5,6 +5,8 @@ Tooltips: {
 	1: Increase satiety
 	2: Can plant on arable land
 	3: Can plant on the grass
+	4: It's not very fresh
+	5: About to rot
 }
 
 Cook: Use a cooking pot to cook
@@ -842,6 +844,11 @@ Items: {
 		DisplayName: Great grebe cage
 		Tooltip: ""
 	}
+
+	腐烂物: {
+		DisplayName: Putrefaction
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -885,6 +892,11 @@ Configs: {
 		ReproductiveRate: {
 			Label: Reproductive rate multiplier
 			Tooltip: ""
+		}
+
+		FoodSpoilt: {
+			Label: Food spoilage switch
+			Tooltip: Yes, the food will not be preserved for a long time, no, to cancel. Default yes
 		}
 	}
 

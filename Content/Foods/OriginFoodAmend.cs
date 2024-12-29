@@ -80,6 +80,15 @@ namespace SAA.Content.Foods
             .AddRecipeGroup(RecipeGroupID.Fruit, 2)
             .AddTile(ModContent.TileType<冰箱>())
             .Register();
+
+
+
+            //肥料
+            Recipe.Create(5438)
+            .AddIngredient<腐烂物>()
+            .AddIngredient(ItemID.Bone, 3)
+            .AddTile(TileID.Bottles)
+            .Register();
         }
         public override void AddRecipeGroups()
         {

@@ -22,6 +22,12 @@ namespace SAA
         public float HungerCutIndex;
 
         [BackgroundColor(55, 120, 175)]
+        [DefaultValue(true)]
+        [Label("食物腐败开关")]
+        [Tooltip("是, 食物将无法长期保存, 否, 以取消. 默认为是")]
+        public bool FoodSpoilt;
+
+        [BackgroundColor(55, 120, 175)]
         [Increment(1)]
         [Range(1, 100)]
         [DefaultValue(1)]
@@ -50,6 +56,7 @@ namespace SAA
             HungerSetting.GrowMagnification = Magnification;
             HungerSetting.ReproductiveRate = ReproductiveRate;
             HungerSetting.GrownCut = GrownCut;
+            HungerSetting.FoodSpoilt = FoodSpoilt;
             HungerforPlayer.BaseHungerCut = 0.001f * HungerCutIndex;
             base.OnChanged();
         }

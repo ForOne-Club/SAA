@@ -26,6 +26,10 @@
         /// 繁殖速度调整
         /// </summary>
         public static float ReproductiveRate = 1f;
+        /// <summary>
+        /// 食物是否腐败
+        /// </summary>
+        public static bool FoodSpoilt = true;
 
     }
 }

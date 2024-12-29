@@ -1,13 +1,22 @@
-﻿using SAA.Content.DamageClasses;
+﻿using SAA.Content.Buffs;
+using SAA.Content.DamageClasses;
+using SAA.Content.Foods;
 using SAA.Content.Items;
 using SAA.Content.Planting.Tiles.Plants;
 using SAA.Content.Projectiles;
+using System.IO;
+using Terraria.ModLoader.IO;
 
 namespace SAA.Content.Sys
 {
     public class HungerforItem : GlobalItem
     {
-        public int HealHunger = 0;
+        public int HealHunger = 0;//饱食度
+        /// <summary>
+        /// 保质期（-1表示不会腐败），16.66秒即1000帧保质期为1
+        /// </summary>
+        public int ShelfLife = -1;
+        public int ShelfLifeMax = -1;//保质期上限
         public override void Load()
         {
             On_Player.QuickBuff += QuickBuffFixForHunger;//变成了快速吃饱，悲
@@ -118,6 +127,8 @@ namespace SAA.Content.Sys
             if (Helper.IsFoods(entity, out int buff, out int time))
             {
                 entity.GetGlobalItem<HungerforItem>().HealHunger = QuickBuff_FindFoodPriority(buff) * time / 3600;
+                entity.GetGlobalItem<HungerforItem>().ShelfLife = 173;//游戏中两天（现实中48分钟）
+                entity.GetGlobalItem<HungerforItem>().ShelfLifeMax = 173;
                 if (entity.type <= ItemLoader.ItemCount)
                 {
                     int level = buff switch
@@ -204,7 +215,20 @@ namespace SAA.Content.Sys
         {
             if (Helper.IsFoods(item, out _, out _))
             {
-                float hungerheal = item.GetGlobalItem<HungerforItem>().HealHunger;
+                var a = item.GetGlobalItem<HungerforItem>();
+                int hungerheal = a.HealHunger;
+                if (HungerSetting.FoodSpoilt)
+                {
+                    int life = a.ShelfLife;
+                    int lifemax = a.ShelfLifeMax;
+                    if (life > 0)
+                    {
+                        if (life < lifemax / 8 || (life < lifemax / 2 && Main.rand.NextBool(life - lifemax / 8 + 1)))
+                        {
+                            player.AddBuff(ModContent.BuffType<腹泻>(), hungerheal * 3600);
+                        }
+                    }
+                }
                 HungerforPlayer hungerforPlayer = player.GetModPlayer<HungerforPlayer>();
                 float hunger = hungerforPlayer.HungerMax - hungerforPlayer.Hunger;
                 if (hunger > -(hungerforPlayer.HungerMax / 2))//1.5倍极限胃容量
@@ -215,8 +239,8 @@ namespace SAA.Content.Sys
                         hungerforPlayer.HungerReduce--;
                         hungerforPlayer.Hunger++;
                     }
-                    HungerHeal((int)hungerheal, player);
-                    Gluttony(player, (int)hungerheal, 1);
+                    HungerHeal(hungerheal, player);
+                    Gluttony(player, hungerheal, 1);
                 }
                 else
                 {
@@ -252,6 +276,26 @@ namespace SAA.Content.Sys
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (HungerSetting.FoodSpoilt)
+            {
+                int life = item.GetGlobalItem<HungerforItem>().ShelfLife;
+                int lifemax = item.GetGlobalItem<HungerforItem>().ShelfLifeMax;
+                if (life > 0)
+                {
+                    if (life < lifemax / 8)
+                    {
+                        TooltipLine text = new(Mod, "保质期", Language.GetTextValue("Mods.SAA.Tooltips.5"));
+                        tooltips.Insert(2, text);//第几行插入，1在名称下面
+                    }
+                    else if (life < lifemax / 2)
+                    {
+                        TooltipLine text = new(Mod, "保质期", Language.GetTextValue("Mods.SAA.Tooltips.4"));
+                        tooltips.Insert(2, text);//第几行插入，1在名称下面
+                    }
+                }
+                //TooltipLine text2 = new(Mod, "保质期2", "保质期:" + life.ToString());
+                //tooltips.Insert(2, text2);//第几行插入，1在名称下面
+            }
             int heal = item.GetGlobalItem<HungerforItem>().HealHunger;
             if (heal > 0)
             {
@@ -260,8 +304,55 @@ namespace SAA.Content.Sys
             }
             //参考物品价值和ID，测试使用
             //tooltips.Add(new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
-            //tooltips.Add(new TooltipLine(Mod, "ID", Language.GetTextValue("ID") + $":{item.type}"));
+            tooltips.Add(new TooltipLine(Mod, "ID", Language.GetTextValue("ID") + $":{item.type}"));
             base.ModifyTooltips(item, tooltips);
+        }
+        public override void OnStack(Item destination, Item source, int numToTransfer)
+        {
+            int k = destination.GetGlobalItem<HungerforItem>().ShelfLife * destination.stack + source.GetGlobalItem<HungerforItem>().ShelfLife * source.stack;
+            destination.GetGlobalItem<HungerforItem>().ShelfLife = k / (destination.stack + source.stack);
+            base.OnStack(destination, source, numToTransfer);
+        }
+        public override void UpdateInventory(Item item, Player player)
+        {
+            if (HungerSetting.FoodSpoilt)
+            {
+                var a = item.GetGlobalItem<HungerforItem>();
+                if (a.ShelfLife > 0 && Main.rand.NextBool(1000))
+                {
+                    a.ShelfLife--;
+                }
+                if (a.ShelfLife == 0)
+                {
+                    item.SetDefaults(ModContent.ItemType<腐烂物>());
+                }
+            }
+            base.UpdateInventory(item, player);
+        }
+        public override void NetSend(Item item, BinaryWriter writer)
+        {
+            writer.Write(item.GetGlobalItem<HungerforItem>().ShelfLife);
+            base.NetSend(item, writer);
+        }
+        public override void NetReceive(Item item, BinaryReader reader)
+        {
+            item.GetGlobalItem<HungerforItem>().ShelfLife = reader.ReadInt32();
+            base.NetReceive(item, reader);
+        }
+        public override void SaveData(Item item, TagCompound tag)
+        {
+            tag.Add("ShelfLife", item.GetGlobalItem<HungerforItem>().ShelfLife);
+            base.SaveData(item, tag);
+        }
+        public override void LoadData(Item item, TagCompound tag)
+        {
+            var a = item.GetGlobalItem<HungerforItem>();
+            a.ShelfLife = tag.GetAsInt("ShelfLife");
+            if (a.ShelfLife < 0 && a.ShelfLifeMax > 0)
+            {
+                a.ShelfLife = a.ShelfLifeMax;
+            }
+            base.LoadData(item, tag);
         }
         //镰刀收割
         public override void MeleeEffects(Item item, Player player, Rectangle hitbox)

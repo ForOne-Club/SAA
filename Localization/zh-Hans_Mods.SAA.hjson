@@ -5,6 +5,8 @@ Tooltips: {
 	1: 增加饱食度
 	2: 可以在耕地上种植
 	3: 可以在草地上种植
+	4: 不是很新鲜了
+	5: 即将腐败
 }
 
 Cook: 使用烹饪锅进行烹饪
@@ -842,6 +844,11 @@ Items: {
 		DisplayName: 䴙䴘笼
 		Tooltip: ""
 	}
+
+	腐烂物: {
+		DisplayName: 腐烂物
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -885,6 +892,11 @@ Configs: {
 		ReproductiveRate: {
 			Label: 繁殖速度倍率
 			Tooltip: ""
+		}
+
+		FoodSpoilt: {
+			Label: 食物腐败开关
+			Tooltip: 是, 食物将无法长期保存, 否, 以取消. 默认为是
 		}
 	}
 
