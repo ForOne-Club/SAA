@@ -1,31 +1,30 @@
-﻿namespace SAA.Content.Foods
+﻿namespace SAA.Content.Foods;
+
+public class 乌贼 : ModItem
 {
-    public class 乌贼 : ModItem
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("乌贼");
-            // Tooltip.SetDefault("眼疾手快！");
-        }
-        public override void SetDefaults()
-        {
-            Item.SetFoodMaterials(26, 42, 0, 9);
-        }
-        public override bool? UseItem(Player player)
-        {
-            Vector2 pos = player.Center + new Vector2(player.direction * Main.rand.Next(30, 40), Main.rand.Next(-10, 10));
-            NPC.NewNPC(null, (int)pos.X, (int)pos.Y, NPCID.Squid);
-            return true;
-        }
+        // DisplayName.SetDefault("乌贼");
+        // Tooltip.SetDefault("眼疾手快！");
     }
-    internal class 乌贼物品获取 : GlobalNPC
+    public override void SetDefaults()
     {
-        public override void SetDefaults(NPC npc)
+        Item.SetFoodMaterials(26, 42, 0, 9, true);
+    }
+    public override bool? UseItem(Player player)
+    {
+        Vector2 pos = player.Center + new Vector2(player.direction * Main.rand.Next(30, 40), Main.rand.Next(-10, 10));
+        NPC.NewNPC(null, (int)pos.X, (int)pos.Y, NPCID.Squid);
+        return true;
+    }
+}
+internal class 乌贼物品获取 : GlobalNPC
+{
+    public override void SetDefaults(NPC npc)
+    {
+        if (npc.type == NPCID.Squid)
         {
-            if (npc.type == NPCID.Squid)
-            {
-                npc.catchItem = (short)ModContent.ItemType<乌贼>();
-            }
+            npc.catchItem = (short)ModContent.ItemType<乌贼>();
         }
     }
 }

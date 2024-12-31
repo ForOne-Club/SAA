@@ -120,10 +120,27 @@ namespace SAA.Content.Sys
         }
         public static int QuickBuff_FindFoodPriority(int buffType)
         {
-            return buffType == 26 ? 1 : buffType == 206 ? 2 : buffType == 207 ? 4 : 0;
+            return buffType == 26 || buffType == ModContent.BuffType<腹泻>() ? 1 : buffType == 206 ? 2 : buffType == 207 ? 4 : 0;
         }
         public override void SetDefaults(Item entity)
         {
+            //原版食物原材料部分能吃
+            int[] fish = [2290, 2297, 2299];
+            if (fish.Contains(entity.type))
+            {
+                Helper.SetFoodMaterials(entity, entity.width, entity.height, 0, 7, true);
+            }
+            int[] freshfish = [2300, 2298, 2301, 4401];
+            if (freshfish.Contains(entity.type))
+            {
+                Helper.SetFoodMaterials(entity, entity.width, entity.height, 0, 16, true);
+            }
+            int[] shrimp = [ItemID.Shrimp, 4402];
+            if (shrimp.Contains(entity.type))
+            {
+                Helper.SetFoodMaterials(entity, entity.width, entity.height, 0, 18, true);
+            }
+
             if (Helper.IsFoods(entity, out int buff, out int time))
             {
                 entity.GetGlobalItem<HungerforItem>().HealHunger = QuickBuff_FindFoodPriority(buff) * time / 3600;
@@ -276,6 +293,8 @@ namespace SAA.Content.Sys
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            bool test = false;
+            if (Main.LocalPlayer.name.Contains("testmod")) test = true;
             if (HungerSetting.FoodSpoilt)
             {
                 int life = item.GetGlobalItem<HungerforItem>().ShelfLife;
@@ -293,8 +312,10 @@ namespace SAA.Content.Sys
                         tooltips.Insert(2, text);//第几行插入，1在名称下面
                     }
                 }
-                //TooltipLine text2 = new(Mod, "保质期2", "保质期:" + life.ToString());
-                //tooltips.Insert(2, text2);//第几行插入，1在名称下面
+                if (test)
+                {
+                    tooltips.Add(new TooltipLine(Mod, "腐烂倒计时", "腐烂倒计时:" + life.ToString()));
+                }
             }
             int heal = item.GetGlobalItem<HungerforItem>().HealHunger;
             if (heal > 0)
@@ -302,9 +323,12 @@ namespace SAA.Content.Sys
                 TooltipLine text = new(Mod, "饱食度", Language.GetTextValue("Mods.SAA.Tooltips.1") + $":{heal}");
                 tooltips.Insert(2, text);//第几行插入，1在名称下面
             }
-            //参考物品价值和ID，测试使用
-            //tooltips.Add(new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
-            tooltips.Add(new TooltipLine(Mod, "ID", Language.GetTextValue("ID") + $":{item.type}"));
+            if (test)
+            {
+                //参考物品价值和ID，测试使用
+                tooltips.Add(new TooltipLine(Mod, "价值", Language.GetTextValue("价值") + $":{item.value}"));
+                tooltips.Add(new TooltipLine(Mod, "ID", Language.GetTextValue("ID") + $":{item.type}"));
+            }
             base.ModifyTooltips(item, tooltips);
         }
         public override void OnStack(Item destination, Item source, int numToTransfer)

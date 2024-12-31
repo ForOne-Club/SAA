@@ -152,6 +152,11 @@ Buffs: {
 		DisplayName: 吃撑
 		Description: 不要再吃了！
 	}
+
+	腹泻: {
+		DisplayName: 腹泻
+		Description: 属性全面下降，饱食度下降加快
+	}
 }
 
 Items: {

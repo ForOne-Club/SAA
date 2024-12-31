@@ -1,4 +1,5 @@
-﻿using SAA.Content.Foods;
+﻿using SAA.Content.Buffs;
+using SAA.Content.Foods;
 using SAA.Content.Planting.Tiles.Plants;
 using SAA.Content.Sys;
 using Terraria.Enums;
@@ -99,7 +100,7 @@ namespace SAA
             {
                 bufftype = item.buffType;
                 bufftime = item.buffTime;
-                return bufftime > 0 && (bufftype == 26 || bufftype == 206 || bufftype == 207);
+                return bufftime > 0 && (bufftype == 26 || bufftype == 206 || bufftype == 207||bufftype == ModContent.BuffType<腹泻>());
             }
             return false;
         }
@@ -111,11 +112,18 @@ namespace SAA
         /// <param name="height"></param>
         /// <param name="level">0/1/2</param>
         /// <param name="hunger"></param>
-        public static void SetFoodMaterials(this Item item, int width, int height, int level, int hunger)
+        public static void SetFoodMaterials(this Item item, int width, int height, int level, int hunger, bool canEat = false, bool useGolpSound = false)
         {
-            item.width = width;
-            item.height = height;
-            item.maxStack = 9999;
+            if (canEat)
+            {
+                item.DefaultToFood(width, height, ModContent.BuffType<腹泻>(), hunger * 900 * (int)Math.Pow(2, 2 - level), useGolpSound);
+            }
+            else
+            {
+                item.width = width;
+                item.height = height;
+                item.maxStack = 9999;
+            }
             item.SetShopValues((ItemRarityColor)level, hunger * 300 * (level + 1));
         }
         /// <summary>
@@ -160,7 +168,7 @@ namespace SAA
         /// <param name="amount">单次份数</param>
         /// <param name="wheatamount">海麦用量</param>
         /// <returns></returns>
-        public static Recipe Fried(this ModItem item, int ingredient, int amount = 1,int wheatamount = 1, bool bottle = false)
+        public static Recipe Fried(this ModItem item, int ingredient, int amount = 1, int wheatamount = 1, bool bottle = false)
         {
             if (bottle)
             {

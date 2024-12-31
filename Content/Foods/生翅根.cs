@@ -8,7 +8,7 @@
         }
         public override void SetDefaults()
         {
-            Item.SetFoodMaterials(20, 20, 0, 8);
+            Item.SetFoodMaterials(20, 20, 0, 8, true);
         }
     }
 }

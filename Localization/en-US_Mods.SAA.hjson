@@ -152,6 +152,11 @@ Buffs: {
 		DisplayName: Stuffed
 		Description: Don't eat any more!
 	}
+
+	腹泻: {
+		DisplayName: Diarrhea
+		Description: Attributes decreased, satiety decreased faster
+	}
 }
 
 Items: {

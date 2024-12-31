@@ -10,7 +10,7 @@ namespace SAA.Content.Foods
         }
         public override void SetDefaults()
         {
-            Item.SetFoodMaterials(40, 28, 0, 9);
+            Item.SetFoodMaterials(40, 28, 0, 9, true);
         }
     }
 }

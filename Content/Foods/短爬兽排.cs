@@ -9,7 +9,7 @@
         }
         public override void SetDefaults()
         {
-            Item.SetFoodMaterials(26, 28, 0, 17);
+            Item.SetFoodMaterials(26, 28, 0, 17, true);
         }
     }
 }
