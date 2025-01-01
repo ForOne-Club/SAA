@@ -56,7 +56,13 @@ Tiles: {
 	生命果实.MapEntry: 生命果实
 	蓝莓.MapEntry: 蓝莓
 	苹果树.MapEntry: 苹果树
-	冰箱.MapEntry: 冰箱
+
+	冰箱: {
+		MapEntry: 冰箱
+		// MapEntry0: 冰箱
+		// MapEntry1: 冰箱
+	}
+
 	火龙果.MapEntry: 火龙果
 	鸭笼.MapEntry: 鸭笼
 	野鸭笼.MapEntry: 野鸭笼
@@ -923,6 +929,7 @@ Configs: {
 ChangeLog:
 	'''
 	v0.1.9：食物会腐败，部分食物材料可食用。
+	如果想让食物保存更长时间，可以将其放进冰箱。
 	生食会导致腹泻，即将腐败的食物也可能导致腹泻。
 	v0.1.8：加入了配种机和䴙䴘笼。
 	掉落小肉的动物种类增加了。

@@ -56,7 +56,13 @@ Tiles: {
 	生命果实.MapEntry: Fruit of life
 	蓝莓.MapEntry: Blueberry
 	苹果树.MapEntry: Apple tree
-	冰箱.MapEntry: Refrigerator
+
+	冰箱: {
+		MapEntry: Refrigerator
+		MapEntry0: Refrigerator
+		MapEntry1: Refrigerator
+	}
+
 	火龙果.MapEntry: Dragon fruit
 	鸭笼.MapEntry: Duck cage
 	野鸭笼.MapEntry: Wild duck cage
@@ -923,6 +929,7 @@ Configs: {
 ChangeLog:
 	'''
 	v0.1.9: Food will spoil and some food materials may be edible.
+	If you want food to last longer, you can put it in the refrigerator.
 	Raw food can cause diarrhea, which can also be caused by spoilt food.
 	v0.1.8：Added breeding machine.
 	Added great grebe cage.

@@ -1,19 +1,14 @@
-﻿using SAA.Content.Foods;
+﻿using SAA.Content.Base;
+
 namespace SAA.Content.Placeable.Tiles
 {
-    public class 冰箱 : ModTile
+    public class 冰箱 : BaseChestTile
     {
-        public override void SetStaticDefaults()
+        public override int ItemType => ModContent.ItemType<Placeable.冰箱>();
+
+        public override void SetDust(ref int dustType)
         {
-            Main.tileSolidTop[Type] = false;
-            Main.tileFrameImportant[Type] = true;
-            Main.tileNoAttach[Type] = true;
-            Main.tileTable[Type] = false;
-            Main.tileLavaDeath[Type] = false;
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-            TileObjectData.newTile.DrawYOffset = 2;
-            TileObjectData.addTile(Type);
-            AddMapEntry(Color.Gray, CreateMapEntryName());
+            dustType = DustID.Platinum;
         }
     }
 }
