@@ -13,6 +13,7 @@ namespace SAA.Content.Buffs
         { 
             var hp = player.GetModPlayer<HungerforPlayer>();
             float k = 1 - hp.Hunger/ hp.HungerMax;
+            if (k < -0.5f) k = -0.5f;//限制上限
             player.GetDamage(DamageClass.Generic) += k;
             player.GetAttackSpeed(DamageClass.Melee) += 0.5f * k;
             player.pickSpeed -= k;

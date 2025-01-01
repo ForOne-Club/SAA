@@ -854,6 +854,11 @@ Items: {
 		DisplayName: Putrefaction
 		Tooltip: ""
 	}
+
+	竹笋: {
+		DisplayName: Bamboo shoot
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -917,6 +922,8 @@ Configs: {
 
 ChangeLog:
 	'''
+	v0.1.9: Food will spoil and some food materials may be edible.
+	Raw food can cause diarrhea, which can also be caused by spoilt food.
 	v0.1.8：Added breeding machine.
 	Added great grebe cage.
 	The variety of animals that drop their small meat has increased.

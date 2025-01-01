@@ -104,83 +104,102 @@ namespace SAA.Content.Sys
         }
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            Player player = Main.LocalPlayer;
-            Item item = player.HeldItem;
-            Tile tile = Main.tile[i, j];
-            bool herbdrop = false;
-            int herbtype = 0;
-            bool seeddrop = false;
-            int seedtype = 0;
-            if (item.type == ModContent.ItemType<丰收镰刀>())
+            if (fail)//多次开采掉落
             {
-                switch (type)
+
+            }
+            else//一次性掉落
+            {
+                Player player = Main.LocalPlayer;
+                Item item = player.HeldItem;
+                Tile tile = Main.tile[i, j];
+                bool herbdrop = false;
+                int herbtype = 0;
+                bool seeddrop = false;
+                int seedtype = 0;
+                if (item.type == ModContent.ItemType<丰收镰刀>())
                 {
-                    case TileID.Seaweed:
-                        herbdrop = Main.rand.NextBool(4);
-                        herbtype = ModContent.ItemType<海带>();
-                        break;
-                    case TileID.CorruptThorns:
-                        herbdrop = Main.rand.NextBool(4);
-                        herbtype = ModContent.ItemType<腐球果>();
-                        break;
-                    case TileID.SeaOats:
-                        herbdrop = Main.rand.NextBool(2);
-                        herbtype = ModContent.ItemType<海麦>();
-                        seeddrop = Main.rand.NextBool(3);
-                        seedtype = ModContent.ItemType<海燕麦种子>();
-                        break;
-                    case TileID.CrimsonThorns:
-                        herbdrop = Main.rand.NextBool(4);
-                        herbtype = ModContent.ItemType<血角>();
-                        break;
-                    case TileID.Plants:
-                        if (tile.TileFrameX < 106 && j < Main.worldSurface * 0.45f)
-                        {
-                            herbdrop = Main.rand.NextBool(5);
-                            herbtype = ModContent.ItemType<云锦果>();
-                        }
-                        break;
+                    switch (type)
+                    {
+                        case TileID.Seaweed:
+                            herbdrop = Main.rand.NextBool(4);
+                            herbtype = ModContent.ItemType<海带>();
+                            break;
+                        case TileID.CorruptThorns:
+                            herbdrop = Main.rand.NextBool(4);
+                            herbtype = ModContent.ItemType<腐球果>();
+                            break;
+                        case TileID.SeaOats:
+                            herbdrop = Main.rand.NextBool(2);
+                            herbtype = ModContent.ItemType<海麦>();
+                            seeddrop = Main.rand.NextBool(3);
+                            seedtype = ModContent.ItemType<海燕麦种子>();
+                            break;
+                        case TileID.CrimsonThorns:
+                            herbdrop = Main.rand.NextBool(4);
+                            herbtype = ModContent.ItemType<血角>();
+                            break;
+                        case TileID.Plants:
+                            if (tile.TileFrameX < 106 && j < Main.worldSurface * 0.45f)
+                            {
+                                herbdrop = Main.rand.NextBool(5);
+                                herbtype = ModContent.ItemType<云锦果>();
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (type)
+                    {
+                        case TileID.Seaweed:
+                            herbdrop = Main.rand.NextBool(6);
+                            herbtype = ModContent.ItemType<海带>();
+                            break;
+                        case TileID.CorruptThorns:
+                            herbdrop = Main.rand.NextBool(6);
+                            herbtype = ModContent.ItemType<腐球果>();
+                            break;
+                        case TileID.SeaOats:
+                            herbdrop = Main.rand.NextBool(4);
+                            herbtype = ModContent.ItemType<海麦>();
+                            seeddrop = Main.rand.NextBool(5);
+                            seedtype = ModContent.ItemType<海燕麦种子>();
+                            break;
+                        case TileID.CrimsonThorns:
+                            herbdrop = Main.rand.NextBool(6);
+                            herbtype = ModContent.ItemType<血角>();
+                            break;
+                        case TileID.Plants:
+                            if (tile.TileFrameX < 106 && j < Main.worldSurface * 0.45f)
+                            {
+                                herbdrop = Main.rand.NextBool(8);
+                                herbtype = ModContent.ItemType<云锦果>();
+                            }
+                            break;
+                    }
+                }
+                if (herbdrop && herbtype > 0)
+                {
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, herbtype, 1);
+                }
+                if (seeddrop && seedtype > 0)
+                {
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, seedtype, 1);
                 }
             }
-            else
+        }
+        public override bool CanDrop(int i, int j, int type)
+        {
+            if (type == TileID.Bamboo)
             {
-                switch (type)
+                if (Main.tile[i, j].TileFrameX == 0)
                 {
-                    case TileID.Seaweed:
-                        herbdrop = Main.rand.NextBool(6);
-                        herbtype = ModContent.ItemType<海带>();
-                        break;
-                    case TileID.CorruptThorns:
-                        herbdrop = Main.rand.NextBool(6);
-                        herbtype = ModContent.ItemType<腐球果>();
-                        break;
-                    case TileID.SeaOats:
-                        herbdrop = Main.rand.NextBool(4);
-                        herbtype = ModContent.ItemType<海麦>();
-                        seeddrop = Main.rand.NextBool(5);
-                        seedtype = ModContent.ItemType<海燕麦种子>();
-                        break;
-                    case TileID.CrimsonThorns:
-                        herbdrop = Main.rand.NextBool(6);
-                        herbtype = ModContent.ItemType<血角>();
-                        break;
-                    case TileID.Plants:
-                        if (tile.TileFrameX < 106 && j < Main.worldSurface * 0.45f)
-                        {
-                            herbdrop = Main.rand.NextBool(8);
-                            herbtype = ModContent.ItemType<云锦果>();
-                        }
-                        break;
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<竹笋>(), 1);
+                    return false;
                 }
             }
-            if (herbdrop && herbtype > 0)
-            {
-                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, herbtype, 1);
-            }
-            if (seeddrop && seedtype > 0)
-            {
-                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, seedtype, 1);
-            }
+            return base.CanDrop(i, j, type);
         }
     }
 }
