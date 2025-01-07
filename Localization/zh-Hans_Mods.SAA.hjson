@@ -59,8 +59,8 @@ Tiles: {
 
 	冰箱: {
 		MapEntry: 冰箱
-		// MapEntry0: 冰箱
-		// MapEntry1: 冰箱
+		MapEntry0: 冰箱
+		MapEntry1: 冰箱
 	}
 
 	火龙果.MapEntry: 火龙果
