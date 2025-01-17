@@ -348,7 +348,9 @@ namespace SAA.Content.Sys
                 }
                 if (a.ShelfLife == 0)
                 {
+                    int stack = item.stack;
                     item.SetDefaults(ModContent.ItemType<腐烂物>());
+                    item.stack = stack;
                 }
             }
             base.UpdateInventory(item, player);

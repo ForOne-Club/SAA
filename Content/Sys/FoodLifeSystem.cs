@@ -42,7 +42,9 @@ public class FoodLifeSystem : ModSystem
                             }
                             else if (chest.item[inventoryIndex].GetGlobalItem<HungerforItem>().ShelfLife == 0)
                             {
+                                int stack = chest.item[inventoryIndex].stack;
                                 chest.item[inventoryIndex].SetDefaults(ModContent.ItemType<腐烂物>());
+                                chest.item[inventoryIndex].stack = stack;
                             }
                         }
                     }
