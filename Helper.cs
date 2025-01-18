@@ -5,6 +5,7 @@ using SAA.Content.Sys;
 using Terraria.Enums;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 
 namespace SAA
 {
@@ -145,7 +146,8 @@ namespace SAA
                 _ => 0
             };
             item.DefaultToFood(width, height, buffType, hunger * 900 * (int)Math.Pow(2, 2 - level), useGolpSound);
-            item.SetShopValues((ItemRarityColor)level, hunger * 300 * (level + 1));
+            item.rare = ItemRarityID.Blue;
+            //item.SetShopValues((ItemRarityColor)level, hunger * 300 * (level + 1));有GlobalItem里帮助计算价值
         }
         public static void SetOriginFood(this Item item, int width, int height, int buffType, int buffTime, bool useGolpSound = false)
         {
@@ -158,7 +160,8 @@ namespace SAA
             };
             int hunger = HungerforItem.QuickBuff_FindFoodPriority(buffType) * buffTime / 3600;
             item.DefaultToFood(width, height, buffType, hunger * 900 * (int)Math.Pow(2, 2 - level), useGolpSound);
-            item.SetShopValues((ItemRarityColor)level, hunger * 300 * (level + 1));
+            item.rare = ItemRarityID.Blue;
+            //item.SetShopValues((ItemRarityColor)level, hunger * 300 * (level + 1));有GlobalItem里帮助计算价值
         }
         /// <summary>
         /// 油炸食材，包含合成表注册

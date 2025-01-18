@@ -261,7 +261,14 @@ namespace SAA.Content.Sys
                 }
                 else
                 {
-                    player.Hurt(PlayerDeathReason.ByCustomReason(player.name + (GameCulture.FromCultureName(GameCulture.CultureName.English).IsActive ? " " : "") + Language.GetTextValue("Mods.SAA.PlayerDeathReason")), HealHunger, 1, false, true, -1, false, 9999, 99, 0);
+                    //吃东西掉血需要绕开护盾不能用Hurt
+                    //player.Hurt(PlayerDeathReason.ByCustomReason(player.name + Language.GetTextValue("Mods.SAA.PlayerDeathReason")), HealHunger, 1, false, true, -1, false, 9999, 99, 0);
+                    player.statLife -= HealHunger;
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.LifeRegen, HealHunger, dramatic: false, dot: true);
+                    if (player.statLife <= 0 && player.whoAmI == Main.myPlayer)
+                    {
+                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + Language.GetTextValue("Mods.SAA.PlayerDeathReason")), 10.0, 0);
+                    }
                 }
                 //hungerheal = hungerheal > hunger ? hunger - (int)hunger - 0.5f > 0 ? hunger + 1 : hunger : hungerheal;
             }
