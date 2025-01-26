@@ -1,5 +1,6 @@
 DamageClass.Botanist: 植物伤害
-PlayerDeathReason: 撑死了
+PlayerDeathReason1: 撑死了
+PlayerDeathReason2: 饿死了
 
 Tooltips: {
 	1: 增加饱食度

@@ -1,5 +1,6 @@
 DamageClass.Botanist: PlantDamage
-PlayerDeathReason: was stuffed
+PlayerDeathReason1: was stuffed
+PlayerDeathReason2: died of hunger
 
 Tooltips: {
 	1: Increase satiety

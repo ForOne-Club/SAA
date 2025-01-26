@@ -267,7 +267,7 @@ namespace SAA.Content.Sys
                     CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.LifeRegen, HealHunger, dramatic: false, dot: true);
                     if (player.statLife <= 0 && player.whoAmI == Main.myPlayer)
                     {
-                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + Language.GetTextValue("Mods.SAA.PlayerDeathReason")), 10.0, 0);
+                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + Language.GetTextValue("Mods.SAA.PlayerDeathReason1")), 10.0, 0);
                     }
                 }
                 //hungerheal = hungerheal > hunger ? hunger - (int)hunger - 0.5f > 0 ? hunger + 1 : hunger : hungerheal;

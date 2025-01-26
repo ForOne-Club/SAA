@@ -1,5 +1,6 @@
 ﻿using SAA.Content.Buffs;
 using SAA.Content.Items;
+using Terraria.GameContent.UI;
 using Terraria.ModLoader.IO;
 
 namespace SAA.Content.Sys;
@@ -15,11 +16,13 @@ public class HungerforPlayer : ModPlayer
     public float HungerMax = 100.5f;
     public bool HungerBook = false;
     public int PoopTime = 300;//拉臭臭间隔时间
-    internal static int[] HungerBuff = { 26, 206, 207, 332, 333, 334, ModContent.BuffType<饿瘪了>(), ModContent.BuffType<一级饱和>(), ModContent.BuffType<二级饱和>(), ModContent.BuffType<三级饱和>(), ModContent.BuffType<强效饱和>(), ModContent.BuffType<超级饱和>() };
+    internal static int[] HungerBuff = { 26, 206, 207, 332, 333, ModContent.BuffType<饿瘪了>(), ModContent.BuffType<一级饱和>(), ModContent.BuffType<二级饱和>(), ModContent.BuffType<三级饱和>(), ModContent.BuffType<强效饱和>(), ModContent.BuffType<超级饱和>() };
     /// <summary>
     /// 庄稼收成
     /// </summary>
     public float CropHarvest = 1;
+
+    public bool ForOne_TeethOfGluttony = false;//暴食之牙
     public override void SaveData(TagCompound tag)
     {
         tag["BaoShi"] = Hunger;
@@ -43,6 +46,7 @@ public class HungerforPlayer : ModPlayer
         }
 
         CropHarvest = 1;
+        if (!HungerSetting.ForOne) ForOne_TeethOfGluttony = false;
     }
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)//死亡惩罚
     {
@@ -71,6 +75,10 @@ public class HungerforPlayer : ModPlayer
         }
         if (HungerKillTime > 0)
         {
+            if (HungerKillTime > 18000)
+            {
+                HungerKillTime = 18000;
+            }
             int cut = HungerKillTime / 600;//每10s扣除一点
             if (cut <= 0) cut = 1;
             int hungerMax;
@@ -147,16 +155,34 @@ public class HungerforPlayer : ModPlayer
             {
                 Hunger = 0;
                 type = ModContent.BuffType<饿瘪了>();
-                if (HungerSetting.HungerDown && !HungerBook)
-                {
-                    type = 334;//原版能饿死的buff
-                }
             }
             else if (HungerSetting.ForOne)
             {
-                if (Hunger > HungerMax) type = ModContent.BuffType<吃撑>();
-                else if (Hunger < 20) type = ModContent.BuffType<饥饿>();//原版饥饿333会持续发言
-                else if (Hunger < 100) { }
+                if (Hunger > HungerMax)
+                {
+                    if (!ForOne_TeethOfGluttony)
+                    {
+                        type = ModContent.BuffType<吃撑>();
+                    }
+                }
+                else if (Hunger < 20)
+                {
+                    if (ForOne_TeethOfGluttony)
+                    {
+                        type = ModContent.BuffType<饿瘪了>();
+                    }
+                    else
+                    {
+                        type = ModContent.BuffType<饥饿>();//原版饥饿333会持续发言
+                    }
+                }
+                else if (Hunger < 100)
+                {
+                    if (ForOne_TeethOfGluttony)
+                    {
+                        type = ModContent.BuffType<饥饿>();
+                    }
+                }
                 else if (Hunger < 180) type = ModContent.BuffType<一级饱和>();
                 else if (Hunger < 260) type = ModContent.BuffType<二级饱和>();
                 else if (Hunger < 340) type = ModContent.BuffType<三级饱和>();
@@ -174,9 +200,24 @@ public class HungerforPlayer : ModPlayer
             }
             HungerClear(HungerBuff, type);
             if (type >= 0) HungerBuffAdd(type);
-            if (Player.HasBuff(334))
+            if (Player.HasBuff(ModContent.BuffType<饿瘪了>()))
             {
-                if (HungerKillTime < 18000) HungerKillTime++;
+                if (HungerKillTime < int.MaxValue)
+                {
+                    HungerKillTime++;
+                    if (HungerSetting.HungerDown && !HungerBook)
+                    {
+                        if (HungerKillTime % 60 == 0)
+                        {
+                            Player.statLife -= 5;
+                            CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), CombatText.LifeRegen, 5, dramatic: false, dot: true);
+                            if (Player.statLife <= 0)
+                            {
+                                Player.KillMe(PlayerDeathReason.ByCustomReason(Player.name + Language.GetTextValue("Mods.SAA.PlayerDeathReason2")), 10.0, 0);
+                            }
+                        }
+                    }
+                }
             }
             else
             {
@@ -191,7 +232,11 @@ public class HungerforPlayer : ModPlayer
     }
     public override void UpdateBadLifeRegen()
     {
-        if (Player.HasBuff(ModContent.BuffType<饿瘪了>())) Player.lifeRegen = 0;
+        if (Player.HasBuff(ModContent.BuffType<饿瘪了>()))
+        {
+            Player.lifeRegen = 0;
+            Player.lifeRegenTime = 0;
+        }
     }
     public override void UpdateDead()
     {
@@ -237,6 +282,14 @@ public class HungerforPlayer : ModPlayer
         else
         {
             Player.AddBuff(type, 2);
+            if (type == ModContent.BuffType<饿瘪了>())
+            {
+                EmoteBubble.MakeLocalPlayerEmote(148);
+            }
+            else if (type == ModContent.BuffType<饥饿>())
+            {
+                EmoteBubble.MakeLocalPlayerEmote(147);
+            }
         }
     }
     public override void PreUpdate()//烤肉篝火判定
