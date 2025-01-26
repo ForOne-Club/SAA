@@ -73,6 +73,15 @@ public class HungerforPlayer : ModPlayer
             }
             if (Hunger < 100.5f) Hunger = 100.5f;
         }
+        int hungerMax;
+        if (HungerCount > 20)
+        {
+            hungerMax = (HungerCount - 20) * 5 + 400;
+        }
+        else
+        {
+            hungerMax = HungerCount * 20;
+        }
         if (HungerKillTime > 0)
         {
             if (HungerKillTime > 18000)
@@ -81,19 +90,10 @@ public class HungerforPlayer : ModPlayer
             }
             int cut = HungerKillTime / 600;//每10s扣除一点
             if (cut <= 0) cut = 1;
-            int hungerMax;
-            if (HungerCount > 20)
-            {
-                hungerMax = (HungerCount - 20) * 5 + 400;
-            }
-            else
-            {
-                hungerMax = HungerCount * 20;
-            }
             HungerReduce += cut;
             if (hungerMax - HungerReduce < 20) HungerReduce = hungerMax - 20;
         }
-        float h = HungerMax - HungerReduce;
+        float h = hungerMax - HungerReduce;
         if (Hunger > h) Hunger = h;
         base.Kill(damage, hitDirection, pvp, damageSource);
     }
