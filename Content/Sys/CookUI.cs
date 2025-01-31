@@ -44,8 +44,8 @@ namespace SAA.Content.Sys
                 //图片内距左上角的宽，图片内距左上角的高，取的图片的宽，取的图片的高
                 Main.spriteBatch.Draw(texture1, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture2, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
-
-                Main.inventoryScale *= 1.652f;//第一次进游戏打开背包前这个值貌似不对劲，所以我只需要打开UI的同时打开背包即可
+                if(Main.LocalPlayer.chest>-1) Main.inventoryScale *= 1.3128f;
+                else Main.inventoryScale *= 1.652f;//第一次进游戏打开背包前这个值貌似不对劲，所以我只需要打开UI的同时打开背包即可
                 Vector2 pos = new Vector2(Bar1.X, Bar1.Y);
                 for (int i = 0; i < 6; i++)
                 {
@@ -73,7 +73,8 @@ namespace SAA.Content.Sys
                     }
                 }
                 ItemSlot.Draw(Main.spriteBatch, ref a.CookItems[7], 14, pos + new Vector2(138, 176));
-                Main.inventoryScale /= 1.652f;
+                if (Main.LocalPlayer.chest > -1) Main.inventoryScale /= 1.3128f;
+                else Main.inventoryScale /= 1.652f;
 
                 float factor1;
                 if (a.MaxBurnTime <= 0) factor1 = 0;
@@ -128,7 +129,8 @@ namespace SAA.Content.Sys
                 Main.spriteBatch.Draw(texture1, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture2, Bar1, Bar2, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
 
-                Main.inventoryScale *= 1.652f;//第一次进游戏打开背包前这个值貌似不对劲，所以我只需要打开UI的同时打开背包即可
+                if (Main.LocalPlayer.chest > -1) Main.inventoryScale *= 1.3128f;
+                else Main.inventoryScale *= 1.652f;//第一次进游戏打开背包前这个值貌似不对劲，所以我只需要打开UI的同时打开背包即可
                 Vector2 pos = new Vector2(Bar1.X, Bar1.Y);
                 for (int i = 0; i < 2; i++)
                 {
@@ -159,7 +161,8 @@ namespace SAA.Content.Sys
                     }
                 }
                 ItemSlot.Draw(Main.spriteBatch, ref a.CookItems[3], 14, pos + new Vector2(138, 176));
-                Main.inventoryScale /= 1.652f;
+                if (Main.LocalPlayer.chest > -1) Main.inventoryScale /= 1.3128f;
+                else Main.inventoryScale /= 1.652f;
 
                 float factor1;
                 if (a.MaxBurnTime <= 0) factor1 = 0;
