@@ -102,6 +102,7 @@ public class HungerforPlayer : ModPlayer
     {
         if (Player.whoAmI == Main.myPlayer)
         {
+            if (Player.dead) return;
             float addi = 0, mult = 1;
             if (HungerBook)
             {
