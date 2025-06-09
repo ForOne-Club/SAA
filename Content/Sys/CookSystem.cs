@@ -242,6 +242,7 @@ namespace SAA.Content.Sys
                             {
                                 Cook[k].CookItems[^1].stack += Cook[k].CreateItem.Y;
                             }
+                            Cook[k].CreateItem = new (0, 0);//清除
                         }
                     }
                     else
